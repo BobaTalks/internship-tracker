@@ -30,6 +30,7 @@ jobs:
 
       - name: Install ESLint
         run: |
+          cd client
           npm install eslint@8.10.0
 
       - name: Run ESLint
