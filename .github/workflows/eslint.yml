@@ -30,10 +30,11 @@ jobs:
 
       - name: Install ESLint
         run: |
+          cd client
           npm install eslint@8.10.0
 
       - name: Run ESLint
         run: npx eslint client/.
-          --config .eslintrc
+          --config ./client/.eslintrc.json
           --ext .js,.jsx,.ts,.tsx
         continue-on-error: true
