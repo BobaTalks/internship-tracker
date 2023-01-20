@@ -33,7 +33,7 @@ jobs:
           npm install eslint@8.10.0
 
       - name: Run ESLint
-        run: npx eslint .
+        run: npx eslint client/.
           --config .eslintrc.js
           --ext .js,.jsx,.ts,.tsx
         continue-on-error: true
