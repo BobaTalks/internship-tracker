@@ -1,0 +1,19 @@
+{
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "shared-config"
+    ],
+    "rules": {
+      "additional-rule": "warn"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.js?(x)"
+        ],
+        "rules": {}
+      }
+    ]
+  }
+}
