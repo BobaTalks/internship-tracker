@@ -1,2 +1,3 @@
 # Frontend reviewers auto assign to client code
 client/  @bobatalks/FE
+server/  @bobatalks/BE
