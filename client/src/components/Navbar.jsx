@@ -1,11 +1,13 @@
 import React from "react";
-import { AppBar, Box, Button, Stack } from "@mui/material";
+import { AppBar, Box, Button, Stack, useTheme } from "@mui/material";
 import bobaTalksLogo from "../assets/bobatalks_wide.svg";
 import { Link as RouterLink } from "react-router-dom";
 
 const NavBar = () => {
+  const theme = useTheme();
+
   return (
-    <AppBar sx={{ p: 2 }}>
+    <AppBar sx={{ p: 2, bgcolor: theme.palette.background.paper }}>
       <Stack direction="row" sx={{ justifyContent: "space-between" }}>
         <Box>
           <Button

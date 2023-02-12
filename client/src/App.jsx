@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 
 const withSuspense = (Component) => (
   <Suspense fallback="brewing...">
@@ -13,14 +13,17 @@ const HomePage = React.lazy(() => import("./pages/HomePage"));
 // TODO: Add brand colors map
 // eslint-disable-next-line
 const BRAND_COLORS = {
-  MATCHA: {
-    hex: "#73956F",
-    rgb: "rgb(115, 149, 111)",
-  },
+  BLUEBERRY: "#021944",
+  LYCHEE: "#F6A794",
+  MATCHA: "#B1D5B2",
+  MILK_TEA: "#F2DAC4",
+  TARO: "#E4CFF7",
+  THAI_TEA: "#E0A878",
 };
 
 const theme = createTheme({
   palette: {
+    background: { paper: BRAND_COLORS.MILK_TEA, default: "#FAF0E7" },
     success: {
       main: "#489878",
     },
@@ -32,6 +35,10 @@ const theme = createTheme({
     },
     warning: {
       main: "#F9971E",
+    },
+    text: {
+      primary: "#2F3032",
+      secondary: "#C4C4C4",
     },
   },
   fontsize: "16px",
@@ -52,6 +59,7 @@ const theme = createTheme({
 const App = () => {
   return (
     <BrowserRouter>
+      <CssBaseline />
       <ThemeProvider theme={theme}>
         <Routes>
           <Route path={"/"} element={withSuspense(HomePage)} />
