@@ -27,6 +27,15 @@
         "question",
         "ideas"
       ]
+    },
+    {
+      "login": "GeekJump",
+      "name": "Brandon C",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7208570?v=4",
+      "profile": "http://brandoncastillo.biz/",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
