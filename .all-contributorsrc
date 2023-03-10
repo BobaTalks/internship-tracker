@@ -1,0 +1,27 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "kpxwinter",
+      "name": "KP",
+      "avatar_url": "https://avatars.githubusercontent.com/u/118410579?v=4",
+      "profile": "https://github.com/kpxwinter",
+      "contributions": [
+        "projectManagement",
+        "question",
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "internship-tracker",
+  "projectOwner": "BobaTalks"
+}
