@@ -41,3 +41,11 @@ This app's frontend is _currently_ hosted on netlify and can be viewed at https:
 Pull requests are built with [deploy previews](https://docs.netlify.com/site-deploys/deploy-previews/) so reviewers can check out your changes on a live site. Checks on the PR will automatically build this and a link will be provided via comments on your PR.
 
 ## Contributors
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
