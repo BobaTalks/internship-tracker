@@ -39,6 +39,17 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "JennaXiao3",
+      "name": "Jenna Xiao",
+      "avatar_url": "https://avatars.githubusercontent.com/u/96795538?v=4",
+      "profile": "https://www.linkedin.com/in/jenna-x-435a851b3/",
+      "contributions": [
+        "code",
+        "doc",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
