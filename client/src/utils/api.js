@@ -6,9 +6,9 @@ import axios from "axios";
  * Internship[]
  *
  * @param {*} searchOptions - shape to be determined by backend
- * @return {*}
+ * @return {Promise<Internship[]>}
  */
-export const getInternships = (searchOptions) => {
+export const getSearchInternships = (searchOptions) => {
   const url = "";
   const options = {};
 
@@ -19,10 +19,24 @@ export const getInternships = (searchOptions) => {
  * Post to backend to save internship to account of logged in user
  *
  * @param {string} internshipId
+ * @return {*}
  */
 export const postSaveInternship = (internshipId) => {
   const url = "";
   const options = {};
 
   return axios.post(url, options);
+};
+
+/**
+ * Fetch user internships to be organized by swimlane categories. Internship data for this
+ * page will have to be determined
+ *
+ * @return {Promise<UserInternship[]>}
+ */
+export const getUserInternships = () => {
+  const url = "";
+  const options = {};
+
+  return axios.get(url, options);
 };
