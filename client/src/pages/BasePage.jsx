@@ -8,9 +8,6 @@ import NavBar from "../components/Navbar";
  * navigation at the top.
  *
  * Modifying this component should update all other page components inheriting this.
- *
- * @param {*} props
- * @return {React.Node}
  */
 const BasePage = (props) => {
   const theme = useTheme();
