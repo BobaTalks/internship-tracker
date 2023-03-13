@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Box, Container, useTheme } from "@mui/material";
 import NavBar from "../components/Navbar";
 
@@ -14,10 +13,6 @@ const BasePage = (props) => {
       </Container>
     </Box>
   );
-};
-
-BasePage.propTypes = {
-  children: PropTypes.node,
 };
 
 export default BasePage;
