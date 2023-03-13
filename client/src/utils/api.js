@@ -12,7 +12,11 @@ export const getSearchInternships = (searchOptions) => {
   const url = "";
   const options = {};
 
-  return axios.get(url, options);
+  return [
+    // Fill out mock data here
+  ];
+
+  // return axios.get(url, options);
 };
 
 /**
@@ -25,7 +29,11 @@ export const postSaveInternship = (internshipId) => {
   const url = "";
   const options = {};
 
-  return axios.post(url, options);
+  return [
+    // Fill out mock data here
+  ];
+
+  // return axios.post(url, options);
 };
 
 /**
@@ -38,5 +46,8 @@ export const getUserInternships = () => {
   const url = "";
   const options = {};
 
-  return axios.get(url, options);
+  return [
+    // Fill out mock data here
+  ];
+  // return axios.get(url, options);
 };
