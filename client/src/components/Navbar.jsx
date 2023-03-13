@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
 import { AppBar, Box, Link, Stack, useTheme } from "@mui/material";
+import React, { useEffect } from "react";
+
 import bobaTalksLogoPath from "../assets/bobatalks_wide.svg";
 
 const NavBar = () => {
