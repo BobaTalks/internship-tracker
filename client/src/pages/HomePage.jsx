@@ -1,13 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import BasePage from "./BasePage";
 
+/**
+ * https://github.com/BobaTalks/internship-tracker/issues/24
+ * Will need to include the background styles for the HomePage per design spec
+ */
 const HomePage = (props) => {
   return <BasePage>{props.children}</BasePage>;
-};
-
-HomePage.propTypes = {
-  children: PropTypes.node,
 };
 
 export default HomePage;

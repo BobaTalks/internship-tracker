@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Internship Tracker Client (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is built with [React](https://reactjs.org/) and [MaterialUI Components](https://mui.com/)
 
-## Available Scripts
+- [Internship Tracker Client (Frontend)](#internship-tracker-client-frontend)
+  - [:zap: Quick Start](#zap-quick-start)
+  - [:computer: Local Development](#computer-local-development)
+  - [:pencil: Formatting and Linting](#pencil-formatting-and-linting)
+  - [:handshake: Contributing](#handshake-contributing)
 
-In the project directory, you can run:
+## :zap: Quick Start
 
-### `npm start`
+```shell
+cd client
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Install the dependencies using [npm](https://www.npmjs.com/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```shell
+npm start
+```
 
-### `npm test`
+Start the local development server
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```shell
+npm run
+```
 
-### `npm run build`
+Use npm run to see the [npm scripts](https://docs.npmjs.com/cli/v9/commands/npm-run-script) available
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<hr>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## :computer: Local Development
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```shell
+npm start
+```
 
-### `npm run eject`
+Create react app sets this project up with the build tools and development server to rebuild hot reload your changes with the `start` command
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## :pencil: Formatting and Linting
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This project uses [ESlint](https://eslint.org/) and [Prettier](https://prettier.io/) to autoformat and enforce syntax patterns
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```shell
+npm run lint
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+List any linting warnings and errors out to the console
 
-## Learn More
+```shell
+npm run lint:fix
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Attempt to fix any auto fixable warnings and errors on your branch
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+_note: Any changes made will need to be committed_
 
-### Code Splitting
+## :handshake: Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Here from the :bubble_tea: [BobaTalks discord](https://discord.gg/bobatalks)? Find issues labeled for you [here](https://github.com/BobaTalks/internship-tracker/issues?q=is%3Aopen+label%3A%22bobatalks+student%22+sort%3Aupdated-desc)
