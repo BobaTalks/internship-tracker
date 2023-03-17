@@ -1,4 +1,5 @@
 {
+  "proxy": "http://localhost:5000",
   "devDependencies": {
     "all-contributors-cli": "^6.24.0"
   },
