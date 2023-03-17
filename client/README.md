@@ -3,10 +3,16 @@
 This project is built with [React](https://reactjs.org/) and [MaterialUI Components](https://mui.com/)
 
 - [Internship Tracker Client (Frontend)](#internship-tracker-client-frontend)
+  - [:brain: Prerequisites](#brain-prerequisites)
   - [:zap: Quick Start](#zap-quick-start)
   - [:computer: Local Development](#computer-local-development)
   - [:pencil: Formatting and Linting](#pencil-formatting-and-linting)
   - [:handshake: Contributing](#handshake-contributing)
+
+## :brain: Prerequisites
+
+- [Node](https://nodejs.org/en/download)
+  - It's recommended to use [nvm](https://github.com/nvm-sh/nvm) to manage multiple versions of node
 
 ## :zap: Quick Start
 
