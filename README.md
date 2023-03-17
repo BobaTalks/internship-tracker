@@ -33,6 +33,12 @@ cd internship-tracker
 
 Clone your repo and navigate into the project repository
 
+```sh
+cp .sample-env .env
+```
+
+Copy the sample env file to a `.env` and set any missing variables
+
 - For frontend work, see [README](./client/README.md) in `client/`
 
 - For backend work, see [README](./server/README.md) in `server/`
