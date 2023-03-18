@@ -1,14 +1,26 @@
 # Internship Tracker
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 - [Internship Tracker](#internship-tracker)
+  - [:brain: Prerequisites](#brain-prerequisites)
   - [:seedling: Getting started](#seedling-getting-started)
+    - [Local Database](#local-database)
   - [:handshake: Contributing](#handshake-contributing)
     - [Opening a Pull Request (PR)](#opening-a-pull-request-pr)
   - [Hosting](#hosting)
   - [Contributors](#contributors)
+
+## :brain: Prerequisites
+
+- [Node](https://nodejs.org/en/download)
+  - It's recommended to use [nvm](https://github.com/nvm-sh/nvm) to manage multiple versions of node
+- [Docker](https://docs.docker.com/get-docker/) - Used to spin up local database
+- [Python](https://www.python.org/) - Used for backend server
 
 ## :seedling: Getting started
 
@@ -21,9 +33,23 @@ cd internship-tracker
 
 Clone your repo and navigate into the project repository
 
+```sh
+cp .sample-env .env
+```
+
+Copy the sample env file to a `.env` and set any missing variables
+
 - For frontend work, see [README](./client/README.md) in `client/`
 
 - For backend work, see [README](./server/README.md) in `server/`
+
+### Local Database
+
+```shell
+docker-compose up
+```
+
+From project root, run the above command to spin up a local db within a docker container
 
 ## :handshake: Contributing
 
@@ -44,6 +70,7 @@ This app's frontend is _currently_ hosted on netlify and can be viewed at https:
 Pull requests are built with [deploy previews](https://docs.netlify.com/site-deploys/deploy-previews/) so reviewers can check out your changes on a live site. Checks on the PR will automatically build this and a link will be provided via comments on your PR.
 
 ## Contributors
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
