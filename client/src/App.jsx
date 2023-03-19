@@ -53,6 +53,8 @@ const theme = createTheme({
     h6: { fontWeight: "bold", fontSize: "1rem" },
     body1: { fontSize: "1.125rem" },
     body2: { fontSize: "1.125rem", color: "#C4C4C4" },
+    title: { fontWeight: "500", fontSize: "4.5rem", lineHeight: "5.5rem" },
+    subtitle: { fontSize: "2rem" },
   },
 });
 
