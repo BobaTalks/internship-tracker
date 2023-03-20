@@ -10,16 +10,16 @@ Follow the steps 1-5 [here](https://phoenixnap.com/kb/how-to-install-python-3-wi
 
 ```shell
 cd server
-pip install -r requirements.txt
-```
-
-Install Python packages using [pip](https://pypi.org/project/pip/)
-
-```shell
 source env/bin/activate
 ```
 
 Activate the virtual environment
+
+```shell
+pip install -r requirements.txt
+```
+
+Install Python packages using [pip](https://pypi.org/project/pip/)
 
 ```shell
 python3 server.py
@@ -38,10 +38,6 @@ pip freeze > requirements.txt
 After installing new packages, run the command above to update requirements.txt
 
 _note: Make sure you are in the virtual environment_
-
-```shell
-npm run lint
-```
 
 ## :handshake: Contributing
 
