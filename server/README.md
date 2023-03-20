@@ -22,6 +22,12 @@ pip install -r requirements.txt
 Install Python packages using [pip](https://pypi.org/project/pip/)
 
 ```shell
+FLASK_DEBUG=1
+```
+
+Add the line above to the .flaskenv file if you would like to enable [DEBUG mode](https://flask.palletsprojects.com/en/2.2.x/quickstart/#:~:text=Debug%20Mode,error%20occurs%20during%20a%20request.)
+
+```shell
 python3 server.py
 ```
 
