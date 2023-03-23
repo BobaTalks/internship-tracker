@@ -1,6 +1,6 @@
-name: GitHub Actions Checks
+name: Python Lint Checks
 
-run-name: Running Lint check on Pull Request from ${{ github.actor }} 🚀
+run-name: Running Python Lint check on Pull Request from ${{ github.actor }} 🚀
 
 on:
   workflow_dispatch:
