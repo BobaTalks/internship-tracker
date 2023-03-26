@@ -10,10 +10,11 @@ Follow the steps 1-5 [here](https://phoenixnap.com/kb/how-to-install-python-3-wi
 
 ```shell
 cd server
+python3 -m venv venv
 source venv/bin/activate
 ```
 
-Activate the virtual environment
+Create and activate the virtual environment
 
 ```shell
 pip install -r requirements.txt
