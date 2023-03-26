@@ -54,7 +54,6 @@ const theme = createTheme({
     body1: { fontSize: "1.125rem" },
     body2: { fontSize: "1.125rem", color: "#C4C4C4" },
     title: { fontWeight: "500", fontSize: "4.5rem", lineHeight: "5.5rem" },
-    subtitle: { fontWeigth: "300", fontSize: "2rem" },
   },
 });
 
