@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import "@fontsource/poppins";
 
 const withSuspense = (Component) => (
   <Suspense fallback="brewing...">
