@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import "@fontsource/poppins";
 
 const withSuspense = (Component) => (
   <Suspense fallback="brewing...">
@@ -53,6 +54,7 @@ const theme = createTheme({
     h6: { fontWeight: "bold", fontSize: "1rem" },
     body1: { fontSize: "1.125rem" },
     body2: { fontSize: "1.125rem", color: "#C4C4C4" },
+    title: { fontWeight: "500", fontSize: "4.5rem", lineHeight: "5.5rem" },
   },
 });
 

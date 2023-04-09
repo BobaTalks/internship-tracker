@@ -1,0 +1,25 @@
+name: Python Lint Checks
+
+run-name: Running Python Lint check on Pull Request from ${{ github.actor }} 🚀
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "main" ]
+
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Black Code Formatter
+        uses: lgeiger/black-action@v1.0.1
+        with:
+          args: ". --check"
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."
