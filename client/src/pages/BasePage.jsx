@@ -2,7 +2,7 @@ import { Box, Container, useTheme } from "@mui/material";
 import React from "react";
 
 import NavBar from "../components/Navbar";
-import PostedOn from "../components/PostedOn";
+import JobDescription from "../components/JobDescription";
 
 /**
  * Base "Page" component that will wrap and return our standard page layout with
@@ -13,14 +13,15 @@ import PostedOn from "../components/PostedOn";
 const BasePage = (props) => {
   const theme = useTheme();
 
-  const mockData = "02/14/2003";
+  const ex_JobDescrip =
+    "Come join the Product Content Innovation Experience Design team for the unique opportunity to design new content-related and interactive product experiences that consumers use and love. In this role, you have the opportunity to influence the storyline of Netflix titles through the creation of thoughtful designs and user journeys–making more joyful experiences for our members...";
 
   return (
     <Box sx={{ bgColor: theme.palette.background.default, height: "100vh" }}>
       <Container>
         {/* <NavBar /> */}
         {props.children}
-        <PostedOn date={mockData} />
+        <JobDescription description={ex_JobDescrip} />
       </Container>
     </Box>
   );
