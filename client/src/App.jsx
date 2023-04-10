@@ -10,6 +10,7 @@ const withSuspense = (Component) => (
 );
 
 const HomePage = React.lazy(() => import("./pages/HomePage"));
+const TestingPage = React.lazy(() => import("./pages/TestingPage"));
 
 // TODO: Add brand colors map
 // eslint-disable-next-line
@@ -41,6 +42,33 @@ const theme = createTheme({
       primary: "#2F3032",
       secondary: "#C4C4C4",
     },
+    brown: {
+      lightest: "#FAF0E7",
+      light: "#F2DAC4",
+      dark: "#E0A878",
+      darker: "#A4857B",
+      darkest: "#683323",
+    },
+    gray: {
+      lightest: "#FFFFFF",
+      lighter: "#E4E2E0",
+      light: "#8C8C8C",
+      dark: "#D9D9D9",
+      darker: "#021944",
+      darkest: "#000000",
+    },
+    orange: {
+      light: "#ED6A58",
+      dark: "#CE230B",
+    },
+    blue: {
+      light: "#0047FF",
+      dark: "#021944",
+    },
+    green: {
+      light: "#73956F",
+      dark: "#489879",
+    },
   },
   fontsize: "16px",
   typography: {
@@ -64,7 +92,7 @@ const App = () => {
       <CssBaseline />
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path={"/"} element={withSuspense(HomePage)} />
+          <Route path={"/"} element={withSuspense(TestingPage)} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
