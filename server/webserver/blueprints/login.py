@@ -1,15 +1,89 @@
-from flask import current_app, Blueprint, request
+from flask import Blueprint, request, jsonify
+from flask_jwt_extended import (
+    create_access_token,
+    get_jwt_identity,
+    get_jwt,
+    jwt_required,
+    current_user,
+    set_access_cookies,
+    unset_jwt_cookies,
+)
 from google.oauth2 import id_token
 from google.auth.transport import requests
 import os
 from dotenv import load_dotenv
+from webserver.models import User
 
 load_dotenv()
 
 login = Blueprint("login", __name__, url_prefix="/login")
 
 
-@login.route("/", methods=["GET"])
+@login.route("", methods=["POST"])
+def token():
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+
+    user = User.query.filter_by(username=username).one_or_none()
+    if not user or not user.check_password(password):
+        return jsonify({"Wrong username or password"}), 401
+
+    additional_claims = {"aud": "some_audience", "foo": "bar"}
+    access_token = create_access_token(
+        identity=user, additional_claims=additional_claims
+    )
+    return jsonify(access_token=access_token)
+
+
+@login.route("/who_am_i", methods=["GET"])
+@jwt_required()
+def return_user():
+    return jsonify(
+        id=current_user.id,
+        full_name=current_user.full_name,
+        username=current_user.username,
+    )
+
+
+@login.route("/protected", methods=["GET"])
+@jwt_required()
+def protected():
+    return jsonify(foo="bar")
+
+
+@login.route("/without_cookies", methods=["POST"])
+def login_without_cookies():
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+
+    user = User.query.filter_by(username=username).one_or_none()
+    if not user or not user.check_password(password):
+        return jsonify({"Wrong username or password"}), 401
+
+    additional_claims = {"aud": "some_audience", "foo": "bar"}
+    access_token = create_access_token(
+        identity=user, additional_claims=additional_claims
+    )
+    return jsonify(access_token=access_token)
+
+
+@login.route("/with_cookies", methods=["POST"])
+def login_with_cookies():
+    response = jsonify({"msg": "login successful"})
+    access_token = create_access_token(identity="example_user")
+    set_access_cookies(response, access_token)
+    return response
+
+
+@login.route("/logout_without_cookies", methods=["GET", "POST"])
+@jwt_required()
+def logout_without_cookies():
+    response = jsonify({"msg": "logout successful"})
+    unset_jwt_cookies(response)
+    return response
+
+
+@login.route("/google-button", methods=["GET"])
 def index():
     # sample view for showing the Google Sign In Button
     if request.method == "GET":
