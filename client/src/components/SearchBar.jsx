@@ -17,13 +17,7 @@ const SearchBar = () => {
 
   const handleClick = () => {};
   return (
-    <Grid
-      container
-      item
-      justifyContent="center"
-      alignItems="center"
-      spacing={2}
-    >
+    <Grid container justifyContent="center" alignItems="center" spacing={2}>
       <Grid item xs={12} md={7}>
         <IconTextField
           icon={<SuitcaseIcon htmlColor="black" />}

@@ -15,7 +15,7 @@ const HomePage = (props) => {
       <Stack spacing={5}>
         <HomePageContent />
         <Grid container justifyContent="center">
-          <Grid containter item lg={8} md={9} xs={11}>
+          <Grid item lg={8} md={9} xs={11}>
             <SearchBar />
           </Grid>
         </Grid>
