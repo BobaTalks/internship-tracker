@@ -43,16 +43,14 @@ const SearchBar = () => {
             padding: "0.9rem",
             border: "2px solid",
             borderColor: "red.200",
-            outline: "2px solid",
-            outlineColor: theme.palette.gray[400],
+            boxShadow: `0 0 0 2px ${theme.palette.gray[400]}`,
             "&:hover": {
               transform: "scale(1.1)",
               bgcolor: "red.100",
               transition: "transform .3s ease-out",
             },
             "&:focus": {
-              outline: "2px solid",
-              outlineColor: theme.palette.gray[400],
+              boxShadow: `0 0 0 2px ${theme.palette.gray[400]}`,
             },
           }}
         >
