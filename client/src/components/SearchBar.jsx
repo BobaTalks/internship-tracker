@@ -32,7 +32,7 @@ const SearchBar = () => {
           setValue={setInternship}
         />
       </Grid>
-      <Grid item xs={9} sm={4}>
+      <Grid item xs={9} md={4}>
         <IconTextField
           icon={<LocationIcon htmlColor="black" />}
           placeholder="Location"
@@ -40,7 +40,7 @@ const SearchBar = () => {
           setValue={setLocation}
         />
       </Grid>
-      <Grid item xs={3} sm={1}>
+      <Grid item xs={3} md={1}>
         <IconButton
           aria-label="search"
           onClick={handleClick}

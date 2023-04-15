@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, InputAdornment, TextField } from "@mui/material";
+import { Grid, InputAdornment, TextField } from "@mui/material";
 
 const IconTextField = ({ icon, placeholder, value, setValue }) => {
   return (
@@ -12,9 +12,9 @@ const IconTextField = ({ icon, placeholder, value, setValue }) => {
         onChange={(e) => setValue(e.target.value)}
         InputProps={{
           startAdornment: (
-            <Box padding="0.3rem">
-              <InputAdornment position="start">{icon}</InputAdornment>
-            </Box>
+            <InputAdornment position="start" sx={{ paddingX: "0.3rem" }}>
+              {icon}
+            </InputAdornment>
           ),
         }}
         sx={{
@@ -25,7 +25,7 @@ const IconTextField = ({ icon, placeholder, value, setValue }) => {
             },
           },
           "& .MuiInputBase-input": {
-            fontSize: ".95rem",
+            fontSize: "1rem",
           },
         }}
       />
