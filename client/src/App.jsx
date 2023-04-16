@@ -24,6 +24,7 @@ const BRAND_COLORS = {
 
 const theme = createTheme({
   palette: {
+    background: { paper: BRAND_COLORS.MILK_TEA, default: "#FAF0E7" },
     brown: {
       lightest: "#FAF0E7",
       light: "#F2DAC4",
