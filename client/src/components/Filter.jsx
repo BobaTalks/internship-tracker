@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Popover, Typography, useTheme } from "@mui/material";
+import { Button, Popover, Typography } from "@mui/material";
 import { ArrowDropDown, Close } from "@mui/icons-material";
 
 /**
@@ -15,7 +15,6 @@ import { ArrowDropDown, Close } from "@mui/icons-material";
 const Filter = ({ name, options, count }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [icon, setIcon] = useState(<ArrowDropDown />);
-  const theme = useTheme();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -31,7 +30,7 @@ const Filter = ({ name, options, count }) => {
   const id = open ? name : undefined;
   const popOverProps = {
     sx: {
-      backgroundColor: "white",
+      backgroundColor: "gray.50",
       boxShadow:
         "0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 2px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2)",
       marginTop: "0.5rem",
@@ -46,13 +45,14 @@ const Filter = ({ name, options, count }) => {
         endIcon={icon}
         variant="contained"
         sx={{
-          backgroundColor: theme.palette.blue.dark,
-          border: "1px solid white",
+          backgroundColor: "blue.200",
+          border: "1px solid",
+          borderColor: "gray.50",
           boxShadow: "none",
           borderRadius: "8px",
           textTransform: "none",
           "&:hover": {
-            backgroundColor: theme.palette.blue.dark,
+            backgroundColor: "blue.200",
             boxShadow: "none",
           },
         }}
@@ -70,7 +70,7 @@ const Filter = ({ name, options, count }) => {
         }}
         PaperProps={popOverProps}
       >
-        <Typography sx={{ p: 2 }}>I love Razi ♡</Typography>
+        <Typography sx={{ p: 2 }}>Chicken Nuggets</Typography>
       </Popover>
     </>
   );

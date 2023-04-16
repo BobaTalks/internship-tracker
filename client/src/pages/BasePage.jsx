@@ -1,4 +1,4 @@
-import { Box, Container, useTheme } from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
 
 import NavBar from "../components/Navbar";
@@ -10,15 +10,17 @@ import NavBar from "../components/Navbar";
  * Modifying this component should update all other page components importing this.
  */
 const BasePage = (props) => {
-  const theme = useTheme();
-
   return (
-    <Box sx={{ bgColor: theme.palette.background.default, height: "100vh" }}>
-      <Container>
+    <Grid
+      container
+      sx={{ bgcolor: "brown.50", height: "100vh" }}
+      justifyContent="center"
+    >
+      <Grid container item xl={8} lg={9} sm={10} xs={11}>
         <NavBar />
         {props.children}
-      </Container>
-    </Box>
+      </Grid>
+    </Grid>
   );
 };
 
