@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import "@fontsource/poppins";
 
 const withSuspense = (Component) => (
   <Suspense fallback="brewing...">
@@ -23,7 +24,39 @@ const BRAND_COLORS = {
 
 const theme = createTheme({
   palette: {
-    background: { paper: BRAND_COLORS.MILK_TEA, default: "#FAF0E7" },
+    brown: {
+      lightest: "#FAF0E7",
+      light: "#F2DAC4",
+      dark: "#E0A878",
+      darker: "#A4857B",
+      darkest: "#683323",
+    },
+    gray: {
+      lightest: "#FFFFFF",
+      lighter: "#E4E2E0",
+      light: "#8C8C8C",
+      dark: "#D9D9D9",
+      darker: "#021944",
+      darkest: "#000000",
+    },
+    orange: {
+      light: "#ED6A58",
+      dark: "#CE230B",
+    },
+    blue: {
+      dark: "#021944",
+      light: "#0047FF",
+      lighter: "#ABBFE3",
+    },
+    green: {
+      light: "#73956F",
+      dark: "#489879",
+    },
+    background: {
+      paper: BRAND_COLORS.MILK_TEA,
+      default: "#FAF0E7",
+      blueberry: BRAND_COLORS.BLUEBERRY,
+    },
     success: {
       main: "#489878",
     },
@@ -39,6 +72,7 @@ const theme = createTheme({
     text: {
       primary: "#2F3032",
       secondary: "#C4C4C4",
+      tertiary: "#FFFFFF",
     },
   },
   fontsize: "16px",
