@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Box,
   Button,
@@ -12,6 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import { ArrowDropDown, Close } from "@mui/icons-material";
+import { FilterContext } from "../pages/SearchResultsPage";
 
 /**
  * Individual filter component to be used within the FiltersBar.
@@ -24,37 +25,55 @@ import { ArrowDropDown, Close } from "@mui/icons-material";
  * Cancel should clear any unapplied filters and close the dropdown
  */
 
-const Filter = ({ name, filterInfo, setFilterInfo }) => {
+const Filter = ({ filterLabel }) => {
+  const [allFilterData, setAllFilterData] = useContext(FilterContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const [icon, setIcon] = useState(<ArrowDropDown />);
-
   const [buttonBgColor, setButtonBgColor] = useState("blue.200");
   const [buttonBorderColor, setButtonBorderColor] = useState("gray.50");
-  const [checked, setChecked] = React.useState(filterInfo);
+
+  const [checked, setChecked] = useState(allFilterData[filterLabel].data);
   const [cancelButton, setCancelButton] = useState("");
-  const [checkCount, setCheckCount] = useState(() => {
-    let checkCount = 0;
+
+  /* buttonStatus
+    0 - all boxes are initially unchecked
+    1 - some or all boxes are initially checked
+    2 - some or all boxes are initially checked, and changes are made
+  */
+  const [buttonStatus, setButtonStatus] = useState(() => {
     Object.keys(checked).forEach((key) => {
-      if (checked[key].checked) checkCount++;
+      if (checked[key].checked) return 1;
     });
-    return checkCount;
+    return 0;
   });
-  const [buttonStatus, setButtonStatus] = useState(checkCount ? 1 : 0);
+  const handlePopUp = (isOpen, anchor = null) => {
+    if (isOpen) {
+      setAnchorEl(anchor);
+      setIcon(<Close />);
+      setButtonBgColor("red.300");
+      setButtonBorderColor("blue.200");
+    } else {
+      setAnchorEl(anchor);
+      setIcon(<ArrowDropDown />);
+      setButtonBgColor("blue.200");
+      setButtonBorderColor("gray.50");
+    }
+  };
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    setIcon(<Close />);
-    setButtonBgColor("red.300");
-    setButtonBorderColor("blue.200");
-    if (checkCount) changeButtonNames(1);
+    let hasAtLeastOneChecked = false;
+    Object.keys(checked).forEach((key) => {
+      if (checked[key].checked) hasAtLeastOneChecked = true;
+    });
+
+    if (hasAtLeastOneChecked) changeButtonNames(1);
     else changeButtonNames(0);
+    handlePopUp(true, event.currentTarget);
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
-    setIcon(<ArrowDropDown />);
-    setButtonBgColor("blue.200");
-    setButtonBorderColor("gray.50");
+    handlePopUp(false);
+    setChecked(allFilterData[filterLabel].data);
   };
 
   const handleChange = (event) => {
@@ -65,19 +84,25 @@ const Filter = ({ name, filterInfo, setFilterInfo }) => {
         checked: event.target.checked,
       },
     });
-    if (event.target.checked) setCheckCount(checkCount + 1);
-    else setCheckCount(checkCount - 1);
-    if (checkCount && buttonStatus !== 0) changeButtonNames(2);
+    if (buttonStatus > 0) changeButtonNames(2);
   };
 
   const handleSubmit = () => {
-    setFilterInfo(checked);
-    handleClose();
+    setAllFilterData({
+      ...allFilterData,
+      [filterLabel]: {
+        ...allFilterData[filterLabel],
+        data: {
+          ...checked,
+        },
+      },
+    });
+    handlePopUp(false);
   };
 
   const handleCancel = () => {
     if (buttonStatus === 2) {
-      setChecked(filterInfo);
+      setChecked(allFilterData[filterLabel].data);
       changeButtonNames(1);
     } else {
       setChecked(
@@ -85,16 +110,11 @@ const Filter = ({ name, filterInfo, setFilterInfo }) => {
           (key) => (checked[key] = { ...checked[key], checked: false })
         )
       );
-      setCheckCount(0);
+      setButtonStatus(0);
     }
   };
 
   const changeButtonNames = (status) => {
-    /* STATUS
-      0 - all boxes are initially unchecked
-      1 - some or all boxes are initially checked
-      2 - some or all boxes are initially checked, and changes are made
-    */
     switch (status) {
       case 0:
         setCancelButton("Cancel filter");
@@ -109,7 +129,7 @@ const Filter = ({ name, filterInfo, setFilterInfo }) => {
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? name : undefined;
+  const id = open ? allFilterData[filterLabel].filterName : undefined;
   const popOverProps = {
     sx: {
       backgroundColor: "gray.50",
@@ -133,7 +153,6 @@ const Filter = ({ name, filterInfo, setFilterInfo }) => {
           boxShadow: "none",
           borderRadius: "8px",
           textTransform: "none",
-          fontSize: "1rem",
           padding: ".3rem 1rem",
           color: buttonBorderColor,
           "&:hover": {
@@ -142,7 +161,9 @@ const Filter = ({ name, filterInfo, setFilterInfo }) => {
           },
         }}
       >
-        {name}
+        <Typography noWrap sx={{ fontSize: "1rem" }}>
+          {allFilterData[filterLabel].filterName}
+        </Typography>
       </Button>
       <Popover
         id={id}
@@ -174,7 +195,7 @@ const Filter = ({ name, filterInfo, setFilterInfo }) => {
                       />
                     }
                     label={
-                      <Typography noWrap fontSize="1rem" width="170px">
+                      <Typography noWrap fontSize="1rem" width="160px">
                         {checked[key].label}
                       </Typography>
                     }

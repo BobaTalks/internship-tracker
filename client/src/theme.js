@@ -61,10 +61,10 @@ const theme = createTheme({
     h5: { fontWeight: "bold", fontSize: "1.5rem" },
     h6: { fontWeight: "bold", fontSize: "1rem" },
     title: { fontWeight: "600", fontSize: "3.5rem", lineHeight: "5.5rem" },
+    pageTitle: { fontWeight: "600", fontSize: "2rem" },
     subtitle: { fontSize: "1.125rem" },
     body1: { fontSize: "1.125rem" },
     body2: { fontSize: "1.125rem", color: "#C4C4C4" },
-    jess: { fontSize: "1rem", color: "#489879" },
   },
   components: {
     MuiTypography: {
