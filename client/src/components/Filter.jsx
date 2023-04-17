@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import { Button, Popover, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Divider,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  Popover,
+  Typography,
+} from "@mui/material";
 import { ArrowDropDown, Close } from "@mui/icons-material";
 
 /**
@@ -12,18 +23,89 @@ import { ArrowDropDown, Close } from "@mui/icons-material";
  *
  * Cancel should clear any unapplied filters and close the dropdown
  */
-const Filter = ({ name, options, count }) => {
+
+const Filter = ({ name, filterInfo, setFilterInfo }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [icon, setIcon] = useState(<ArrowDropDown />);
+
+  const [buttonBgColor, setButtonBgColor] = useState("blue.200");
+  const [buttonBorderColor, setButtonBorderColor] = useState("gray.50");
+  const [checked, setChecked] = React.useState(filterInfo);
+  const [cancelButton, setCancelButton] = useState("");
+  const [checkCount, setCheckCount] = useState(() => {
+    let checkCount = 0;
+    Object.keys(checked).forEach((key) => {
+      if (checked[key].checked) checkCount++;
+    });
+    return checkCount;
+  });
+  const [buttonStatus, setButtonStatus] = useState(checkCount ? 1 : 0);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     setIcon(<Close />);
+    setButtonBgColor("red.300");
+    setButtonBorderColor("blue.200");
+    if (checkCount) changeButtonNames(1);
+    else changeButtonNames(0);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
     setIcon(<ArrowDropDown />);
+    setButtonBgColor("blue.200");
+    setButtonBorderColor("gray.50");
+  };
+
+  const handleChange = (event) => {
+    setChecked({
+      ...checked,
+      [event.target.name]: {
+        ...checked[event.target.name],
+        checked: event.target.checked,
+      },
+    });
+    if (event.target.checked) setCheckCount(checkCount + 1);
+    else setCheckCount(checkCount - 1);
+    if (checkCount && buttonStatus !== 0) changeButtonNames(2);
+  };
+
+  const handleSubmit = () => {
+    setFilterInfo(checked);
+    handleClose();
+  };
+
+  const handleCancel = () => {
+    if (buttonStatus === 2) {
+      setChecked(filterInfo);
+      changeButtonNames(1);
+    } else {
+      setChecked(
+        Object.keys(checked).map(
+          (key) => (checked[key] = { ...checked[key], checked: false })
+        )
+      );
+      setCheckCount(0);
+    }
+  };
+
+  const changeButtonNames = (status) => {
+    /* STATUS
+      0 - all boxes are initially unchecked
+      1 - some or all boxes are initially checked
+      2 - some or all boxes are initially checked, and changes are made
+    */
+    switch (status) {
+      case 0:
+        setCancelButton("Cancel filter");
+        break;
+      case 1:
+        setCancelButton("Reset filter");
+        break;
+      default:
+        setCancelButton("Cancel changes");
+    }
+    setButtonStatus(status);
   };
 
   const open = Boolean(anchorEl);
@@ -34,9 +116,9 @@ const Filter = ({ name, options, count }) => {
       boxShadow:
         "0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 2px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2)",
       marginTop: "0.5rem",
+      borderRadius: "8px",
     },
   };
-
   return (
     <>
       <Button
@@ -45,14 +127,17 @@ const Filter = ({ name, options, count }) => {
         endIcon={icon}
         variant="contained"
         sx={{
-          backgroundColor: "blue.200",
+          bgcolor: buttonBgColor,
           border: "1px solid",
-          borderColor: "gray.50",
+          borderColor: buttonBorderColor,
           boxShadow: "none",
           borderRadius: "8px",
           textTransform: "none",
+          fontSize: "1rem",
+          padding: ".3rem 1rem",
+          color: buttonBorderColor,
           "&:hover": {
-            backgroundColor: "blue.200",
+            bgcolor: buttonBgColor,
             boxShadow: "none",
           },
         }}
@@ -70,7 +155,53 @@ const Filter = ({ name, options, count }) => {
         }}
         PaperProps={popOverProps}
       >
-        <Typography sx={{ p: 2 }}>Chicken Nuggets</Typography>
+        <FormControl sx={{ mx: 3, my: 1 }}>
+          <FormGroup>
+            {Object.keys(checked).map((key) => (
+              <Grid container key={key} alignItems="center">
+                <Grid item xs>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={checked[key].checked}
+                        onChange={handleChange}
+                        name={key}
+                        sx={{
+                          "&.Mui-checked": {
+                            color: "gray.300",
+                          },
+                        }}
+                      />
+                    }
+                    label={
+                      <Typography noWrap fontSize="1rem" width="170px">
+                        {checked[key].label}
+                      </Typography>
+                    }
+                  />
+                </Grid>
+                <Grid item xs="auto">
+                  <Typography color="gray.300" fontSize="1rem">
+                    {`(${checked[key].count})`}
+                  </Typography>
+                </Grid>
+              </Grid>
+            ))}
+          </FormGroup>
+        </FormControl>
+        <Divider variant="middle" />
+        <Box textAlign="center" py=".5rem">
+          <Button
+            variant="transparent"
+            sx={{ marginRight: ".3rem" }}
+            onClick={handleCancel}
+          >
+            {cancelButton}
+          </Button>
+          <Button variant="rounded" color="primary" onClick={handleSubmit}>
+            Show results
+          </Button>
+        </Box>
       </Popover>
     </>
   );

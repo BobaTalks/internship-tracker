@@ -64,6 +64,7 @@ const theme = createTheme({
     subtitle: { fontSize: "1.125rem" },
     body1: { fontSize: "1.125rem" },
     body2: { fontSize: "1.125rem", color: "#C4C4C4" },
+    jess: { fontSize: "1rem", color: "#489879" },
   },
   components: {
     MuiTypography: {
@@ -72,6 +73,34 @@ const theme = createTheme({
           fontFamily: "Poppins",
         },
       },
+    },
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: "transparent" },
+          style: {
+            fontSize: ".9rem",
+            textTransform: "none",
+            background: "none",
+            borderRadius: "20px",
+          },
+        },
+        {
+          props: { variant: "rounded", color: "primary" },
+          style: {
+            textTransform: "none",
+            fontSize: ".9rem",
+            borderRadius: "20px",
+            backgroundColor: "#F6A794",
+            color: "#021944",
+            "&:hover": {
+              backgroundColor: "#F6A794",
+              boxShadow:
+                "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
+            },
+          },
+        },
+      ],
     },
   },
 });
