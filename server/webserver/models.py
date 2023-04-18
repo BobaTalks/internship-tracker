@@ -1,15 +1,18 @@
-from flask_sqlalchemy import SQLAlchemy
 from .extensions import db, jwt
-from hmac import compare_digest
+from utils.hashing import verify_hash
 
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.Text, nullable=False, unique=True)
-    full_name = db.Column(db.Text, nullable=False)
+    __tablename__ = "users"
 
-    def check_password(self, password):
-        return compare_digest(password, "password")
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False, unique=True)
+    hash = db.Column(db.String)
+    authentication_method = db.Column(db.String, nullable=False)
+
+    def check_password(self, hash, password):
+        return verify_hash(hash, password)
 
 
 # callback functions

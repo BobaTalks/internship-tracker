@@ -1,13 +1,22 @@
 from flask import Flask
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def create_app(test_config=None):
     app = Flask(__name__)
-    app.config["JWT_SECRET_KEY"] = os.urandom(24)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite://"
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    app.config["JWT_COOKIE_SECURE"] = True
+
+    if test_config:
+        # configure test database to keep testing data separate
+        app.config["SQLALCHEMY_DATABASE_URI"] = os.environ["TEST_URI"]
+        app.config["JWT_SECRET_KEY"] = "super_secret_key"
+    else:
+        app.config["JWT_SECRET_KEY"] = os.urandom(24)
+        app.config["SQLALCHEMY_DATABASE_URI"] = os.environ["POSTGRES_URI"]
+        app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+        app.config["JWT_COOKIE_SECURE"] = True
 
     from .extensions import jwt, db
 
@@ -15,22 +24,12 @@ def create_app(test_config=None):
     db.init_app(app)
 
     from .blueprints.login import login
+    from .blueprints.signup import signup
 
     app.register_blueprint(login)
+    app.register_blueprint(signup)
 
-    # @app.route("/")
-    # def homepage():
-    #     return """
-    #             <h1>This is the Homepage</h1>
-    #             <button><a href="/login">Login Here</a></button>
-    #            """
     with app.app_context():
-        from .models import User
-
         db.create_all()
-        db.session.add(User(full_name="Bruce Wayne", username="batman"))
-        db.session.add(User(full_name="Ann Takamaki", username="panther"))
-        db.session.add(User(full_name="Jester Lavore", username="little_sapphire"))
-        db.session.commit()
 
     return app
