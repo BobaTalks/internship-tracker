@@ -1,5 +1,6 @@
 import React from "react";
 import { Stack, Typography } from "@mui/material";
+import { format } from "date-fns";
 
 import BasePage from "./BasePage";
 import PostedOn from "../components/PostedOn";
@@ -12,14 +13,15 @@ import PostedOn from "../components/PostedOn";
 
 const mockData = "02/14/2003";
 
-const SearchResultsPage = () => {
+const SearchResultsPage = (props) => {
+  const postedDate = format(new Date(mockData), "M/d/yy");
   return (
     <BasePage>
       <Stack spacing={2}>
         <Typography variant="pageTitle" marginTop="6rem">
           Find Internships
         </Typography>
-        <PostedOn date={mockData} />
+        <PostedOn date={postedDate} />
       </Stack>
     </BasePage>
   );
