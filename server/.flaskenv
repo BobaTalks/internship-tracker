@@ -1,1 +1,2 @@
+FLASK_DEBUG=1
 

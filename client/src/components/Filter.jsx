@@ -28,13 +28,8 @@ import { FilterContext } from "../pages/SearchResultsPage";
 const Filter = ({ filterLabel }) => {
   const [allFilterData, setAllFilterData] = useContext(FilterContext);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [icon, setIcon] = useState(<ArrowDropDown />);
-  const [buttonBgColor, setButtonBgColor] = useState("blue.200");
-  const [buttonBorderColor, setButtonBorderColor] = useState("gray.50");
-
+  const [isOpen, setIsOpen] = useState(false);
   const [checked, setChecked] = useState(allFilterData[filterLabel].data);
-  const [cancelButton, setCancelButton] = useState("");
-
   /* buttonStatus
     0 - all boxes are initially unchecked
     1 - some or all boxes are initially checked
@@ -46,19 +41,6 @@ const Filter = ({ filterLabel }) => {
     });
     return 0;
   });
-  const handlePopUp = (isOpen, anchor = null) => {
-    if (isOpen) {
-      setAnchorEl(anchor);
-      setIcon(<Close />);
-      setButtonBgColor("red.300");
-      setButtonBorderColor("blue.200");
-    } else {
-      setAnchorEl(anchor);
-      setIcon(<ArrowDropDown />);
-      setButtonBgColor("blue.200");
-      setButtonBorderColor("gray.50");
-    }
-  };
 
   const handleClick = (event) => {
     let hasAtLeastOneChecked = false;
@@ -66,14 +48,20 @@ const Filter = ({ filterLabel }) => {
       if (checked[key].checked) hasAtLeastOneChecked = true;
     });
 
-    if (hasAtLeastOneChecked) changeButtonNames(1);
-    else changeButtonNames(0);
-    handlePopUp(true, event.currentTarget);
+    if (hasAtLeastOneChecked) {
+      setButtonStatus(1);
+    } else {
+      setButtonStatus(0);
+    }
+
+    setAnchorEl(event.currentTarget);
+    setIsOpen(true);
   };
 
   const handleClose = () => {
-    handlePopUp(false);
     setChecked(allFilterData[filterLabel].data);
+    setAnchorEl(null);
+    setIsOpen(false);
   };
 
   const handleChange = (event) => {
@@ -84,7 +72,7 @@ const Filter = ({ filterLabel }) => {
         checked: event.target.checked,
       },
     });
-    if (buttonStatus > 0) changeButtonNames(2);
+    if (buttonStatus === 1) setButtonStatus(2);
   };
 
   const handleSubmit = () => {
@@ -97,13 +85,14 @@ const Filter = ({ filterLabel }) => {
         },
       },
     });
-    handlePopUp(false);
+    setIsOpen(false);
+    setAnchorEl(null);
   };
 
   const handleCancel = () => {
     if (buttonStatus === 2) {
       setChecked(allFilterData[filterLabel].data);
-      changeButtonNames(1);
+      setButtonStatus(1);
     } else {
       setChecked(
         Object.keys(checked).map(
@@ -112,20 +101,6 @@ const Filter = ({ filterLabel }) => {
       );
       setButtonStatus(0);
     }
-  };
-
-  const changeButtonNames = (status) => {
-    switch (status) {
-      case 0:
-        setCancelButton("Cancel filter");
-        break;
-      case 1:
-        setCancelButton("Reset filter");
-        break;
-      default:
-        setCancelButton("Cancel changes");
-    }
-    setButtonStatus(status);
   };
 
   const open = Boolean(anchorEl);
@@ -139,24 +114,25 @@ const Filter = ({ filterLabel }) => {
       borderRadius: "8px",
     },
   };
+  const cancelButtonLabel = ["Cancel filter", "Reset filter", "Cancel changes"];
   return (
     <>
       <Button
         aria-describedby={id}
         onClick={handleClick}
-        endIcon={icon}
+        endIcon={isOpen ? <Close /> : <ArrowDropDown />}
         variant="contained"
         sx={{
-          bgcolor: buttonBgColor,
+          bgcolor: isOpen ? "red.300" : "blue.200",
           border: "1px solid",
-          borderColor: buttonBorderColor,
+          borderColor: isOpen ? "blue.200" : "gray.50",
           boxShadow: "none",
           borderRadius: "8px",
           textTransform: "none",
           padding: ".3rem 1rem",
-          color: buttonBorderColor,
+          color: isOpen ? "blue.200" : "gray.50",
           "&:hover": {
-            bgcolor: buttonBgColor,
+            bgcolor: isOpen ? "red.300" : "blue.200",
             boxShadow: "none",
           },
         }}
@@ -189,7 +165,7 @@ const Filter = ({ filterLabel }) => {
                         name={key}
                         sx={{
                           "&.Mui-checked": {
-                            color: "gray.300",
+                            color: "blue.200",
                           },
                         }}
                       />
@@ -217,7 +193,7 @@ const Filter = ({ filterLabel }) => {
             sx={{ marginRight: ".3rem" }}
             onClick={handleCancel}
           >
-            {cancelButton}
+            {cancelButtonLabel[buttonStatus]}
           </Button>
           <Button variant="rounded" color="primary" onClick={handleSubmit}>
             Show results

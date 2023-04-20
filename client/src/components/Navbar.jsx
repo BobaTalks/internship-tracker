@@ -25,12 +25,7 @@ const NavBar = () => {
         </Box>
         <Box>
           {/* TODO: Right Side Nav Items */}
-          <Link
-            rel="noopener noreferrer"
-            target="_self"
-            href="/search"
-            title="Find an internship"
-          >
+          <Link href="/search" title="Find an internship">
             Find an internship
           </Link>
         </Box>
