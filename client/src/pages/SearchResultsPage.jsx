@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { Stack, Typography } from "@mui/material";
 
 import BasePage from "./BasePage";
@@ -10,7 +10,7 @@ import FiltersBar from "../components/FiltersBar";
  * search and location inputs.
  */
 
-const mockFilterData = {
+const MOCK_FILTER_DATA = {
   remote: {
     filterName: "Remote",
     data: {
@@ -136,7 +136,20 @@ const mockFilterData = {
 export const FilterContext = createContext([{}, () => {}]);
 
 const SearchResultsPage = () => {
-  const [filterData, setFilterData] = useState(mockFilterData);
+  const [filterData, setFilterData] = useState(() => {
+    return JSON.parse(window.localStorage.getItem("filterData"));
+  });
+
+  useEffect(() => {
+    if (filterData === []) {
+      window.localStorage.setItem(
+        "filterData",
+        JSON.stringify(MOCK_FILTER_DATA)
+      );
+    } else {
+      window.localStorage.setItem("filterData", JSON.stringify(filterData));
+    }
+  }, [filterData]);
 
   return (
     <FilterContext.Provider value={[filterData, setFilterData]}>

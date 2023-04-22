@@ -7,7 +7,6 @@ import {
   FormControl,
   FormControlLabel,
   FormGroup,
-  Grid,
   Popover,
   Typography,
 } from "@mui/material";
@@ -155,34 +154,37 @@ const Filter = ({ filterLabel }) => {
         <FormControl sx={{ mx: 3, my: 1 }}>
           <FormGroup>
             {Object.keys(checked).map((key) => (
-              <Grid container key={key} alignItems="center">
-                <Grid item xs>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={checked[key].checked}
-                        onChange={handleChange}
-                        name={key}
-                        sx={{
-                          "&.Mui-checked": {
-                            color: "blue.200",
-                          },
-                        }}
-                      />
-                    }
-                    label={
-                      <Typography noWrap fontSize="1rem" width="160px">
-                        {checked[key].label}
-                      </Typography>
-                    }
-                  />
-                </Grid>
-                <Grid item xs="auto">
-                  <Typography color="gray.300" fontSize="1rem">
-                    {`(${checked[key].count})`}
-                  </Typography>
-                </Grid>
-              </Grid>
+              <Box
+                key={key}
+                sx={{
+                  alignItems: "center",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={checked[key].checked}
+                      onChange={handleChange}
+                      name={key}
+                      sx={{
+                        "&.Mui-checked": {
+                          color: "blue.200",
+                        },
+                      }}
+                    />
+                  }
+                  label={
+                    <Typography noWrap fontSize="1rem" width="160px">
+                      {checked[key].label}
+                    </Typography>
+                  }
+                />
+                <Typography color="gray.300" fontSize="1rem">
+                  {`(${checked[key].count})`}
+                </Typography>
+              </Box>
             ))}
           </FormGroup>
         </FormControl>
