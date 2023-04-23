@@ -1,6 +1,8 @@
 import React from "react";
+import { Box } from "@mui/material";
 
 import BasePage from "./BasePage";
+import SearchBar from "../components/SearchBar";
 
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/28
@@ -8,7 +10,13 @@ import BasePage from "./BasePage";
  * search and location inputs.
  */
 const SearchResultsPage = () => {
-  return <BasePage></BasePage>;
+  return (
+    <BasePage>
+      <Box mt={12} minWidth="100%">
+        <SearchBar />
+      </Box>
+    </BasePage>
+  );
 };
 
 export default SearchResultsPage;
