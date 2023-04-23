@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import { Stack, Typography } from "@mui/material";
 
 import BasePage from "./BasePage";
@@ -136,20 +136,7 @@ const MOCK_FILTER_DATA = {
 export const FilterContext = createContext([{}, () => {}]);
 
 const SearchResultsPage = () => {
-  const [filterData, setFilterData] = useState(() => {
-    return JSON.parse(window.localStorage.getItem("filterData"));
-  });
-
-  useEffect(() => {
-    if (filterData === []) {
-      window.localStorage.setItem(
-        "filterData",
-        JSON.stringify(MOCK_FILTER_DATA)
-      );
-    } else {
-      window.localStorage.setItem("filterData", JSON.stringify(filterData));
-    }
-  }, [filterData]);
+  const [filterData, setFilterData] = useState(MOCK_FILTER_DATA);
 
   return (
     <FilterContext.Provider value={[filterData, setFilterData]}>
