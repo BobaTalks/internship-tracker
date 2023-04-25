@@ -39,12 +39,9 @@ const Filter = ({ filterLabel }) => {
   });
 
   const handleClick = (event) => {
-    if (Object.values(checked).find((item) => item.checked)) {
-      setButtonStatus(1);
-    } else {
-      setButtonStatus(0);
-    }
-
+    setButtonStatus(() =>
+      Object.values(checked).find((item) => item.checked) ? 1 : 0
+    );
     setAnchorEl(event.currentTarget);
     setIsOpen(true);
   };
