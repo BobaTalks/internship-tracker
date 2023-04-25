@@ -35,24 +35,13 @@ const Filter = ({ filterLabel }) => {
     2 - some or all boxes are initially checked, and changes are made
   */
   const [buttonStatus, setButtonStatus] = useState(() => {
-    Object.keys(checked).forEach((key) => {
-      if (checked[key].checked) return 1;
-    });
-    return 0;
+    return Object.values(checked).find((item) => item.checked) ? 1 : 0;
   });
 
   const handleClick = (event) => {
-    let hasAtLeastOneChecked = false;
-    Object.keys(checked).forEach((key) => {
-      if (checked[key].checked) hasAtLeastOneChecked = true;
-    });
-
-    if (hasAtLeastOneChecked) {
-      setButtonStatus(1);
-    } else {
-      setButtonStatus(0);
-    }
-
+    setButtonStatus(() =>
+      Object.values(checked).find((item) => item.checked) ? 1 : 0
+    );
     setAnchorEl(event.currentTarget);
     setIsOpen(true);
   };
