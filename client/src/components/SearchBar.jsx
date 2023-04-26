@@ -10,16 +10,25 @@ import IconTextField from "./IconTextField";
  * Search bar component should include the "what" and "where" inputs with a button to submit
  * When completed, this should be imported into appropriate pages.
  */
-const SearchBar = ({ isHomePage }) => {
+const SearchBar = ({ isNarrow }) => {
   const theme = useTheme();
   const [internship, setInternship] = useState("");
   const [location, setLocation] = useState("");
-  console.log(isHomePage);
 
   const handleClick = () => {};
   return (
-    <Grid container justifyContent="center" alignItems="center" spacing={2}>
-      <Grid item xs={12} md={isHomePage ? 7 : 8}>
+    <Grid container justifyContent="center" alignItems="center">
+      <Grid
+        item
+        xs={12}
+        md={isNarrow ? 7 : 8}
+        pr={2}
+        sx={{
+          [theme.breakpoints.down("md")]: {
+            paddingBottom: "1rem",
+          },
+        }}
+      >
         <IconTextField
           icon={<SuitcaseIcon htmlColor="black" />}
           placeholder="Search internship listings"
@@ -27,7 +36,7 @@ const SearchBar = ({ isHomePage }) => {
           setValue={setInternship}
         />
       </Grid>
-      <Grid item xs={9} md={isHomePage ? 4 : 3}>
+      <Grid item xs={9} md={isNarrow ? 4 : 3} pr={2}>
         <IconTextField
           icon={<LocationIcon htmlColor="black" />}
           placeholder="Location"

@@ -16,7 +16,7 @@ const HomePage = (props) => {
         <HomePageContent />
         <Grid container justifyContent="center">
           <Grid item lg={8} md={9} xs={11}>
-            <SearchBar isHomePage />
+            <SearchBar isNarrow />
           </Grid>
         </Grid>
       </Stack>
