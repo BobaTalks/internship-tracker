@@ -5,39 +5,37 @@ from bs4 import BeautifulSoup
 urls = {
     'Facebook': 'https://www.facebook.com/careers/jobs?search_text=internship',
     'Amazon': 'https://www.amazon.jobs/en/search?base_query=internship',
-    'Apple': 'https://jobs.apple.com/en/search?search=internship',
+    'Apple': 'https://jobs.apple.com/en-ca/search?team=internships-STDNT-INTRN',
     'Netflix': 'https://jobs.netflix.com/search?q=internship',
     'Google': 'https://careers.google.com/jobs/results/?q=internship'
 }
 
 def get_facebook_internships(soup):
-    internships = []
-    for internship in soup.select('.fb-job-result__title'):
-        internships.append(internship.text.strip())
+    internship_titles = [container.text for container in soup.select('._af0h a:first-child div:first-child div:first-child div:first-child div:first-child')]
+    internship_locations = [container.get('data-tooltip-content') for container in soup.select('._8seh div:first-child div:first-child div:first-child')]
+    internship_links = ['https://www.metacareers.com' + container.get('href') for container in soup.select('._af0h a:first-child')]
+    internships = [(title, location.split('\n'), link) for title in internship_titles for location in internship_locations for link in internship_links]
     return internships
 
 def get_amazon_internships(soup):
+    internship_titles = [container.text for container in soup.select('.row div:first-child')]
     internships = []
-    for internship in soup.select('.job-link'):
-        internships.append(internship.text.strip())
     return internships
 
 def get_apple_internships(soup):
-    internships = []
-    for internship in soup.select('.job-title'):
-        internships.append(internship.text.strip())
+    internship_titles = [i.text for i in soup.select('.table--advanced-search__title')]
+    internship_locations = [i.text for i in soup.select('.table-col-2 span:first-child')]
+    internship_links = ['https://jobs.apple.com' + container.get('href') for container in soup.select('.table--advanced-search__title')]
+    internships = [(title, location, link) for title in internship_titles for location in internship_locations for link in internship_links]
     return internships
 
-def get_netflix_internships(soup):
+def get_netflix_internships(soup):  
+    internship_titles = [i for i in soup.find_all('.e1rpdjew0')]
     internships = []
-    for internship in soup.select('.posting-title'):
-        internships.append(internship.text.strip())
     return internships
 
 def get_google_internships(soup):
-    internships = []
-    for internship in soup.select('.job-result-card__title'):
-        internships.append(internship.text.strip())
+    internships = soup.select('.gc-card__title')
     return internships
 
 def scrape_internships(url, company):
