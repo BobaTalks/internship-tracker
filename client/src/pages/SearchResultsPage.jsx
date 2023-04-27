@@ -3,6 +3,7 @@ import { Stack, Typography } from "@mui/material";
 
 import BasePage from "./BasePage";
 import FiltersBar from "../components/FiltersBar";
+import SearchBar from "../components/SearchBar";
 
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/28
@@ -141,10 +142,11 @@ const SearchResultsPage = () => {
   return (
     <FilterContext.Provider value={[filterData, setFilterData]}>
       <BasePage>
-        <Stack spacing={2}>
+        <Stack spacing={2} minWidth="100%">
           <Typography variant="pageTitle" marginTop="6rem">
             Find Internships
           </Typography>
+          <SearchBar />
           <FiltersBar />
         </Stack>
       </BasePage>
