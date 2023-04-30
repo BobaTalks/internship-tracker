@@ -23,7 +23,12 @@ const NavBar = () => {
           </Link>
           <Box>{/* TODO: add nav links */}</Box>
         </Box>
-        <Box>{/* TODO: Right Side Nav Items */}</Box>
+        <Box>
+          {/* TODO: Right Side Nav Items */}
+          <Link href="/search" title="Find an internship">
+            Find an internship
+          </Link>
+        </Box>
       </Stack>
     </AppBar>
   );
