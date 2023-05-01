@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   AppBar,
   Box,
@@ -14,12 +14,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import TrackerIcon from "../assets/tracker_icon.svg";
 import AccountIcon from "../assets/account_icon.svg";
 import LogoPath from "../assets/internship_tracker_logo.svg";
+import { AuthContext } from "../App";
 
 const pageNames = ["Find an internship", "About"];
 const pageLinks = ["/search", "/about"];
 
-const NavBar = ({ signedIn }) => {
+const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
+  const [authUser] = useContext(AuthContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -120,7 +122,7 @@ const NavBar = ({ signedIn }) => {
               </Button>
             ))}
           </Box>
-          {signedIn ? (
+          {authUser ? (
             <Box>
               <Button sx={{ p: 0 }}>
                 <img src={TrackerIcon} alt="tracker" />
