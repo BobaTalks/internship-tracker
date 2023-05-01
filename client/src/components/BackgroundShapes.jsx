@@ -1,13 +1,13 @@
-import { Box } from "@mui/material";
+import { useTheme, Box } from "@mui/material";
 import React from "react";
 
 import blobShape from "../assets/milk_tea_blob.svg";
 import circleShape from "../assets/milk_tea_circle.svg";
 import noodleShape from "../assets/milk_tea_noodle.svg";
 
-import shapeStyles from "./styles/backgroundShapes.module.css";
-
 const BackgroundShapes = () => {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
@@ -20,20 +20,41 @@ const BackgroundShapes = () => {
         overflow: "hidden",
       }}
     >
-      <img
+      <Box
+        component="img"
+        sx={{
+          position: "absolute",
+          bottom: "0",
+          left: "0",
+          [theme.breakpoints.down("md")]: {
+            width: "70%",
+          },
+        }}
         src={blobShape}
-        alt="Background Blob Shape"
-        className={shapeStyles.blob}
       />
-      <img
+      <Box
+        component="img"
+        sx={{
+          position: "absolute",
+          bottom: "35%",
+          left: "15%",
+          [theme.breakpoints.down("md")]: {
+            width: "50%",
+          },
+        }}
         src={circleShape}
-        alt="Background Circle Shape"
-        className={shapeStyles.circle}
       />
-      <img
+      <Box
+        component="img"
+        sx={{
+          position: "absolute",
+          top: "0",
+          right: "0",
+          [theme.breakpoints.down("md")]: {
+            width: "70%",
+          },
+        }}
         src={noodleShape}
-        alt="Background Noodle Shape"
-        className={shapeStyles.noodle}
       />
     </Box>
   );
