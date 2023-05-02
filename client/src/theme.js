@@ -61,6 +61,7 @@ const theme = createTheme({
     h5: { fontWeight: "bold", fontSize: "1.5rem" },
     h6: { fontWeight: "bold", fontSize: "1rem" },
     title: { fontWeight: "600", fontSize: "3.5rem", lineHeight: "5.5rem" },
+    pageTitle: { fontWeight: "600", fontSize: "2rem" },
     subtitle: { fontSize: "1.125rem" },
     body1: { fontSize: "1.125rem" },
     body2: { fontSize: "1.125rem", color: "#C4C4C4" },
@@ -72,6 +73,34 @@ const theme = createTheme({
           fontFamily: "Poppins",
         },
       },
+    },
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: "transparent" },
+          style: {
+            fontSize: ".9rem",
+            textTransform: "none",
+            background: "none",
+            borderRadius: "20px",
+          },
+        },
+        {
+          props: { variant: "rounded", color: "primary" },
+          style: {
+            textTransform: "none",
+            fontSize: ".9rem",
+            borderRadius: "20px",
+            backgroundColor: "#F6A794",
+            color: "#021944",
+            "&:hover": {
+              backgroundColor: "#F6A794",
+              boxShadow:
+                "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
+            },
+          },
+        },
+      ],
     },
   },
 });

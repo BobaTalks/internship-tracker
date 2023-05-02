@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Stack } from "@mui/material";
 
 import BasePage from "./BasePage";
+import BackgroundShapes from "../components/BackgroundShapes";
 import HomePageContent from "../components/HomePageContent";
 import SearchBar from "../components/SearchBar";
 
@@ -12,11 +13,12 @@ import SearchBar from "../components/SearchBar";
 const HomePage = (props) => {
   return (
     <BasePage>
-      <Stack spacing={5}>
+      <BackgroundShapes />
+      <Stack spacing={5} sx={{ zIndex: 0 }}>
         <HomePageContent />
         <Grid container justifyContent="center">
           <Grid item lg={8} md={9} xs={11}>
-            <SearchBar />
+            <SearchBar isNarrow />
           </Grid>
         </Grid>
       </Stack>
