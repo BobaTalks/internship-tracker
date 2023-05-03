@@ -20,7 +20,8 @@ def test_get_job(client, post_job):
     response = client.get("/jobs/1")
     assert response.status_code == 200
 
-def test_delete_job(client,post_job):
+
+def test_delete_job(client, post_job):
     """
     GIVEN a Flask app
     WHEN a DELETE request is made to '/jobs/:id'

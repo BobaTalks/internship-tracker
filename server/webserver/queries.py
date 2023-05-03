@@ -57,6 +57,7 @@ def get_job(id):
     }
     return jobject
 
+
 def delete_job(id):
     db.session.execute(db.delete(Job).where(Job.id == id))
     return
