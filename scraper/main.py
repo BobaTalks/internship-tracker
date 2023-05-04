@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 urls = {
     'Facebook': 'https://www.metacareers.com/jobs/?is_leadership=0&is_in_page=0',
     'Amazon': 'https://www.amazon.jobs/en/search?base_query=internship',
-    'Apple': 'https://jobs.apple.com/en-ca/search?team=internships-STDNT-INTRN',
+    'Apple': 'https://jobs.apple.com/en-ca/search?location=canada-CANC+united-states-USA+mexico-MEXC&team=internships-STDNT-INTRN',
     'Netflix': 'https://jobs.netflix.com/search?q=internship',
     'Google': 'https://careers.google.com/jobs/results/?q=internship'
 }
