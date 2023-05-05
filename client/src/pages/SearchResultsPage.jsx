@@ -1,6 +1,5 @@
 import React, { createContext, useState } from "react";
 import { Stack, Typography } from "@mui/material";
-import { format } from "date-fns";
 
 import BasePage from "./BasePage";
 import FiltersBar from "../components/FiltersBar";
