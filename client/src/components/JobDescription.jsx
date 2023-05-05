@@ -1,17 +1,16 @@
 import React from "react";
-import { Box, Container, Slider, useTheme } from "@mui/material";
-import { Typography } from "@mui/material";
-//import { useTheme } from "@emotion/react";
+import { Grid, Typography } from "@mui/material";
 
 const JobDescription = (props) => {
-const theme = useTheme();
   return (
-    <p style={{ color: theme.palette.text.primary.main }}>
-      {props.description}
-    </p>
+    <Grid container direction="column" spacing={0}>
+      <Grid item>
+        <Typography variant="h5">Job description</Typography>
+      </Grid>
+      <Grid item container direction="row" marginTop={2}>
+        <Typography variant="body1"> {props.description}</Typography>
+      </Grid>
+    </Grid>
   );
 };
 export default JobDescription;
-
-    )
-}*/
