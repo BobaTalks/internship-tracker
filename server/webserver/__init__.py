@@ -25,9 +25,11 @@ def create_app(test_config=None):
 
     from .blueprints.login import login
     from .blueprints.signup import signup
+    from .blueprints.jobs import jobs
 
     app.register_blueprint(login)
     app.register_blueprint(signup)
+    app.register_blueprint(jobs)
 
     with app.app_context():
         db.create_all()
