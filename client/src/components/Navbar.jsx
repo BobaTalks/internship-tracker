@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Box,
@@ -14,14 +14,20 @@ import MenuIcon from "@mui/icons-material/Menu";
 import TrackerIcon from "../assets/tracker_icon.svg";
 import AccountIcon from "../assets/account_icon.svg";
 import LogoPath from "../assets/internship_tracker_logo.svg";
-import { AuthContext } from "../App";
 
-const pageNames = ["Find an internship", "About"];
-const pageLinks = ["/search", "/about"];
+const pages = [
+  {
+    label: "Find an internship",
+    link: "/search",
+  },
+  {
+    label: "About",
+    link: "/about",
+  },
+];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [authUser] = useContext(AuthContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -57,7 +63,7 @@ const NavBar = () => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              sx={{ p: 0, pr: 3 }}
+              sx={{ p: 1, mr: 2 }}
             >
               <MenuIcon />
             </IconButton>
@@ -87,14 +93,10 @@ const NavBar = () => {
                 },
               }}
             >
-              {pageNames.map((name, i) => (
-                <MenuItem
-                  key={name}
-                  onClick={handleCloseNavMenu}
-                  bgcolor="black"
-                >
-                  <Link href={pageLinks[i]} underline="none" color="gray.800">
-                    {name}
+              {pages.map((page, i) => (
+                <MenuItem key={i} onClick={handleCloseNavMenu} bgcolor="black">
+                  <Link href={page.link} underline="none" color="gray.800">
+                    {page.label}
                   </Link>
                 </MenuItem>
               ))}
@@ -108,20 +110,29 @@ const NavBar = () => {
             </Link>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pageNames.map((name, i) => (
+            {pages.map((page, i) => (
               <Button
-                key={name}
+                key={i}
                 onClick={handleCloseNavMenu}
-                href={pageLinks[i]}
+                href={page.link}
                 sx={{
                   ml: 3,
                   display: "block",
                 }}
               >
-                <Typography variant="navText">{name}</Typography>
+                <Typography variant="navText">{page.label}</Typography>
               </Button>
             ))}
           </Box>
+          <Box>
+            <Button sx={{ p: 0 }}>
+              <img src={TrackerIcon} alt="tracker" />
+            </Button>
+            <Button sx={{ p: 0 }}>
+              <img src={AccountIcon} alt="account" />
+            </Button>
+          </Box>
+          {/* TODO: add AuthContext
           {authUser ? (
             <Box>
               <Button sx={{ p: 0 }}>
@@ -160,18 +171,7 @@ const NavBar = () => {
                 </Typography>
               </Button>
             </Box>
-          )}
-          {/* <Stack spacing={3} direction="row" alignItems="center">
-            <Link href="/" title="Internship Tracker Home Page">
-              <img src={LogoPath} alt="Internship Tracker Logo" height="32" />
-            </Link>
-            <Link href="/search" title="Find an internship">
-              Find an internship
-            </Link>
-            <Link href="/about" title="About">
-              About
-            </Link>
-          </Stack> */}
+          )} */}
         </Grid>
       </Grid>
     </AppBar>

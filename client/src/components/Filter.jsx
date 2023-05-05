@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { ArrowDropDown, Close } from "@mui/icons-material";
-import { FilterContext } from "../pages/SearchResultsPage";
+import FilterContext from "../contexts/FilterContext";
 
 /**
  * Individual filter component to be used within the FiltersBar.
