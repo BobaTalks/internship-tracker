@@ -10,6 +10,7 @@ import {
   IconButton,
   Button,
 } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import TrackerIcon from "../assets/tracker_icon.svg";
 import AccountIcon from "../assets/account_icon.svg";
@@ -44,7 +45,8 @@ const NavBar = () => {
           alignItems="center"
         >
           <Link
-            href="/"
+            component={RouterLink}
+            to="/"
             title="Internship Tracker Home Page"
             sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
           >
@@ -93,14 +95,20 @@ const NavBar = () => {
                   onClick={handleCloseNavMenu}
                   bgcolor="black"
                 >
-                  <Link href={pageLinks[i]} underline="none" color="gray.800">
+                  <Link
+                    component={RouterLink}
+                    to={pageLinks[i]}
+                    underline="none"
+                    color="gray.800"
+                  >
                     {name}
                   </Link>
                 </MenuItem>
               ))}
             </Popover>
             <Link
-              href="/"
+              component={RouterLink}
+              to="/"
               title="Internship Tracker Home Page"
               sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
             >
@@ -110,9 +118,10 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pageNames.map((name, i) => (
               <Button
+                LinkComponent={RouterLink}
                 key={name}
                 onClick={handleCloseNavMenu}
-                href={pageLinks[i]}
+                to={pageLinks[i]}
                 sx={{
                   ml: 3,
                   display: "block",
