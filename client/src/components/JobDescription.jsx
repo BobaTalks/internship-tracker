@@ -12,3 +12,6 @@ const theme = useTheme();
   );
 };
 export default JobDescription;
+
+    )
+}*/

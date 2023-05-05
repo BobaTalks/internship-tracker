@@ -1,18 +1,16 @@
-import { AppBar, Box, Link, Stack, useTheme } from "@mui/material";
+import { AppBar, Box, Link, Stack } from "@mui/material";
 import React, { useEffect } from "react";
 
 import bobaTalksLogoPath from "../assets/bobatalks_wide.svg";
 
 const NavBar = () => {
-  const theme = useTheme();
-
   useEffect(() => {
     const image = new Image();
     image.src = bobaTalksLogoPath;
   }, []);
 
   return (
-    <AppBar sx={{ p: 2, bgcolor: theme.palette.background.paper }}>
+    <AppBar sx={{ p: 2, bgcolor: "brown.100" }}>
       <Stack direction="row" sx={{ justifyContent: "space-between" }}>
         <Box>
           <Link
@@ -25,7 +23,12 @@ const NavBar = () => {
           </Link>
           <Box>{/* TODO: add nav links */}</Box>
         </Box>
-        <Box>{/* TODO: Right Side Nav Items */}</Box>
+        <Box>
+          {/* TODO: Right Side Nav Items */}
+          <Link href="/search" title="Find an internship">
+            Find an internship
+          </Link>
+        </Box>
       </Stack>
     </AppBar>
   );
