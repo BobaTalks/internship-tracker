@@ -1,7 +1,7 @@
 # Internship Tracker
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 - [Internship Tracker](#internship-tracker)
@@ -85,6 +85,7 @@ Pull requests are built with [deploy previews](https://docs.netlify.com/site-dep
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/victoriatran17"><img src="https://avatars.githubusercontent.com/u/118402811?v=4?s=100" width="100px;" alt="Victoria Tran"/><br /><sub><b>Victoria Tran</b></sub></a><br /><a href="#business-victoriatran17" title="Business development">💼</a> <a href="#question-victoriatran17" title="Answering Questions">💬</a> <a href="#ideas-victoriatran17" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/BobaTalks/internship-tracker/commits?author=victoriatran17" title="Documentation">📖</a> <a href="#projectManagement-victoriatran17" title="Project Management">📆</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/leafie8"><img src="https://avatars.githubusercontent.com/u/112891624?v=4?s=100" width="100px;" alt="leafie8"/><br /><sub><b>leafie8</b></sub></a><br /><a href="https://github.com/BobaTalks/internship-tracker/commits?author=leafie8" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
