@@ -60,6 +60,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "aqvilala",
+      "name": "Jessica Chen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/84333848?v=4",
+      "profile": "https://github.com/aqvilala",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
