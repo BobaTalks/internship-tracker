@@ -1,7 +1,7 @@
 # Internship Tracker
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 - [Internship Tracker](#internship-tracker)
@@ -77,8 +77,13 @@ Pull requests are built with [deploy previews](https://docs.netlify.com/site-dep
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/a-camarillo"><img src="https://avatars.githubusercontent.com/u/58638902?v=4?s=100" width="100px;" alt="Anthony Camarillo"/><br /><sub><b>Anthony Camarillo</b></sub></a><br /><a href="https://github.com/BobaTalks/internship-tracker/commits?author=a-camarillo" title="Code">💻</a> <a href="https://github.com/BobaTalks/internship-tracker/commits?author=a-camarillo" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://brandoncastillo.biz/"><img src="https://avatars.githubusercontent.com/u/7208570?v=4?s=100" width="100px;" alt="Brandon C"/><br /><sub><b>Brandon C</b></sub></a><br /><a href="#design-GeekJump" title="Design">🎨</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/DarrenLee09"><img src="https://avatars.githubusercontent.com/u/89325703?v=4?s=100" width="100px;" alt="DarrenLee09"/><br /><sub><b>DarrenLee09</b></sub></a><br /><a href="#ideas-DarrenLee09" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/jenna-x-435a851b3/"><img src="https://avatars.githubusercontent.com/u/96795538?v=4?s=100" width="100px;" alt="Jenna Xiao"/><br /><sub><b>Jenna Xiao</b></sub></a><br /><a href="https://github.com/BobaTalks/internship-tracker/commits?author=JennaXiao3" title="Code">💻</a> <a href="https://github.com/BobaTalks/internship-tracker/commits?author=JennaXiao3" title="Documentation">📖</a> <a href="https://github.com/BobaTalks/internship-tracker/issues?q=author%3AJennaXiao3" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/aqvilala"><img src="https://avatars.githubusercontent.com/u/84333848?v=4?s=100" width="100px;" alt="Jessica Chen"/><br /><sub><b>Jessica Chen</b></sub></a><br /><a href="https://github.com/BobaTalks/internship-tracker/commits?author=aqvilala" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/kpxwinter"><img src="https://avatars.githubusercontent.com/u/118410579?v=4?s=100" width="100px;" alt="KP"/><br /><sub><b>KP</b></sub></a><br /><a href="#projectManagement-kpxwinter" title="Project Management">📆</a> <a href="#question-kpxwinter" title="Answering Questions">💬</a> <a href="#ideas-kpxwinter" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/razlze"><img src="https://avatars.githubusercontent.com/u/68450734?v=4?s=100" width="100px;" alt="Razi Syed"/><br /><sub><b>Razi Syed</b></sub></a><br /><a href="https://github.com/BobaTalks/internship-tracker/commits?author=razlze" title="Code">💻</a></td>
+    </tr>
+    <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/victoriatran17"><img src="https://avatars.githubusercontent.com/u/118402811?v=4?s=100" width="100px;" alt="Victoria Tran"/><br /><sub><b>Victoria Tran</b></sub></a><br /><a href="#business-victoriatran17" title="Business development">💼</a> <a href="#question-victoriatran17" title="Answering Questions">💬</a> <a href="#ideas-victoriatran17" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/BobaTalks/internship-tracker/commits?author=victoriatran17" title="Documentation">📖</a> <a href="#projectManagement-victoriatran17" title="Project Management">📆</a></td>
     </tr>
   </tbody>
