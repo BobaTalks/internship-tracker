@@ -60,6 +60,33 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "aqvilala",
+      "name": "Jessica Chen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/84333848?v=4",
+      "profile": "https://github.com/aqvilala",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "razlze",
+      "name": "Razi Syed",
+      "avatar_url": "https://avatars.githubusercontent.com/u/68450734?v=4",
+      "profile": "https://github.com/razlze",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "DarrenLee09",
+      "name": "DarrenLee09",
+      "avatar_url": "https://avatars.githubusercontent.com/u/89325703?v=4",
+      "profile": "https://github.com/DarrenLee09",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
