@@ -32,6 +32,8 @@ class Location(db.Model):
     state = db.Column(db.String, nullable=False)
     country = db.Column(db.String, nullable=False)
 
+    db.UniqueConstraint("locations.city", "locations.state")
+
 
 # callback functions
 @jwt.user_identity_loader

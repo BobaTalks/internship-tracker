@@ -41,7 +41,7 @@ def get_job(id):
     query_result = (
         db.session.execute(
             db.select(Job, Location)
-            .where(id == id)
+            .where(Job.id == id)
             .join(Location, Job.location == Location.id)
         )
         .first()
