@@ -62,6 +62,7 @@ const theme = createTheme({
     h6: { fontWeight: "bold", fontSize: "1rem" },
     title: { fontWeight: "600", fontSize: "3.5rem", lineHeight: "5.5rem" },
     pageTitle: { fontWeight: "600", fontSize: "2rem" },
+    errorMessage: { fontWeight: "600", fontSize: "1rem" },
     subtitle: { fontSize: "1.125rem" },
     body1: { fontSize: "1.125rem" },
     body2: { fontSize: "1.125rem", color: "#C4C4C4" },
