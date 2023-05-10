@@ -15,6 +15,7 @@ const withSuspense = (Component) => (
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const SearchResultsPage = React.lazy(() => import("./pages/SearchResultsPage"));
 const AboutPage = React.lazy(() => import("./pages/AboutPage"));
+const ErrorPage = React.lazy(() => import("./pages/ErrorPage"));
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/" element={withSuspense(HomePage)} />
           <Route path="/search" element={withSuspense(SearchResultsPage)} />
           <Route path="/about" element={withSuspense(AboutPage)} />
+          <Route path="*" element={withSuspense(ErrorPage)} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
