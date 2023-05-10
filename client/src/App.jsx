@@ -4,15 +4,17 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import "@fontsource/poppins";
 
 import theme from "./theme";
+import Loading from "./components/Loading";
 
 const withSuspense = (Component) => (
-  <Suspense fallback="brewing...">
+  <Suspense fallback={<Loading />}>
     <Component />
   </Suspense>
 );
 
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const SearchResultsPage = React.lazy(() => import("./pages/SearchResultsPage"));
+const AboutPage = React.lazy(() => import("./pages/AboutPage"));
 const ErrorPage = React.lazy(() => import("./pages/ErrorPage"));
 
 const App = () => {
@@ -23,6 +25,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={withSuspense(HomePage)} />
           <Route path="/search" element={withSuspense(SearchResultsPage)} />
+          <Route path="/about" element={withSuspense(AboutPage)} />
           <Route path="*" element={withSuspense(ErrorPage)} />
         </Routes>
       </ThemeProvider>

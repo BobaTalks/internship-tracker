@@ -66,6 +66,12 @@ const theme = createTheme({
     subtitle: { fontSize: "1.125rem" },
     body1: { fontSize: "1.125rem" },
     body2: { fontSize: "1.125rem", color: "#C4C4C4" },
+    navText: {
+      fontSize: ".8rem",
+      fontWeight: 600,
+      color: "#2F3032",
+      textTransform: "none",
+    },
   },
   components: {
     MuiTypography: {
@@ -96,6 +102,22 @@ const theme = createTheme({
             color: "#021944",
             "&:hover": {
               backgroundColor: "#F6A794",
+              boxShadow:
+                "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
+            },
+          },
+        },
+        {
+          props: { variant: "rounded", color: "thai" },
+          style: {
+            textTransform: "none",
+            fontSize: "1rem",
+            borderRadius: "20px",
+            backgroundColor: "#98513A",
+            margin: ".4rem 0rem",
+            color: "#FFFFFF",
+            "&:hover": {
+              backgroundColor: "#98513A",
               boxShadow:
                 "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
             },
