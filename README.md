@@ -44,7 +44,7 @@ Copy the sample env file to a `.env` and set any missing variables
 ### Local Database
 
 ```shell
-docker-compose up
+docker compose up
 ```
 
 From project root, run the above command to spin up a local db within a docker container
