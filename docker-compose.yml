@@ -1,16 +1,22 @@
 version: "3.8"
 
 services:
+  webserver:
+    env_file:
+      - .env
+    build: ./server
+    container_name: bt_webserver
+    ports: 
+      - "5000:5000"
+    depends_on:
+      - db
   db:
+    env_file:
+      - .env
     container_name: bt_postgres
     image: postgres
-    ports:
-      - "5433:${DB_PORT}"
     volumes:
       - data:/data/db
-    environment:
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=${DB_NAME}
 
 volumes:
   data: {}
