@@ -126,13 +126,16 @@ const theme = createTheme({
       ],
     },
     MuiCard: {
-      styleOverrides: {
-        root: {
-          padding: "2rem",
-          borderRadius: "2rem",
-          boxShadow: "0px 3px 3px 0px #00000033",
+      variants: [
+        {
+          props: { variant: "searchResults" },
+          style: {
+            padding: "2rem",
+            borderRadius: "2rem",
+            boxShadow: "0px 3px 3px 0px #00000033",
+          },
         },
-      },
+      ],
     },
   },
 });
