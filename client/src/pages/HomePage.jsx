@@ -14,7 +14,7 @@ const HomePage = (props) => {
   return (
     <BasePage>
       <BackgroundShapes />
-      <Stack spacing={5} sx={{ zIndex: 0 }}>
+      <Stack spacing={5} sx={{ zIndex: 0 }} minWidth="100%">
         <HomePageContent />
         <Grid container justifyContent="center">
           <Grid item lg={8} md={9} xs={11}>
