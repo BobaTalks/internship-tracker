@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { Box, useTheme } from "@mui/material";
+import React from "react";
+import { Box } from "@mui/material";
 
 const InternshipTag = (props) => {
-  const theme = useTheme();
   const Icon = props.icon;
 
   return (
@@ -12,10 +11,9 @@ const InternshipTag = (props) => {
       sx={{
         borderRadius: "0.5rem",
         padding: "0.5rem 1rem",
-        bgcolor: "blue.50",
-        color: "gray.800",
+        bgcolor: "secondary.light",
         border: 1,
-        borderColor: "gray.800",
+        borderColor: "text.main",
         maxWidth: "fit-content",
       }}
     >
