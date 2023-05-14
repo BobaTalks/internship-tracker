@@ -1,5 +1,6 @@
 from flask import Flask
 import os
+import time
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -25,11 +26,28 @@ def create_app(test_config=None):
 
     from .blueprints.login import login
     from .blueprints.signup import signup
+    from .blueprints.jobs import jobs
 
     app.register_blueprint(login)
     app.register_blueprint(signup)
+    app.register_blueprint(jobs)
 
     with app.app_context():
+        # check if database is ready to connect
+        while 1:
+            try:
+                db.session.execute(db.text("SELECT 1"))
+            except db.exc.OperationalError:
+                time.sleep(1)
+            else:
+                break
+
         db.create_all()
+
+        with open("./webserver/mock_schema.sql") as file:
+            query = db.text(file.read())
+            db.session.execute(query)
+            db.session.commit()
+            file.close()
 
     return app

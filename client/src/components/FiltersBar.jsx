@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Grid } from "@mui/material";
 
 import Filter from "./Filter";
-import { FilterContext } from "../pages/SearchResultsPage";
+import FilterContext from "../contexts/FilterContext";
 
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/26

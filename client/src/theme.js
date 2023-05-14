@@ -62,9 +62,16 @@ const theme = createTheme({
     h6: { fontWeight: "bold", fontSize: "1rem" },
     title: { fontWeight: "600", fontSize: "3.5rem", lineHeight: "5.5rem" },
     pageTitle: { fontWeight: "600", fontSize: "2rem" },
+    errorMessage: { fontWeight: "600", fontSize: "1rem" },
     subtitle: { fontSize: "1.125rem" },
     body1: { fontSize: "1.125rem" },
     body2: { fontSize: "1.125rem", color: "#C4C4C4" },
+    navText: {
+      fontSize: ".8rem",
+      fontWeight: 600,
+      color: "#2F3032",
+      textTransform: "none",
+    },
   },
   components: {
     MuiTypography: {
@@ -100,7 +107,34 @@ const theme = createTheme({
             },
           },
         },
+        {
+          props: { variant: "rounded", color: "thai" },
+          style: {
+            textTransform: "none",
+            fontSize: "1rem",
+            borderRadius: "20px",
+            backgroundColor: "#98513A",
+            margin: ".4rem 0rem",
+            color: "#FFFFFF",
+            "&:hover": {
+              backgroundColor: "#98513A",
+              boxShadow:
+                "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
+            },
+          },
+        },
       ],
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          padding: "2rem",
+          borderRadius: "2rem",
+        },
+      },
+      defaultProps: {
+        elevation: 2,
+      },
     },
   },
 });
