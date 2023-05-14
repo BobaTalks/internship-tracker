@@ -1,10 +1,11 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import { Stack, Typography } from "@mui/material";
 
 import BasePage from "./BasePage";
 import FiltersBar from "../components/FiltersBar";
 import SearchBar from "../components/SearchBar";
-
+import FilterContext from "../contexts/FilterContext";
+import SearchResults from "../components/SearchResults";
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/28
  * This page will display all the search results. Part of this work we should include the
@@ -134,8 +135,6 @@ const MOCK_FILTER_DATA = {
   },
 };
 
-export const FilterContext = createContext([{}, () => {}]);
-
 const SearchResultsPage = () => {
   const [filterData, setFilterData] = useState(MOCK_FILTER_DATA);
 
@@ -148,6 +147,7 @@ const SearchResultsPage = () => {
           </Typography>
           <SearchBar />
           <FiltersBar />
+          <SearchResults />
         </Stack>
       </BasePage>
     </FilterContext.Provider>

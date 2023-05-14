@@ -15,6 +15,26 @@ class User(db.Model):
         return verify_hash(hash, password)
 
 
+class Job(db.Model):
+    __tablename__ = "jobs"
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String, nullable=False)
+    url = db.Column(db.String, nullable=False)
+    location = db.Column(db.ForeignKey("locations.id"), nullable=False)
+
+
+class Location(db.Model):
+    __tablename__ = "locations"
+
+    id = db.Column(db.Integer, primary_key=True)
+    city = db.Column(db.String, nullable=False)
+    state = db.Column(db.String, nullable=False)
+    country = db.Column(db.String, nullable=False)
+
+    db.UniqueConstraint("locations.city", "locations.state")
+
+
 # callback functions
 @jwt.user_identity_loader
 def user_identity_lookup(user):

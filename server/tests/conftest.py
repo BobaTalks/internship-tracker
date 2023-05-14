@@ -1,6 +1,6 @@
 from webserver import create_app
 from webserver.extensions import db
-from webserver.models import User
+from webserver.models import Location, Job, User
 import pytest
 
 
@@ -35,3 +35,38 @@ def new_user():
         authentication_method="Traditional",
     )
     return user
+
+
+@pytest.fixture()
+def new_location():
+    location = Location(
+        id=1, city="Mountain View", state="California", country="United States"
+    )
+    return location
+
+
+@pytest.fixture()
+def new_job():
+    job = Job(
+        title="Software Engineer",
+        url="https://www.google.com/careers/12345678",
+        location=1,
+    )
+    return job
+
+
+@pytest.fixture()
+def post_job(client):
+    response = client.post(
+        "/jobs",
+        json={
+            "title": "Software Engineer",
+            "url": "https://www.google.com/careers/12345678",
+            "location": {
+                "city": "Mountain View",
+                "state": "California",
+                "country": "United States",
+            },
+        },
+    )
+    return response

@@ -1,4 +1,5 @@
 import React from "react";
+import InternshipCard from "./InternshipCard";
 
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/49
@@ -6,7 +7,7 @@ import React from "react";
  * data or API available
  */
 const SearchResults = () => {
-  return <></>;
+  return <InternshipCard />;
 };
 
 export default SearchResults;
