@@ -125,6 +125,17 @@ const theme = createTheme({
         },
       ],
     },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          padding: "2rem",
+          borderRadius: "2rem",
+        },
+      },
+      defaultProps: {
+        elevation: 2,
+      },
+    },
   },
 });
 
