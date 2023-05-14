@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 488.01">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ffefeb;
+      }
+
+      .cls-2 {
+        fill: #fffbf8;
+      }
+
+      .cls-3 {
+        fill: #f2dac4;
+      }
+
+      .cls-4 {
+        fill: #fdd3c9;
+      }
+    </style>
+  </defs>
+  <g id="Card">
+    <g id="Drink">
+      <g id="Drinks">
+        <path id="BT_Milk_Tea_F2DAC4" data-name="BT Milk Tea F2DAC4" class="cls-3" d="m20,77.95h280v290.06c0,55.19-44.81,100-100,100h-80c-55.19,0-100-44.81-100-100V77.95h0Z"/>
+      </g>
+      <g id="Caps">
+        <rect id="Pink" class="cls-1" x="20" y="77.95" width="280" height="43.34"/>
+      </g>
+      <g id="Straws">
+        <g id="Left">
+          <rect id="Pink-2" data-name="Pink" class="cls-4" x="58.5" y="19.51" width="68.33" height="58.44"/>
+          <g id="Left-2" data-name="Left">
+            <path class="cls-2" d="m126.5,20v57.95h173.5v292.67c0,53.79-44.77,97.39-100,97.39h-80c-55.23,0-100-43.6-100-97.39V77.95h38.5V20h68M146.5,0H38.5v57.95H0v312.67c0,31.46,12.55,61,35.34,83.2,22.64,22.05,52.71,34.2,84.66,34.2h80c31.95,0,62.02-12.15,84.66-34.2,22.79-22.19,35.34-51.74,35.34-83.2V57.95h-173.5V0h0Z"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
