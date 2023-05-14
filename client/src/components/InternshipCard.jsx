@@ -8,7 +8,7 @@ import { Card, CardContent } from "@mui/material";
  */
 const InternshipCard = () => {
   return (
-    <Card variant="searchResults">
+    <Card>
       <CardContent />
     </Card>
   );
