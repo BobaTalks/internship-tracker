@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from webserver.queries import create_job, get_job, delete_job
+from webserver.queries import create_job, get_job, delete_job, get_jobs
 
 jobs = Blueprint("jobs", __name__, url_prefix="/jobs")
 
@@ -7,7 +7,10 @@ jobs = Blueprint("jobs", __name__, url_prefix="/jobs")
 @jobs.route("", methods=["GET", "POST"])
 def handle_jobs():
     if request.method == "GET":
-        return jsonify()
+        title = request.args.get("title",default=None)
+        location = request.args.get("location", default=None)
+        params = {"title": title, "location": location}
+        return jsonify(get_jobs(params)), 200
     if request.method == "POST":
         title = request.json.get("title", None)
         url = request.json.get("url", None)
