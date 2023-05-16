@@ -47,29 +47,27 @@ def get_jobs(params):
             result_obj = create_jobect(result)
             jobject_arr.append(result_obj)
         return jobject_arr
-    if not params["title"] and params["location"]: 
+    if not params["title"] and params["location"]:
         jobject_arr = []
         query_results = db.session.execute(
             db.select(Job, Location)
             .join(Location, Job.location == Location.id)
             .where(
-                    (Location.city.icontains(params["location"])) |
-                    (Location.state.icontains(params["location"])) |
-                    (Location.country.icontains(params["location"]))
+                (Location.city.icontains(params["location"]))
+                | (Location.state.icontains(params["location"]))
+                | (Location.country.icontains(params["location"]))
             )
         )
         for result in query_results:
             result_obj = create_jobect(result)
             jobject_arr.append(result_obj)
         return jobject_arr
-    if not params["location"] and params["title"]: 
+    if not params["location"] and params["title"]:
         jobject_arr = []
         query_results = db.session.execute(
             db.select(Job, Location)
             .join(Location, Job.location == Location.id)
-            .where(
-                (Job.title.icontains(params["title"])) 
-            )
+            .where((Job.title.icontains(params["title"])))
         )
         for result in query_results:
             result_obj = create_jobect(result)
@@ -80,20 +78,17 @@ def get_jobs(params):
         query_results = db.session.execute(
             db.select(Job, Location)
             .join(Location, Job.location == Location.id)
+            .where((Job.title.icontains(params["title"])))
             .where(
-                    (Job.title.icontains(params["title"])) 
-            )
-            .where(
-                    (Location.city.icontains(params["location"])) |
-                    (Location.state.icontains(params["location"])) |
-                    (Location.country.icontains(params["location"]))
+                (Location.city.icontains(params["location"]))
+                | (Location.state.icontains(params["location"]))
+                | (Location.country.icontains(params["location"]))
             )
         )
         for result in query_results:
             result_obj = create_jobect(result)
             jobject_arr.append(result_obj)
         return jobject_arr
-    
 
 
 def get_job(id):

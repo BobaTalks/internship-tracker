@@ -7,7 +7,7 @@ jobs = Blueprint("jobs", __name__, url_prefix="/jobs")
 @jobs.route("", methods=["GET", "POST"])
 def handle_jobs():
     if request.method == "GET":
-        title = request.args.get("title",default=None)
+        title = request.args.get("title", default=None)
         location = request.args.get("location", default=None)
         params = {"title": title, "location": location}
         return jsonify(get_jobs(params)), 200
