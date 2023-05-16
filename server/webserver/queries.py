@@ -1,6 +1,6 @@
 from webserver.extensions import db
 from webserver.models import User, Job, Location
-from utils.jobjects import create_jobect
+from utils.jobs_utils import create_job_object
 
 
 def create_user(email, name, hash, authentication_method):
@@ -39,16 +39,16 @@ def create_job(title, url, city, state, country):
 
 def get_jobs(params):
     if not params["title"] and not params["location"]:
-        jobject_arr = []
+        job_object_arr = []
         query_results = db.session.execute(
             db.select(Job, Location).join(Location, Job.location == Location.id)
         )
         for result in query_results:
-            result_obj = create_jobect(result)
-            jobject_arr.append(result_obj)
-        return jobject_arr
+            result_obj = create_job_object(result)
+            job_object_arr.append(result_obj)
+        return job_object_arr
     if not params["title"] and params["location"]:
-        jobject_arr = []
+        job_object_arr = []
         query_results = db.session.execute(
             db.select(Job, Location)
             .join(Location, Job.location == Location.id)
@@ -59,22 +59,22 @@ def get_jobs(params):
             )
         )
         for result in query_results:
-            result_obj = create_jobect(result)
-            jobject_arr.append(result_obj)
-        return jobject_arr
+            result_obj = create_job_object(result)
+            job_object_arr.append(result_obj)
+        return job_object_arr
     if not params["location"] and params["title"]:
-        jobject_arr = []
+        job_object_arr = []
         query_results = db.session.execute(
             db.select(Job, Location)
             .join(Location, Job.location == Location.id)
             .where((Job.title.icontains(params["title"])))
         )
         for result in query_results:
-            result_obj = create_jobect(result)
-            jobject_arr.append(result_obj)
-        return jobject_arr
+            result_obj = create_job_object(result)
+            job_object_arr.append(result_obj)
+        return job_object_arr
     else:
-        jobject_arr = []
+        job_object_arr = []
         query_results = db.session.execute(
             db.select(Job, Location)
             .join(Location, Job.location == Location.id)
@@ -86,9 +86,9 @@ def get_jobs(params):
             )
         )
         for result in query_results:
-            result_obj = create_jobect(result)
-            jobject_arr.append(result_obj)
-        return jobject_arr
+            result_obj = create_job_object(result)
+            job_object_arr.append(result_obj)
+        return job_object_arr
 
 
 def get_job(id):
@@ -101,8 +101,8 @@ def get_job(id):
         .first()
         ._asdict()
     )
-    jobject = create_jobect(query_result)
-    return jobject
+    job_object = create_job_object(query_result)
+    return job_object
 
 
 def delete_job(id):
