@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
- 
+
 driver = webdriver.Chrome()
 
 # URLs for FAANG internship listings
@@ -16,18 +16,26 @@ urls = {
 
 def get_meta_internships(soup):
     driver.get(urls["Meta"])
-    
-    containers = driver.find_elements("xpath", "//div[@class='_6g3g x8y0a91 x7z1be2 xngnso2 xeqmlgx xo1l8bm xeqr9p9 x1e096f4']")
+
+    containers = driver.find_elements(
+        "xpath",
+        "//div[@class='_6g3g x8y0a91 x7z1be2 xngnso2 xeqmlgx xo1l8bm xeqr9p9 x1e096f4']",
+    )
     internship_titles = [container.text for container in containers]
-    
-    containers = driver.find_elements("xpath", "//span[@class='x7z1be2 x1u3m9jt x1f6kntn x1rmxxjo']")
+
+    containers = driver.find_elements(
+        "xpath", "//span[@class='x7z1be2 x1u3m9jt x1f6kntn x1rmxxjo']"
+    )
     internship_locations = [container.text for container in containers]
-    
+
     containers = driver.find_elements("xpath", "//div[@class='x1ypdohk']")
     internship_links = [container.get_attribute("data-url") for container in containers]
-    
-    internships = [(internship_titles[i], internship_locations[i].split("\n"), internship_links[i]) for i in range(len(internship_titles))]    
-    
+
+    internships = [
+        (internship_titles[i], internship_locations[i].split("\n"), internship_links[i])
+        for i in range(len(internship_titles))
+    ]
+
     return internships
 
 
