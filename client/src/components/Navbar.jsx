@@ -95,8 +95,8 @@ const NavBar = () => {
                 },
               }}
             >
-              {pages.map((page, i) => (
-                <MenuItem key={i} onClick={handleCloseNavMenu}>
+              {pages.map((page) => (
+                <MenuItem key={page.link} onClick={handleCloseNavMenu}>
                   <Link
                     component={RouterLink}
                     to={page.link}
@@ -118,10 +118,10 @@ const NavBar = () => {
             </Link>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page, i) => (
+            {pages.map((page) => (
               <Button
                 LinkComponent={RouterLink}
-                key={i}
+                key={page.link}
                 onClick={handleCloseNavMenu}
                 to={page.link}
                 sx={{
