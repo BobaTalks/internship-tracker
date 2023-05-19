@@ -1,6 +1,6 @@
 // File to contain methods to return data from API calls
 import axios from "axios";
-
+import { BASE_URL } from "./constants";
 /**
  * Get internships with given search options. Returns a promise that resolves to
  * Internship[]
@@ -8,15 +8,36 @@ import axios from "axios";
  * @param {*} searchOptions - shape to be determined by backend
  * @return {Promise<Internship[]>}
  */
-export const getSearchInternships = (searchOptions) => {
-  const url = "";
-  const options = {};
+export const getSearchInternships = async (searchOptions) => {
+  const url = BASE_URL;
 
-  return [
-    // Fill out mock data here
-  ];
-
-  // return axios.get(url, options);
+  if (!searchOptions) {
+    const response = await axios
+      .get(`${url}/jobs`, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then(() => {
+        return response;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } else {
+    const response = await axios
+      .get(`${url}/jobs`, {
+        headers: { "Content-Type": "application/json" },
+        params: {
+          title: searchOptions["title"],
+          location: searchOptions["location"],
+        },
+      })
+      .then(() => {
+        return response;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 };
 
 /**
