@@ -38,7 +38,7 @@ const NavBar = () => {
     setAnchorElNav(null);
   };
   return (
-    <AppBar sx={{ p: 1, bgcolor: "brown.100" }}>
+    <AppBar sx={{ p: 1, bgcolor: "background.dark" }}>
       <Grid container justifyContent="center">
         <Grid
           container
@@ -89,19 +89,19 @@ const NavBar = () => {
               }}
               PaperProps={{
                 sx: {
-                  backgroundColor: "brown.100",
+                  backgroundColor: "background.dark",
                   width: 300,
                   p: 1,
                 },
               }}
             >
-              {pages.map((page, i) => (
-                <MenuItem key={i} onClick={handleCloseNavMenu} bgcolor="black">
+              {pages.map((page) => (
+                <MenuItem key={page.link} onClick={handleCloseNavMenu}>
                   <Link
                     component={RouterLink}
                     to={page.link}
                     underline="none"
-                    color="gray.800"
+                    color="text.main"
                   >
                     {page.label}
                   </Link>
@@ -118,10 +118,10 @@ const NavBar = () => {
             </Link>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page, i) => (
+            {pages.map((page) => (
               <Button
                 LinkComponent={RouterLink}
-                key={i}
+                key={page.link}
                 onClick={handleCloseNavMenu}
                 to={page.link}
                 sx={{
