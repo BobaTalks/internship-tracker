@@ -13,7 +13,7 @@ const BasePage = (props) => {
   return (
     <Grid
       container
-      sx={{ bgcolor: "brown.50", minHeight: "100vh" }}
+      sx={{ bgcolor: "background.main", minHeight: "100vh" }}
       justifyContent="center"
     >
       <Grid container item xl={8} lg={9} sm={10} xs={11}>

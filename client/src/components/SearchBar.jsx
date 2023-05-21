@@ -49,18 +49,14 @@ const SearchBar = ({ isNarrow }) => {
           aria-label="search"
           onClick={handleClick}
           sx={{
-            bgcolor: "red.100",
+            bgcolor: "background.dark",
             padding: "0.9rem",
             border: "2px solid",
-            borderColor: "red.200",
-            boxShadow: `0 0 0 2px ${theme.palette.gray[400]}`,
+            borderColor: "primary.dark",
             "&:hover": {
               transform: "scale(1.1)",
-              bgcolor: "red.100",
+              bgcolor: "background.dark",
               transition: "transform .3s ease-out",
-            },
-            "&:focus": {
-              boxShadow: `0 0 0 2px ${theme.palette.gray[400]}`,
             },
           }}
         >

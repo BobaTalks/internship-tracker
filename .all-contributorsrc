@@ -96,6 +96,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "lilyxmeng",
+      "name": "Lily Meng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/76577669?v=4",
+      "profile": "https://lilyxmeng.github.io/",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
