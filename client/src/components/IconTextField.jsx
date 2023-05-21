@@ -3,7 +3,7 @@ import { Grid, InputAdornment, TextField } from "@mui/material";
 
 const IconTextField = ({ icon, placeholder, value, setValue }) => {
   return (
-    <Grid item sx={{ backgroundColor: "white", borderRadius: "20rem" }}>
+    <Grid item sx={{ backgroundColor: "grey.main", borderRadius: "20rem" }}>
       <TextField
         hiddenLabel
         fullWidth

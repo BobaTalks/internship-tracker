@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { Box, Avatar, Typography, useTheme } from "@mui/material";
+import React from "react";
+import { Box, Avatar, Typography } from "@mui/material";
 
 const InternshipCompanyInfo = (props) => {
-  const theme = useTheme();
-
   return (
     <>
       <Box
@@ -25,7 +23,7 @@ const InternshipCompanyInfo = (props) => {
           <Typography
             variant="h5"
             sx={{
-              color: "blue.100",
+              color: "secondary.dark",
               fontWeight: "600",
               lineHeight: "2.25rem",
             }}
