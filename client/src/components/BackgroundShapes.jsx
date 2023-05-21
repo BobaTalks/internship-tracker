@@ -11,7 +11,7 @@ const BackgroundShapes = () => {
   return (
     <Box
       sx={{
-        position: "absolute",
+        position: "fixed",
         left: 0,
         top: 0,
         width: "100vw",
