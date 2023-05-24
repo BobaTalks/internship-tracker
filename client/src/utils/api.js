@@ -10,7 +10,7 @@ import axios from "axios";
 export const getSearchInternships = async (searchOptions) => {
   const hasSearchOptions = Object.keys(searchOptions).length;
   const params = hasSearchOptions > 0 ? { ...searchOptions } : {};
-  const url = BASE_URL;
+  const url = "";
 
   const response = await axios.get(`${url}/jobs`, {
     headers: { "Content-Type": "application/json" },
