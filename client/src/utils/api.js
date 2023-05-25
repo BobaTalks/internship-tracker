@@ -1,5 +1,7 @@
 // File to contain methods to return data from API calls
 import axios from "axios";
+const BASE_URL = process.env.BASE_URL
+
 /**
  * Get internships with given search options. Returns a promise that resolves to
  * Internship[]
@@ -10,7 +12,7 @@ import axios from "axios";
 export const getSearchInternships = async (searchOptions) => {
   const hasSearchOptions = Object.keys(searchOptions).length;
   const params = hasSearchOptions > 0 ? { ...searchOptions } : {};
-  const url = "";
+  const url = BASE_URL;
 
   const response = await axios.get(`${url}/jobs`, {
     headers: { "Content-Type": "application/json" },
