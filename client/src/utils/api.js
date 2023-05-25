@@ -1,6 +1,6 @@
 // File to contain methods to return data from API calls
 import axios from "axios";
-const BASE_URL = process.env.BASE_URL
+const BASE_URL = process.env.BASE_URL;
 
 /**
  * Get internships with given search options. Returns a promise that resolves to
