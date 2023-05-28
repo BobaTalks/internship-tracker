@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { ArrowDropDown, Close } from "@mui/icons-material";
-import { FilterContext } from "../pages/SearchResultsPage";
+import FilterContext from "../contexts/FilterContext";
 
 /**
  * Individual filter component to be used within the FiltersBar.
@@ -95,7 +95,7 @@ const Filter = ({ filterLabel }) => {
   const id = open ? allFilterData[filterLabel].filterName : undefined;
   const popOverProps = {
     sx: {
-      backgroundColor: "gray.50",
+      backgroundColor: "grey.main",
       boxShadow:
         "0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 2px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2)",
       marginTop: "0.5rem",
@@ -111,21 +111,27 @@ const Filter = ({ filterLabel }) => {
         endIcon={isOpen ? <Close /> : <ArrowDropDown />}
         variant="contained"
         sx={{
-          bgcolor: isOpen ? "red.300" : "blue.200",
+          bgcolor: isOpen ? "primary.main" : "secondary.main",
           border: "1px solid",
-          borderColor: isOpen ? "blue.200" : "gray.50",
+          borderColor: isOpen ? "secondary.main" : "grey.main",
           boxShadow: "none",
           borderRadius: "8px",
           textTransform: "none",
           padding: ".3rem 1rem",
-          color: isOpen ? "blue.200" : "gray.50",
+          color: isOpen ? "secondary.main" : "grey.main",
           "&:hover": {
-            bgcolor: isOpen ? "red.300" : "blue.200",
+            bgcolor: isOpen ? "primary.main" : "secondary.main",
             boxShadow: "none",
           },
         }}
       >
-        <Typography noWrap sx={{ fontSize: "1rem" }}>
+        <Typography
+          noWrap
+          sx={{
+            fontSize: "1rem",
+            color: isOpen ? "secondary.main" : "grey.main",
+          }}
+        >
           {allFilterData[filterLabel].filterName}
         </Typography>
       </Button>
@@ -159,7 +165,7 @@ const Filter = ({ filterLabel }) => {
                       name={key}
                       sx={{
                         "&.Mui-checked": {
-                          color: "blue.200",
+                          color: "secondary.main",
                         },
                       }}
                     />
@@ -170,7 +176,7 @@ const Filter = ({ filterLabel }) => {
                     </Typography>
                   }
                 />
-                <Typography color="gray.300" fontSize="1rem">
+                <Typography color="text.light" fontSize="1rem">
                   {`(${checked[key].count})`}
                 </Typography>
               </Box>

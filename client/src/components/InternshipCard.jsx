@@ -1,4 +1,5 @@
 import React from "react";
+import { Card, CardContent } from "@mui/material";
 
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/25
@@ -6,7 +7,11 @@ import React from "react";
  *
  */
 const InternshipCard = () => {
-  return <></>;
+  return (
+    <Card>
+      <CardContent />
+    </Card>
+  );
 };
 
 export default InternshipCard;
