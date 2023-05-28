@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import { Stack, Typography } from "@mui/material";
 
 import BasePage from "./BasePage";
@@ -6,6 +6,8 @@ import FiltersBar from "../components/FiltersBar";
 import SearchBar from "../components/SearchBar";
 import JobDescription from "../components/JobDescription";
 
+import FilterContext from "../contexts/FilterContext";
+import SearchResults from "../components/SearchResults";
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/28
  * This page will display all the search results. Part of this work we should include the
@@ -161,6 +163,7 @@ const SearchResultsPage = () => {
           <SearchBar />
           <FiltersBar />
           <JobDescription description={mockDescription} />
+          <SearchResults />
         </Stack>
       </BasePage>
     </FilterContext.Provider>

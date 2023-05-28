@@ -87,6 +87,25 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "leafie8",
+      "name": "leafie8",
+      "avatar_url": "https://avatars.githubusercontent.com/u/112891624?v=4",
+      "profile": "https://github.com/leafie8",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "lilyxmeng",
+      "name": "Lily Meng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/76577669?v=4",
+      "profile": "https://lilyxmeng.github.io/",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

@@ -1,58 +1,67 @@
 import { createTheme } from "@mui/material";
 
-// TODO: Add brand colors map
-// eslint-disable-next-line
-const BRAND_COLORS = {
+const COLORS = {
+  HYPERLINK_BLUE: "#005EA2",
+  BODY_TEXT: "#2F3032",
+  LIGHT_GREY_TEXT: "#78787A",
+  BACKGROUND: "#FAF0E7",
+  CARD_BG: "#FFFFFF",
+  NAVBAR_BG: "#F2DAC4",
   BLUEBERRY: "#021944",
   LYCHEE: "#F6A794",
-  MATCHA: "#B1D5B2",
-  MILK_TEA: "#F2DAC4",
-  TARO: "#E4CFF7",
+  CARD_CHIPS: "#ABBFE3",
+  ERROR_BUTTON: "#D21C1C",
+  ERROR_BG: "#F8D7D7",
+  SLIDEOUT_NOTES_BG: "#FFF5ED",
   THAI_TEA: "#E0A878",
+  MILK_TEA: "#F2DAC4",
+  LOGO_BROWN: "#98513A",
+  OFFWHITE_GREY: "#D9D9D9",
+  PAGINATION_BG: "#F9E5DC",
+  SEARCHBAR_ICON_BORDER: "#DBAE9C",
+  THAI_FILL_INACTIVE: "#B4AAA0",
+  BOBA_POSITION: "#A9917B",
 };
 
 const theme = createTheme({
   palette: {
-    brown: {
-      50: "#FAF0E7",
-      100: BRAND_COLORS.MILK_TEA,
-      200: "#E0A878",
-      300: "#A4857B",
-      400: "#98513A",
-      500: "#683323",
+    primary: {
+      main: COLORS.LYCHEE,
+      light: COLORS.PAGINATION_BG,
+      dark: COLORS.SEARCHBAR_ICON_BORDER,
     },
-    gray: {
-      50: "#FFFFFF",
-      100: "#F7EDEA",
-      200: "#E4E2E0",
-      300: "#8C8C8C",
-      400: "#E7D8CE",
-      500: "#D9D9D9",
-      600: "#B4AAA0",
-      700: "#979797",
-      800: "#2F3032",
-      900: "#000000",
+    secondary: {
+      main: COLORS.BLUEBERRY,
+      light: COLORS.CARD_CHIPS,
+      dark: COLORS.HYPERLINK_BLUE,
     },
-    red: {
-      50: "#F8D7D7",
-      100: "#F4D0BD",
-      200: "#E2BCA9",
-      300: "#F6A794",
-      400: "#D21C1C",
-      500: "#B03737",
+    tertiary: {
+      main: COLORS.THAI_TEA,
+      light: COLORS.MILK_TEA,
+      dark: COLORS.LOGO_BROWN,
+      contrastText: COLORS.BOBA_POSITION,
     },
-    blue: {
-      50: "#ABBFE3",
-      100: "#005EA2",
-      200: "#021944",
+    text: {
+      main: COLORS.BODY_TEXT,
+      light: COLORS.LIGHT_GREY_TEXT,
+      dark: COLORS.THAI_FILL_INACTIVE,
     },
-    green: {
-      50: "#73956F",
-      100: "#489879",
+    background: {
+      main: COLORS.BACKGROUND,
+      light: COLORS.SLIDEOUT_NOTES_BG,
+      dark: COLORS.NAVBAR_BG,
+    },
+    error: {
+      main: COLORS.ERROR_BUTTON,
+      light: COLORS.ERROR_BG,
+    },
+    grey: {
+      main: COLORS.CARD_BG,
+      dark: COLORS.OFFWHITE_GREY,
     },
   },
   typography: {
-    color: "#2F3032",
+    color: COLORS.BODY_TEXT,
     fontFamily: "Poppins",
     h1: { fontWeight: "bold", fontSize: "4.5rem" },
     h2: { fontWeight: "bold", fontSize: "3.5rem" },
@@ -65,13 +74,28 @@ const theme = createTheme({
     errorMessage: { fontWeight: "600", fontSize: "1rem" },
     subtitle: { fontSize: "1.125rem" },
     body1: { fontSize: "1.125rem" },
-    body2: { fontSize: "1.125rem", color: "#C4C4C4" },
+    navText: {
+      fontSize: ".8rem",
+      fontWeight: 600,
+      textTransform: "none",
+    },
   },
   components: {
     MuiTypography: {
       styleOverrides: {
         root: {
           fontFamily: "Poppins",
+        },
+      },
+      defaultProps: {
+        color: COLORS.BODY_TEXT,
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: COLORS.HYPERLINK_BLUE,
+          textDecorationColor: COLORS.HYPERLINK_BLUE,
         },
       },
     },
@@ -92,16 +116,43 @@ const theme = createTheme({
             textTransform: "none",
             fontSize: ".9rem",
             borderRadius: "20px",
-            backgroundColor: "#F6A794",
-            color: "#021944",
+            backgroundColor: COLORS.LYCHEE,
+            color: COLORS.BLUEBERRY,
             "&:hover": {
-              backgroundColor: "#F6A794",
+              backgroundColor: COLORS.LYCHEE,
+              boxShadow:
+                "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
+            },
+          },
+        },
+        {
+          props: { variant: "rounded", color: "thai" },
+          style: {
+            textTransform: "none",
+            fontSize: "1rem",
+            borderRadius: "20px",
+            backgroundColor: COLORS.LOGO_BROWN,
+            margin: ".4rem 0rem",
+            color: COLORS.CARD_BG,
+            "&:hover": {
+              backgroundColor: COLORS.LOGO_BROWN,
               boxShadow:
                 "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
             },
           },
         },
       ],
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          padding: "2rem",
+          borderRadius: "2rem",
+        },
+      },
+      defaultProps: {
+        elevation: 2,
+      },
     },
   },
 });

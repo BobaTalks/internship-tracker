@@ -17,6 +17,7 @@ class User(db.Model):
 
 class Job(db.Model):
     __tablename__ = "jobs"
+    __table_args__ = (db.UniqueConstraint("title", "location"),)
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
@@ -26,6 +27,7 @@ class Job(db.Model):
 
 class Location(db.Model):
     __tablename__ = "locations"
+    __table_args__ = (db.UniqueConstraint("city", "state", "country"),)
 
     id = db.Column(db.Integer, primary_key=True)
     city = db.Column(db.String, nullable=False)
