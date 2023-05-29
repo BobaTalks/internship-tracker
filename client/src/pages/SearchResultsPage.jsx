@@ -4,7 +4,6 @@ import { Stack, Typography } from "@mui/material";
 import BasePage from "./BasePage";
 import FiltersBar from "../components/FiltersBar";
 import SearchBar from "../components/SearchBar";
-import JobDescription from "../components/JobDescription";
 
 import FilterContext from "../contexts/FilterContext";
 import SearchResults from "../components/SearchResults";
@@ -139,17 +138,6 @@ const MOCK_FILTER_DATA = {
 
 export const FilterContext = createContext([{}, () => {}]);
 
-const prr = "Lorem ipsum dolor sit amet consectetur. ";
-const poo = "Maecenas at lobortis dolor quisque cras amet. ";
-const pee = "Iaculis sagittis non netus justo laoreet imperdiet.";
-const paa = " Amet nibh sodales fermentum id nibh egestas maecenas. ";
-const pii = "Tempor blandit ultrices aliquet donec ornare lectus. ";
-const puu = "Vestibulum ac aliquam et aliquam amet facilisis ";
-const pug = "blandit posuere consectetur. ";
-const pyy = "Risus molestie tristique pharetra venenatis aenean ";
-const pzz = "tellus faucibus. Libero sit massa id...";
-const mockDescription = prr + poo + pee + paa + pii + puu + pug + pyy + pzz;
-
 const SearchResultsPage = () => {
   const [filterData, setFilterData] = useState(MOCK_FILTER_DATA);
 
@@ -162,7 +150,6 @@ const SearchResultsPage = () => {
           </Typography>
           <SearchBar />
           <FiltersBar />
-          <JobDescription description={mockDescription} />
           <SearchResults />
         </Stack>
       </BasePage>
