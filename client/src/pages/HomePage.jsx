@@ -1,4 +1,4 @@
-import { React } from "react";
+import React from "react";
 import { Grid, Stack, Typography, Box, useTheme } from "@mui/material";
 
 import BasePage from "./BasePage";
@@ -11,11 +11,6 @@ import microsoftLogo from "../assets/microsoft_logo.svg";
 import amazonLogo from "../assets/amazon_logo.svg";
 import appleLogo from "../assets/apple_logo.svg";
 import googleLogo from "../assets/google_logo.svg";
-
-/**
- * https://github.com/BobaTalks/internship-tracker/issues/24
- * Will need to include the background styles for the HomePage per design spec
- */
 
 const companyURLs = [
   microsoftLogo,
@@ -60,16 +55,16 @@ const HomePage = (props) => {
             alignSelf: "center",
             width: "520px",
             [theme.breakpoints.down("sm")]: {
-              width: "220px",
+              width: "180px",
             },
             marginBottom: "30px",
           }}
         >
-          {companyURLs.map((url, index) => {
+          {companyURLs.map((url) => {
             return (
               <Grid
                 item
-                key={index}
+                key={url}
                 xs={1}
                 sx={{
                   display: "flex",
@@ -79,7 +74,16 @@ const HomePage = (props) => {
                   marginBottom: "20px",
                 }}
               >
-                <Box component="img" src={url} sx={{ width: "90px" }}></Box>
+                <Box
+                  component="img"
+                  src={url}
+                  sx={{
+                    width: "90px",
+                    [theme.breakpoints.down("sm")]: {
+                      width: "70px",
+                    },
+                  }}
+                ></Box>
               </Grid>
             );
           })}
