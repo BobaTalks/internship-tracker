@@ -1,13 +1,22 @@
 import { React } from "react";
 
-import { Box, Grid, Typography, Link, Divider, Stack } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  Link,
+  Divider,
+  Stack,
+  useTheme,
+} from "@mui/material";
 
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import LanguageIcon from "@mui/icons-material/Language";
 
 const MentorItem = ({ name, pronouns, linkedIn, websiteUrl, icon }) => {
+  const theme = useTheme();
   return (
-    <Grid container direction="row" sx={{ margin: "15px" }}>
+    <Grid container direction="row" sx={{ margin: theme.spacing(4) }}>
       <Grid container item xs={4} alignItems="center">
         <Box component="img" src={icon} sx={{ width: "90%" }} />
       </Grid>
@@ -15,32 +24,43 @@ const MentorItem = ({ name, pronouns, linkedIn, websiteUrl, icon }) => {
         container
         item
         xs={8}
-        sx={{ paddingLeft: "10px" }}
+        sx={{ padding: theme.spacing(2) }}
         direction="column"
       >
         <Typography sx={{ fontWeight: 600 }}>{name}</Typography>
         <Typography
-          sx={{ color: "#777F8C", fontWeight: 600, fontSize: "0.75rem" }}
+          variant="h6"
+          sx={{ color: "text.light", fontWeight: 600, fontSize: "0.75rem" }}
         >
           {pronouns}
         </Typography>
-        <Stack direction="row" spacing={0.5} sx={{ marginTop: "5px" }}>
+        <Stack
+          direction="row"
+          spacing={0.5}
+          sx={{ marginTop: theme.spacing(1.25) }}
+        >
           <Link
             href={linkedIn}
             sx={{ width: "25px", height: "24px" }}
             target="_blank"
+            rel="noopener noreferrer"
           >
-            <LinkedInIcon color="primary" />
+            <LinkedInIcon color="icons.linkedin" />
           </Link>
           {websiteUrl && (
             <>
               <Divider
                 orientation="vertical"
                 flexItem
-                sx={{ color: "242830", borderRightWidth: "3px" }}
+                sx={{ color: "text.light", borderRightWidth: "3px" }}
               />
-              <Link href={websiteUrl} target="_blank" sx={{ height: "24px" }}>
-                <LanguageIcon sx={{ color: "#1c1b1f" }} />
+              <Link
+                href={websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ height: "24px", color: "text.main" }}
+              >
+                <LanguageIcon />
               </Link>
             </>
           )}

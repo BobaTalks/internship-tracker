@@ -40,12 +40,8 @@ const BobaCard = ({
           sx={{ width: "40%", marginTop: "48%" }}
         />
         <Typography
+          variant="memberName"
           sx={{
-            marginTop: "5%",
-            fontWeight: 600,
-            textAlign: "center",
-            maxWidth: "80%",
-            fontSize: "1.3vw",
             [theme.breakpoints.down("sm")]: {
               fontSize: "5vw",
             },
@@ -54,10 +50,9 @@ const BobaCard = ({
           {name}
         </Typography>
         <Typography
+          variant="memberPronouns"
           sx={{
-            color: "#777F8C",
-            fontWeight: 600,
-            fontSize: "0.9vw",
+            color: "text.light",
             [theme.breakpoints.down("sm")]: {
               fontSize: "3vw",
             },
@@ -66,14 +61,9 @@ const BobaCard = ({
           {pronouns}
         </Typography>
         <Typography
+          variant="memberPosition"
           sx={{
-            color: "#242830",
-            opacity: "40%",
-            fontWeight: 600,
-            fontSize: "1.1vw",
-            marginTop: "4%",
-            maxWidth: "80%",
-            textAlign: "center",
+            color: "tertiary.contrastText",
             [theme.breakpoints.down("sm")]: {
               fontSize: "3.5vw",
             },
@@ -82,18 +72,28 @@ const BobaCard = ({
           {position}
         </Typography>
         <Stack direction="row" sx={{ marginTop: "7%" }} spacing={0.5}>
-          <Link href={linkedInUrl} sx={{ height: "24px" }} target="_blank">
-            <LinkedInIcon color="primary" />
+          <Link
+            href={linkedInUrl}
+            sx={{ height: "24px" }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <LinkedInIcon color="icons.linkedin" />
           </Link>
           {websiteUrl && (
             <>
               <Divider
                 orientation="vertical"
                 flexItem
-                sx={{ color: "242830", borderRightWidth: "3px" }}
+                sx={{ color: "text.light", borderRightWidth: "3px" }}
               />
-              <Link href={websiteUrl} sx={{ height: "24px" }} target="_blank">
-                <LanguageIcon sx={{ color: "#1c1b1f" }} />
+              <Link
+                href={websiteUrl}
+                sx={{ height: "24px", color: "text.main" }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LanguageIcon />
               </Link>
             </>
           )}

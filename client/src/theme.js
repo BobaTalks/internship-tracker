@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme, responsiveFontSizes } from "@mui/material";
 
 const COLORS = {
   HYPERLINK_BLUE: "#005EA2",
@@ -21,9 +21,12 @@ const COLORS = {
   SEARCHBAR_ICON_BORDER: "#DBAE9C",
   THAI_FILL_INACTIVE: "#B4AAA0",
   BOBA_POSITION: "#A9917B",
+  SLIDEOUT_SUBTEXT: "#E1D4C8",
+  MENTORS_BG: "#FFFDFB",
+  LINKEDIN_ICON: "#377DB6",
 };
 
-const theme = createTheme({
+let theme = createTheme({
   palette: {
     primary: {
       main: COLORS.LYCHEE,
@@ -45,6 +48,7 @@ const theme = createTheme({
       main: COLORS.BODY_TEXT,
       light: COLORS.LIGHT_GREY_TEXT,
       dark: COLORS.THAI_FILL_INACTIVE,
+      underline: COLORS.SLIDEOUT_SUBTEXT,
     },
     background: {
       main: COLORS.BACKGROUND,
@@ -58,6 +62,10 @@ const theme = createTheme({
     grey: {
       main: COLORS.CARD_BG,
       dark: COLORS.OFFWHITE_GREY,
+      light: COLORS.MENTORS_BG,
+    },
+    icons: {
+      linkedin: COLORS.LINKEDIN_ICON,
     },
   },
   typography: {
@@ -78,6 +86,27 @@ const theme = createTheme({
       fontSize: ".8rem",
       fontWeight: 600,
       textTransform: "none",
+    },
+    memberName: {
+      fontWeight: 600,
+      textAlign: "center",
+      maxWidth: "80%",
+      fontSize: "1.3vw",
+      marginTop: "5%",
+    },
+    memberPronouns: {
+      fontWeight: 600,
+      fontSize: "0.9vw",
+    },
+    memberPosition: {
+      fontWeight: 600,
+      fontSize: "1.1vw",
+      marginTop: "4%",
+      maxWidth: "80%",
+      textAlign: "center",
+    },
+    aboutBody: {
+      fontSize: "0.9rem",
     },
   },
   components: {
@@ -155,6 +184,9 @@ const theme = createTheme({
       },
     },
   },
+  spacing: 4,
 });
+
+theme = responsiveFontSizes(theme);
 
 export default theme;

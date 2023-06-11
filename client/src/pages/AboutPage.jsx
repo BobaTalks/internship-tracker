@@ -213,7 +213,7 @@ const mentors = [
   {
     name: "Joshua Wu",
     pronouns: "(he/him)",
-    linkedInUrl: "https://linkedin.com/in/wujoshua ",
+    linkedInUrl: "https://linkedin.com/in/wujoshua",
     websiteUrl: "https://www.joshuawu.me",
     icon: MentorBoba,
   },
@@ -226,7 +226,7 @@ const mentors = [
   {
     name: "Jordan Yep",
     pronouns: "(he/him)",
-    linkedInUrl: "https://www.linkedin.com/in/jordanyep/ ",
+    linkedInUrl: "https://www.linkedin.com/in/jordanyep/",
     icon: MentorBoba,
   },
 ];
@@ -240,18 +240,22 @@ const AboutPage = () => {
         <Typography
           variant="pageTitle"
           marginTop="6rem"
-          sx={{ width: "100%", borderBottom: "#e1d4c8 solid 1px" }}
+          sx={{
+            width: "100%",
+            borderBottom: "solid 1px",
+            borderColor: "text.underline",
+          }}
         >
           About the Team
         </Typography>
         <Grid container direction="row">
           <Grid item sm={12} md={6}>
             <Typography variant="h6">Who We Are</Typography>
-            <Typography sx={{ fontSize: "14px" }}>
+            <Typography variant="aboutBody" sx={{ fontSize: "14px" }}>
               Welcome! This internship tracker was created by a group of student
               volunteers and 5 mentors. We&apos;re college students from all
               over the country who came together to build this certain feature
-              on the bobatalks website. We started this project in November 2022
+              on the BobaTalks website. We started this project in November 2022
               of creating a fun and student-friendly way to look for and track
               internships. We all hope this tool can help you be able to find
               and track internships as you start going into application season
@@ -326,7 +330,7 @@ const AboutPage = () => {
         })}
         <Box
           sx={{
-            backgroundColor: "#fffdfb",
+            backgroundColor: "grey.light",
             borderRadius: "60px",
             padding: "30px",
           }}
@@ -334,7 +338,7 @@ const AboutPage = () => {
           <Typography
             variant="h4"
             sx={{
-              color: "red.300",
+              color: "primary.main",
               fontWeight: 700,
               fontSize: "2.25rem",
               margin: "1rem",
@@ -344,7 +348,7 @@ const AboutPage = () => {
           </Typography>
           <Box
             sx={{
-              backgroundColor: "brown.100",
+              backgroundColor: "background.dark",
               display: "flex",
               justifyContent: "center",
               padding: "40px",
@@ -364,7 +368,7 @@ const AboutPage = () => {
                     container
                     item
                     xs={12}
-                    md={4}
+                    sm={4}
                     key={index}
                     justifyContent="center"
                   >
