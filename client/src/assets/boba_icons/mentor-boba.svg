@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63 63">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ccd0d9;
+      }
+
+      .cls-2 {
+        fill: #242830;
+      }
+
+      .cls-3 {
+        fill: #4c535f;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Boba">
+      <circle class="cls-2" cx="31.5" cy="31.5" r="31.5"/>
+      <path class="cls-3" d="m51.81,45.16c1.18-.06,2.17.86,1.87,2-1.34,5.04-7.06,13.84-21.38,13.84-16.73,0-30.29-13.67-30.29-30.53,0-2.42.13-4.14.4-5.32,2.93-13.23,22.72,9,33.94,16.61,3.37,2.29,7.69,3.82,15.47,3.4Z"/>
+      <circle class="cls-1" cx="40.5" cy="14.5" r="8.5"/>
+    </g>
+  </g>
+</svg>
