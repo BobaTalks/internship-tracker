@@ -37,13 +37,7 @@ const HomePage = (props) => {
             <SearchBar isNarrow />
           </Grid>
         </Grid>
-        <Typography
-          sx={{
-            textAlign: "center",
-            fontWeight: "1000",
-            fontSize: "1rem",
-          }}
-        >
+        <Typography variant="h6" sx={{ textAlign: "center" }}>
           This Internship Tracker is currently tracking
         </Typography>
         <Grid
