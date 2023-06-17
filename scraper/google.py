@@ -7,7 +7,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 # Firefox is an alias for the WebDriver object from
 # selenium.webdriver.firefox.webdriver
-driver = Firefox(options=FirefoxOptions())
+
+options = FirefoxOptions()
+options.add_argument("-headless")
+driver = Firefox(options)
 
 google_site = "https://careers.google.com/jobs/results/?distance=50&employment_type=INTERN&location=United%20States&location=Canada"
 
@@ -200,7 +203,6 @@ def parse_google_job_description(driver: Firefox, href: str):
         "responsibilities": responsibilities,
     }
     return job_info
-
 
 try:
     driver.get(google_site)
