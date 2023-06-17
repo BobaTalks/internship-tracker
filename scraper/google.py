@@ -204,6 +204,7 @@ def parse_google_job_description(driver: Firefox, href: str):
     }
     return job_info
 
+
 try:
     driver.get(google_site)
     driver_wait = WebDriverWait(driver, timeout=10)
