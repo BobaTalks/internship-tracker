@@ -12,7 +12,12 @@ options = FirefoxOptions()
 options.add_argument("-headless")
 driver = Firefox(options)
 
-google_site = "https://careers.google.com/jobs/results/?distance=50&employment_type=INTERN&location=United%20States&location=Canada"
+base = "https://careers.google.com"
+
+google_site = (
+    base
+    + "/jobs/results/?employment_type=INTERN&location=United%20States&location=Canada"
+)
 
 
 def get_google_jobs_hrefs(jobs_list: BeautifulSoup):
@@ -180,8 +185,6 @@ def parse_google_job_description(driver: Firefox, href: str):
         Google job posting
     """
 
-    base = "https://careers.google.com"
-
     driver.get(base + href)
     driver_wait = WebDriverWait(driver, timeout=10)
     result_div = driver_wait.until(
@@ -214,5 +217,6 @@ try:
     soup = BeautifulSoup(results_list, "html.parser")
     hrefs_list = get_google_jobs_hrefs(soup)
     scraped_info = [parse_google_job_description(driver, href) for href in hrefs_list]
+    print(scraped_info)
 finally:
     driver.quit()
