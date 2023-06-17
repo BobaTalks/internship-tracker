@@ -173,6 +173,8 @@ def parse_google_job_description(driver: Firefox, href: str):
     Returns
     -------
     job_info : dict{}
+        A dictionary containg all of the job information parsed from a
+        Google job posting
     """
 
     base = "https://careers.google.com"
@@ -190,6 +192,14 @@ def parse_google_job_description(driver: Firefox, href: str):
     qualifications = get_google_job_qualifications(single_soup)
     description = get_google_job_description(single_soup)
     responsibilities = get_google_job_responsibilities(single_soup)
+    job_info = {
+        "title": title,
+        "locations": locations,
+        "qualifications": qualifications,
+        "description": description,
+        "responsibilities": responsibilities,
+    }
+    return job_info
 
 
 try:
@@ -200,7 +210,6 @@ try:
     ).get_attribute("innerHTML")
     soup = BeautifulSoup(results_list, "html.parser")
     hrefs_list = get_google_jobs_hrefs(soup)
-    parse_google_job_description(driver, hrefs_list[0])
-
+    scraped_info = [parse_google_job_description(driver, href) for href in hrefs_list]
 finally:
     driver.quit()
