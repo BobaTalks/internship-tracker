@@ -136,8 +136,6 @@ const MOCK_FILTER_DATA = {
   },
 };
 
-export const FilterContext = createContext([{}, () => {}]);
-
 const SearchResultsPage = () => {
   const [filterData, setFilterData] = useState(MOCK_FILTER_DATA);
 
