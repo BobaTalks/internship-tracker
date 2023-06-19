@@ -4,6 +4,7 @@ import { Stack, Typography } from "@mui/material";
 import BasePage from "./BasePage";
 import FiltersBar from "../components/FiltersBar";
 import SearchBar from "../components/SearchBar";
+
 import FilterContext from "../contexts/FilterContext";
 import SearchResults from "../components/SearchResults";
 /**
