@@ -14,48 +14,46 @@ const JobDescription = (props) => {
     justifyContent: "center",
     height: "3vh",
   };
-  const FullDescription = ({ children }) => {
-    return (
-      <Grid container direction="column" spacing={5}>
-        <Grid item>
-          <Typography>{children.description}</Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant="h5" marginBottom={3}>
-            Requirements
-          </Typography>
-          <Typography style={{ whiteSpace: "pre-line" }}>
-            {children.requirements}
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant="h5" marginBottom={3}>
-            Responsibilities
-          </Typography>
-          <Typography style={{ whiteSpace: "pre-line" }}>
-            {children.responsibilities}
-          </Typography>
-        </Grid>
-        <Grid item sx={centered}>
-          <IconButton display="flex" onClick={toggle}>
-            <KeyboardArrowUpOutlinedIcon />
-          </IconButton>
-        </Grid>
-        <Grid item sx={centered}>
-          <Link
-            component={RouterLink}
-            to={props.externalLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Typography size="small" fontWeight={"bold"}>
-              Continue to external listing to read full description
-            </Typography>
-          </Link>
-        </Grid>
+  const FullDescription = ({ children }) => (
+    <Grid container direction="column" spacing={5}>
+      <Grid item>
+        <Typography>{children.description}</Typography>
       </Grid>
-    );
-  };
+      <Grid item>
+        <Typography variant="h5" marginBottom={3}>
+          Requirements
+        </Typography>
+        <Typography style={{ whiteSpace: "pre-line" }}>
+          {children.requirements}
+        </Typography>
+      </Grid>
+      <Grid item>
+        <Typography variant="h5" marginBottom={3}>
+          Responsibilities
+        </Typography>
+        <Typography style={{ whiteSpace: "pre-line" }}>
+          {children.responsibilities}
+        </Typography>
+      </Grid>
+      <Grid item sx={centered}>
+        <IconButton display="flex" onClick={toggle}>
+          <KeyboardArrowUpOutlinedIcon />
+        </IconButton>
+      </Grid>
+      <Grid item sx={centered}>
+        <Link
+          component={RouterLink}
+          to={props.externalLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Typography size="small" fontWeight={"bold"}>
+            Continue to external listing to read full description
+          </Typography>
+        </Link>
+      </Grid>
+    </Grid>
+  );
   return (
     <Grid container direction="column">
       <Grid item>
