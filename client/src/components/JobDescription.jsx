@@ -5,85 +5,76 @@ import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutl
 import { Link as RouterLink } from "react-router-dom";
 
 const JobDescription = (props) => {
-  const [isExpanded, setIsReadMore] = useState(false);
+  const [ReadMore, setReadMore] = useState(false);
   const toggle = () => {
-    setIsReadMore(!isExpanded);
+    setReadMore(!ReadMore);
   };
   const centered = {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    height: "5vh",
+    height: "3vh",
   };
-  const ReadMore = ({ children }) => {
+  const FullDescription = ({ children }) => {
     return (
-      <Grid container direction="column" spacing={1}>
-        <Grid item marginBottom={2}>
+      <Grid container direction="column" spacing={5}>
+        <Grid item>
           <Typography>{children.description}</Typography>
         </Grid>
         <Grid item>
-          <Typography variant="h5">Requirements</Typography>
-        </Grid>
-        <Grid item marginBottom={2}>
+          <Typography variant="h5" marginBottom={3}>
+            Requirements
+          </Typography>
           <Typography style={{ whiteSpace: "pre-line" }}>
             {children.requirements}
           </Typography>
         </Grid>
         <Grid item>
-          <Typography variant="h5">Responsibilities</Typography>
+          <Typography variant="h5" marginBottom={3}>
+            Responsibilities
+          </Typography>
+          <Typography style={{ whiteSpace: "pre-line" }}>
+            {children.responsibilities}
+          </Typography>
         </Grid>
-        <Grid item style={{ whiteSpace: "pre-line" }}>
-          <Typography>{children.responsibilities}</Typography>
+        <Grid item sx={centered}>
+          <IconButton display="flex" onClick={toggle}>
+            <KeyboardArrowUpOutlinedIcon />
+          </IconButton>
+        </Grid>
+        <Grid item sx={centered}>
+          <Link
+            component={RouterLink}
+            to={props.externalLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Typography size="small" fontWeight={"bold"}>
+              Continue to external listing to read full description
+            </Typography>
+          </Link>
         </Grid>
       </Grid>
     );
   };
   return (
-    <Grid container direction="column" spacing={1}>
+    <Grid container direction="column">
       <Grid item>
-        <Typography variant="h5">Job description</Typography>
-      </Grid>
-      <Grid item>
+        <Typography variant="h5" marginBottom={3}>
+          Job description
+        </Typography>
         <Typography>
-          {isExpanded ? (
-            <ReadMore>{props}</ReadMore>
+          {ReadMore ? (
+            <FullDescription>{props}</FullDescription>
           ) : (
-            props.description.slice(0, 410)
+            props.description.slice(0, 450) + "..."
           )}
         </Typography>
-      </Grid>
-      <Grid item>
-        {!isExpanded && (
-          <Link component="button" size="large" onClick={toggle}>
-            <Typography variant="MuiLink" fontWeight={"bold"}>
+        {!ReadMore && (
+          <Link component="button" onClick={toggle}>
+            <Typography fontWeight={"bold"} size="small" marginTop={3}>
               Read More
             </Typography>
           </Link>
-        )}
-      </Grid>
-      <Grid item>
-        {isExpanded && (
-          <div style={centered}>
-            <IconButton onClick={toggle} variant={"MuiButton"}>
-              <KeyboardArrowUpOutlinedIcon />
-            </IconButton>
-          </div>
-        )}
-      </Grid>
-      <Grid item>
-        {isExpanded && (
-          <div style={centered}>
-            <Link
-              component={RouterLink}
-              to={props.externalLink}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Typography variant="MuiLink" fontWeight={"bold"}>
-                Continue to external listing to read full description
-              </Typography>
-            </Link>
-          </div>
         )}
       </Grid>
     </Grid>
