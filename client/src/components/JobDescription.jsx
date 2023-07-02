@@ -5,7 +5,6 @@ import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutl
 import { Link as RouterLink } from "react-router-dom";
 
 const JobDescription = (props) => {
-  
   const [readMore, setReadMore] = useState(false);
   const toggle = () => {
     setReadMore(!readMore);
