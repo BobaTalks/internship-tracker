@@ -5,26 +5,27 @@ import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutl
 import { Link as RouterLink } from "react-router-dom";
 
 const JobDescription = (props) => {
-  const [ReadMore, setReadMore] = useState(false);
+  
+  const [readMore, setReadMore] = useState(false);
   const toggle = () => {
-    setReadMore(!ReadMore);
+    setReadMore(!readMore);
   };
   const centered = {
     display: "flex",
     justifyContent: "center",
     height: "3vh",
   };
-  const FullDescription = ({ children }) => (
+  const FullDescription = () => (
     <Grid container direction="column" spacing={5}>
       <Grid item>
-        <Typography>{children.description}</Typography>
+        <Typography>{props.description}</Typography>
       </Grid>
       <Grid item>
         <Typography variant="h5" marginBottom={3}>
           Requirements
         </Typography>
         <Typography style={{ whiteSpace: "pre-line" }}>
-          {children.requirements}
+          {props.requirements}
         </Typography>
       </Grid>
       <Grid item>
@@ -32,7 +33,7 @@ const JobDescription = (props) => {
           Responsibilities
         </Typography>
         <Typography style={{ whiteSpace: "pre-line" }}>
-          {children.responsibilities}
+          {props.responsibilities}
         </Typography>
       </Grid>
       <Grid item sx={centered}>
@@ -55,19 +56,17 @@ const JobDescription = (props) => {
     </Grid>
   );
   return (
-    <Grid container direction="column">
+    <Grid container direction="column" spacing={5}>
       <Grid item>
         <Typography variant="h5" marginBottom={3}>
           Job description
         </Typography>
-        <Typography>
-          {ReadMore ? (
-            <FullDescription>{props}</FullDescription>
-          ) : (
-            props.description.slice(0, 450) + "..."
-          )}
-        </Typography>
-        {!ReadMore && (
+        {readMore ? (
+          <FullDescription />
+        ) : (
+          <Typography>{props.description.slice(0, 450) + "..."}</Typography>
+        )}
+        {!readMore && (
           <Link component="button" onClick={toggle}>
             <Typography fontWeight={"bold"} size="small" marginTop={3}>
               Read More
