@@ -6,13 +6,13 @@ import { Link as RouterLink } from "react-router-dom";
 
 const JobDescription = (props) => {
   const [readMore, setReadMore] = useState(false);
-  const toggle = () => {
-    setReadMore(!readMore);
-  };
+  function toggle() {
+    setReadMore((a) => !a);
+  }
   const centered = {
     display: "flex",
     justifyContent: "center",
-    height: "3vh",
+    height: "1vh",
   };
   const FullDescription = () => (
     <Grid container direction="column" spacing={5}>
@@ -36,7 +36,7 @@ const JobDescription = (props) => {
         </Typography>
       </Grid>
       <Grid item sx={centered}>
-        <IconButton display="flex" onClick={toggle}>
+        <IconButton onClick={toggle}>
           <KeyboardArrowUpOutlinedIcon />
         </IconButton>
       </Grid>
@@ -55,7 +55,7 @@ const JobDescription = (props) => {
     </Grid>
   );
   return (
-    <Grid container direction="column" spacing={5}>
+    <Grid container direction="row" spacing={5}>
       <Grid item>
         <Typography variant="h5" marginBottom={3}>
           Job description
@@ -63,9 +63,11 @@ const JobDescription = (props) => {
         {readMore ? (
           <FullDescription />
         ) : (
-          <Typography>{props.description.slice(0, 450) + "..."}</Typography>
+          <Typography noWrap width={1100}>
+            {props.description}
+          </Typography>
         )}
-        {!readMore && (
+        {readMore ? null : (
           <Link component="button" onClick={toggle}>
             <Typography fontWeight={"bold"} size="small" marginTop={3}>
               Read More
