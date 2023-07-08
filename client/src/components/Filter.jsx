@@ -40,7 +40,7 @@ const Filter = ({ filterLabel }) => {
 
   const handleClick = (event) => {
     setButtonStatus(() =>
-      Object.values(checked).find((item) => item.checked) ? 1 : 0
+      Object.values(checked).find((item) => item.checked) ? 1 : 0,
     );
     setAnchorEl(event.currentTarget);
     setIsOpen(true);
@@ -84,8 +84,8 @@ const Filter = ({ filterLabel }) => {
     } else {
       setChecked(
         Object.keys(checked).map(
-          (key) => (checked[key] = { ...checked[key], checked: false })
-        )
+          (key) => (checked[key] = { ...checked[key], checked: false }),
+        ),
       );
       setButtonStatus(0);
     }
