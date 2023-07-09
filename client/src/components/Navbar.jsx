@@ -1,29 +1,30 @@
-import React, { useState } from "react";
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
   Box,
+  Button,
   Grid,
+  IconButton,
   Link,
-  Typography,
   MenuItem,
   Popover,
-  IconButton,
-  Button,
-} from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
-import TrackerIcon from "../assets/tracker_icon.svg";
-import AccountIcon from "../assets/account_icon.svg";
-import LogoPath from "../assets/internship_tracker_logo.svg";
+  Typography,
+} from '@mui/material';
+import React, { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+
+import AccountIcon from '../assets/account_icon.svg';
+import LogoPath from '../assets/internship_tracker_logo.svg';
+import TrackerIcon from '../assets/tracker_icon.svg';
 
 const pages = [
   {
-    label: "Find an internship",
-    link: "/search",
+    label: 'Find an internship',
+    link: '/search',
   },
   {
-    label: "About",
-    link: "/about",
+    label: 'About',
+    link: '/about',
   },
 ];
 
@@ -38,7 +39,7 @@ const NavBar = () => {
     setAnchorElNav(null);
   };
   return (
-    <AppBar sx={{ p: 1, bgcolor: "background.dark" }}>
+    <AppBar sx={{ p: 1, bgcolor: 'background.dark' }}>
       <Grid container justifyContent="center">
         <Grid
           container
@@ -54,11 +55,11 @@ const NavBar = () => {
             component={RouterLink}
             to="/"
             title="Internship Tracker Home Page"
-            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
           >
             <img src={LogoPath} alt="Internship Tracker Logo" height="32" />
           </Link>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -73,23 +74,23 @@ const NavBar = () => {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
+                vertical: 'top',
+                horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
+                display: { xs: 'block', md: 'none' },
                 mt: 5,
               }}
               PaperProps={{
                 sx: {
-                  backgroundColor: "background.dark",
+                  backgroundColor: 'background.dark',
                   width: 300,
                   p: 1,
                 },
@@ -112,12 +113,12 @@ const NavBar = () => {
               component={RouterLink}
               to="/"
               title="Internship Tracker Home Page"
-              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+              sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
             >
               <img src={LogoPath} alt="Internship Tracker Logo" height="32" />
             </Link>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 LinkComponent={RouterLink}
@@ -126,7 +127,7 @@ const NavBar = () => {
                 to={page.link}
                 sx={{
                   ml: 3,
-                  display: "block",
+                  display: 'block',
                 }}
               >
                 <Typography variant="navText">{page.label}</Typography>

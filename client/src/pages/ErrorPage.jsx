@@ -1,8 +1,8 @@
-import React from "react";
-import { Box, Link, Stack, Typography } from "@mui/material";
+import { Box, Link, Stack, Typography } from '@mui/material';
+import React from 'react';
 
-import BasePage from "./BasePage";
-import BackgroundShapes from "../components/BackgroundShapes";
+import BackgroundShapes from '../components/BackgroundShapes';
+import BasePage from './BasePage';
 
 const ErrorPage = () => {
   return (
@@ -16,11 +16,11 @@ const ErrorPage = () => {
         <Stack
           sx={{
             zIndex: 1,
-            width: { xs: "100%", sm: "80%", md: "60%", lg: "50%", xl: "40%" },
+            width: { xs: '100%', sm: '80%', md: '60%', lg: '50%', xl: '40%' },
           }}
         >
           <Typography
-            sx={{ fontSize: { xs: "2.5rem", sm: "3rem" }, fontWeight: "800" }}
+            sx={{ fontSize: { xs: '2.5rem', sm: '3rem' }, fontWeight: '800' }}
           >
             Page Not Found!
           </Typography>

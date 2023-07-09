@@ -1,24 +1,22 @@
-import { React } from "react";
-
+import LanguageIcon from '@mui/icons-material/Language';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import {
   Box,
-  Grid,
-  Typography,
-  Link,
   Divider,
+  Grid,
+  Link,
   Stack,
+  Typography,
   useTheme,
-} from "@mui/material";
-
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import LanguageIcon from "@mui/icons-material/Language";
+} from '@mui/material';
+import { React } from 'react';
 
 const MentorItem = ({ name, pronouns, linkedIn, websiteUrl, icon }) => {
   const theme = useTheme();
   return (
     <Grid container direction="row" sx={{ margin: theme.spacing(4) }}>
       <Grid container item xs={4} alignItems="center">
-        <Box component="img" src={icon} sx={{ width: "90%" }} />
+        <Box component="img" src={icon} sx={{ width: '90%' }} />
       </Grid>
       <Grid
         container
@@ -30,7 +28,7 @@ const MentorItem = ({ name, pronouns, linkedIn, websiteUrl, icon }) => {
         <Typography sx={{ fontWeight: 600 }}>{name}</Typography>
         <Typography
           variant="h6"
-          sx={{ color: "text.light", fontWeight: 600, fontSize: "0.75rem" }}
+          sx={{ color: 'text.light', fontWeight: 600, fontSize: '0.75rem' }}
         >
           {pronouns}
         </Typography>
@@ -41,7 +39,7 @@ const MentorItem = ({ name, pronouns, linkedIn, websiteUrl, icon }) => {
         >
           <Link
             href={linkedIn}
-            sx={{ width: "25px", height: "24px" }}
+            sx={{ width: '25px', height: '24px' }}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -52,13 +50,13 @@ const MentorItem = ({ name, pronouns, linkedIn, websiteUrl, icon }) => {
               <Divider
                 orientation="vertical"
                 flexItem
-                sx={{ color: "text.light", borderRightWidth: "3px" }}
+                sx={{ color: 'text.light', borderRightWidth: '3px' }}
               />
               <Link
                 href={websiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                sx={{ height: "24px", color: "text.main" }}
+                sx={{ height: '24px', color: 'text.main' }}
               >
                 <LanguageIcon />
               </Link>

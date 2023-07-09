@@ -1,6 +1,7 @@
 // File to contain methods to return data from API calls
-import axios from "axios";
-import { test_url } from "./constants";
+import axios from 'axios';
+
+import { test_url } from './constants';
 const url = process.env.BASE_URL || test_url;
 
 /**
@@ -15,7 +16,7 @@ export const getSearchInternships = async (searchOptions) => {
   const params = hasSearchOptions > 0 ? { ...searchOptions } : {};
 
   const response = await axios.get(`${url}/jobs`, {
-    headers: { "Content-Type": "application/json" },
+    headers: { 'Content-Type': 'application/json' },
     params: params,
   });
   return response;
@@ -28,7 +29,7 @@ export const getSearchInternships = async (searchOptions) => {
  * @return {*}
  */
 export const postSaveInternship = (internshipId) => {
-  const url = "";
+  const url = '';
   const options = {};
 
   return [
@@ -45,7 +46,7 @@ export const postSaveInternship = (internshipId) => {
  * @return {Promise<UserInternship[]>}
  */
 export const getUserInternships = () => {
-  const url = "";
+  const url = '';
   const options = {};
 
   return [

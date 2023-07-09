@@ -1,5 +1,5 @@
-import React from "react";
-import { Grid, Typography, useTheme } from "@mui/material";
+import { Grid, Typography, useTheme } from '@mui/material';
+import React from 'react';
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/22
  * Content for the home page, expect the large heading and project description copy
@@ -14,29 +14,29 @@ const HomePageContent = () => {
         marginTop="10rem"
         width="80%"
         sx={{
-          [theme.breakpoints.down("xl")]: {
-            width: "90%",
+          [theme.breakpoints.down('xl')]: {
+            width: '90%',
           },
-          [theme.breakpoints.down("md")]: {
-            width: "100%",
-            marginTop: "9rem",
+          [theme.breakpoints.down('md')]: {
+            width: '100%',
+            marginTop: '9rem',
           },
-          [theme.breakpoints.down("sm")]: {
-            marginTop: "7rem",
+          [theme.breakpoints.down('sm')]: {
+            marginTop: '7rem',
           },
         }}
       >
         <Typography
           variant="title"
           sx={{
-            [theme.breakpoints.down("md")]: {
-              fontSize: "3rem",
-              lineHeight: "4.5rem",
-              marginTop: "8rem",
+            [theme.breakpoints.down('md')]: {
+              fontSize: '3rem',
+              lineHeight: '4.5rem',
+              marginTop: '8rem',
             },
-            [theme.breakpoints.down("sm")]: {
-              fontSize: "2rem",
-              lineHeight: "2.5rem",
+            [theme.breakpoints.down('sm')]: {
+              fontSize: '2rem',
+              lineHeight: '2.5rem',
             },
           }}
         >
@@ -48,8 +48,8 @@ const HomePageContent = () => {
           <Typography
             variant="subtitle"
             sx={{
-              [theme.breakpoints.down("md")]: {
-                fontSize: "1rem",
+              [theme.breakpoints.down('md')]: {
+                fontSize: '1rem',
               },
             }}
           >

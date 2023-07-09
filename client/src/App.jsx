@@ -1,10 +1,11 @@
-import React, { Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import "@fontsource/poppins";
+import '@fontsource/poppins';
 
-import theme from "./theme";
-import Loading from "./components/Loading";
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import React, { Suspense } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import Loading from './components/Loading';
+import theme from './theme';
 
 const withSuspense = (Component) => (
   <Suspense fallback={<Loading />}>
@@ -12,10 +13,10 @@ const withSuspense = (Component) => (
   </Suspense>
 );
 
-const HomePage = React.lazy(() => import("./pages/HomePage"));
-const SearchResultsPage = React.lazy(() => import("./pages/SearchResultsPage"));
-const AboutPage = React.lazy(() => import("./pages/AboutPage"));
-const ErrorPage = React.lazy(() => import("./pages/ErrorPage"));
+const HomePage = React.lazy(() => import('./pages/HomePage'));
+const SearchResultsPage = React.lazy(() => import('./pages/SearchResultsPage'));
+const AboutPage = React.lazy(() => import('./pages/AboutPage'));
+const ErrorPage = React.lazy(() => import('./pages/ErrorPage'));
 
 const App = () => {
   return (
