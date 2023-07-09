@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from '@mui/material';
+import React from 'react';
 
 const Loading = () => {
   return (
@@ -13,7 +13,7 @@ const Loading = () => {
       <Typography variant="h5" color="tertiary.contrastText" mr={2}>
         Loading...
       </Typography>
-      <CircularProgress sx={{ color: "tertiary.contrastText" }} />
+      <CircularProgress sx={{ color: 'tertiary.contrastText' }} />
     </Box>
   );
 };

@@ -1,5 +1,6 @@
-import React from "react";
-import InternshipCard from "./InternshipCard";
+import React from 'react';
+
+import InternshipCard from './InternshipCard';
 
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/49
