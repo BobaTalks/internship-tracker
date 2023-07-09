@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Grid, Typography, Link } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
-import { Link as RouterLink } from "react-router-dom";
+import { Grid, Link, Typography } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import React, { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 const JobDescription = (props) => {
   const [readMore, setReadMore] = useState(false);
