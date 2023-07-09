@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { ArrowDropDown, Close } from '@mui/icons-material';
 import {
   Box,
   Button,
@@ -9,9 +9,10 @@ import {
   FormGroup,
   Popover,
   Typography,
-} from "@mui/material";
-import { ArrowDropDown, Close } from "@mui/icons-material";
-import FilterContext from "../contexts/FilterContext";
+} from '@mui/material';
+import React, { useContext, useState } from 'react';
+
+import FilterContext from '../contexts/FilterContext';
 
 /**
  * Individual filter component to be used within the FiltersBar.
@@ -95,14 +96,14 @@ const Filter = ({ filterLabel }) => {
   const id = open ? allFilterData[filterLabel].filterName : undefined;
   const popOverProps = {
     sx: {
-      backgroundColor: "grey.main",
+      backgroundColor: 'grey.main',
       boxShadow:
-        "0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 2px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2)",
-      marginTop: "0.5rem",
-      borderRadius: "8px",
+        '0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 2px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2)',
+      marginTop: '0.5rem',
+      borderRadius: '8px',
     },
   };
-  const cancelButtonLabel = ["Cancel filter", "Reset filter", "Cancel changes"];
+  const cancelButtonLabel = ['Cancel filter', 'Reset filter', 'Cancel changes'];
   return (
     <>
       <Button
@@ -111,25 +112,25 @@ const Filter = ({ filterLabel }) => {
         endIcon={isOpen ? <Close /> : <ArrowDropDown />}
         variant="contained"
         sx={{
-          bgcolor: isOpen ? "primary.main" : "secondary.main",
-          border: "1px solid",
-          borderColor: isOpen ? "secondary.main" : "grey.main",
-          boxShadow: "none",
-          borderRadius: "8px",
-          textTransform: "none",
-          padding: ".3rem 1rem",
-          color: isOpen ? "secondary.main" : "grey.main",
-          "&:hover": {
-            bgcolor: isOpen ? "primary.main" : "secondary.main",
-            boxShadow: "none",
+          bgcolor: isOpen ? 'primary.main' : 'secondary.main',
+          border: '1px solid',
+          borderColor: isOpen ? 'secondary.main' : 'grey.main',
+          boxShadow: 'none',
+          borderRadius: '8px',
+          textTransform: 'none',
+          padding: '.3rem 1rem',
+          color: isOpen ? 'secondary.main' : 'grey.main',
+          '&:hover': {
+            bgcolor: isOpen ? 'primary.main' : 'secondary.main',
+            boxShadow: 'none',
           },
         }}
       >
         <Typography
           noWrap
           sx={{
-            fontSize: "1rem",
-            color: isOpen ? "secondary.main" : "grey.main",
+            fontSize: '1rem',
+            color: isOpen ? 'secondary.main' : 'grey.main',
           }}
         >
           {allFilterData[filterLabel].filterName}
@@ -141,8 +142,8 @@ const Filter = ({ filterLabel }) => {
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
+          vertical: 'bottom',
+          horizontal: 'left',
         }}
         PaperProps={popOverProps}
       >
@@ -152,9 +153,9 @@ const Filter = ({ filterLabel }) => {
               <Box
                 key={key}
                 sx={{
-                  alignItems: "center",
-                  display: "flex",
-                  justifyContent: "space-between",
+                  alignItems: 'center',
+                  display: 'flex',
+                  justifyContent: 'space-between',
                 }}
               >
                 <FormControlLabel
@@ -164,8 +165,8 @@ const Filter = ({ filterLabel }) => {
                       onChange={handleChange}
                       name={key}
                       sx={{
-                        "&.Mui-checked": {
-                          color: "secondary.main",
+                        '&.Mui-checked': {
+                          color: 'secondary.main',
                         },
                       }}
                     />
@@ -187,7 +188,7 @@ const Filter = ({ filterLabel }) => {
         <Box textAlign="center" py=".5rem">
           <Button
             variant="transparent"
-            sx={{ marginRight: ".3rem" }}
+            sx={{ marginRight: '.3rem' }}
             onClick={handleCancel}
           >
             {cancelButtonLabel[buttonStatus]}
