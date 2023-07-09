@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Grid, Typography, Link } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
-import { Link as RouterLink } from "react-router-dom";
+import React, { useState } from 'react';
+import { Grid, Typography, Link } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
+import { Link as RouterLink } from 'react-router-dom';
 
 const JobDescription = (props) => {
   const [readMore, setReadMore] = useState(false);
@@ -10,9 +10,9 @@ const JobDescription = (props) => {
     setReadMore((a) => !a);
   }
   const centered = {
-    display: "flex",
-    justifyContent: "center",
-    height: "1vh",
+    display: 'flex',
+    justifyContent: 'center',
+    height: '1vh',
   };
   const FullDescription = () => (
     <Grid container direction="column" spacing={5}>
@@ -23,7 +23,7 @@ const JobDescription = (props) => {
         <Typography variant="h5" marginBottom={3}>
           Requirements
         </Typography>
-        <Typography style={{ whiteSpace: "pre-line" }}>
+        <Typography style={{ whiteSpace: 'pre-line' }}>
           {props.requirements}
         </Typography>
       </Grid>
@@ -31,7 +31,7 @@ const JobDescription = (props) => {
         <Typography variant="h5" marginBottom={3}>
           Responsibilities
         </Typography>
-        <Typography style={{ whiteSpace: "pre-line" }}>
+        <Typography style={{ whiteSpace: 'pre-line' }}>
           {props.responsibilities}
         </Typography>
       </Grid>
@@ -47,7 +47,7 @@ const JobDescription = (props) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Typography size="small" fontWeight={"bold"}>
+          <Typography size="small" fontWeight={'bold'}>
             Continue to external listing to read full description
           </Typography>
         </Link>
@@ -69,7 +69,7 @@ const JobDescription = (props) => {
         )}
         {readMore ? null : (
           <Link component="button" onClick={toggle}>
-            <Typography fontWeight={"bold"} size="small" marginTop={3}>
+            <Typography fontWeight={'bold'} size="small" marginTop={3}>
               Read More
             </Typography>
           </Link>
