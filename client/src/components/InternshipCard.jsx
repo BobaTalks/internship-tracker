@@ -6,6 +6,7 @@ import React from 'react';
  * Component for the internship card. should take an Internship as props
  *
  */
+
 const InternshipCard = () => {
   return (
     <Card>
