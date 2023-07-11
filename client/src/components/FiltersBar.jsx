@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { Grid } from "@mui/material";
+import { Grid } from '@mui/material';
+import React, { useContext } from 'react';
 
-import Filter from "./Filter";
-import FilterContext from "../contexts/FilterContext";
+import FilterContext from '../contexts/FilterContext';
+import Filter from './Filter';
 
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/26

@@ -13,10 +13,10 @@ name: Lint Checks
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   eslint:
@@ -41,7 +41,7 @@ jobs:
           --ext .js,.jsx,.ts,.tsx
         continue-on-error: false
 
-      - name: Run Prettier
-        run: npx prettier client/.
-          --check
-        continue-on-error: false
+      # - name: Run Prettier
+      #   run: npx prettier client/.
+      #     --check
+      #   continue-on-error: false

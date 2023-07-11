@@ -1,10 +1,10 @@
-import React from "react";
-import { Grid, Stack } from "@mui/material";
+import { Grid, Stack } from '@mui/material';
+import React from 'react';
 
-import BasePage from "./BasePage";
-import BackgroundShapes from "../components/BackgroundShapes";
-import HomePageContent from "../components/HomePageContent";
-import SearchBar from "../components/SearchBar";
+import BackgroundShapes from '../components/BackgroundShapes';
+import HomePageContent from '../components/HomePageContent';
+import SearchBar from '../components/SearchBar';
+import BasePage from './BasePage';
 
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/24

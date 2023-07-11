@@ -1,5 +1,5 @@
-import React from "react";
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
+import React from 'react';
 
 const InternshipTag = (props) => {
   const Icon = props.icon;
@@ -9,16 +9,16 @@ const InternshipTag = (props) => {
       display="flex"
       maxWidth={false}
       sx={{
-        borderRadius: "0.5rem",
-        padding: "0.5rem 1rem",
-        bgcolor: "secondary.light",
+        borderRadius: '0.5rem',
+        padding: '0.5rem 1rem',
+        bgcolor: 'secondary.light',
         border: 1,
-        borderColor: "text.main",
-        maxWidth: "fit-content",
+        borderColor: 'text.main',
+        maxWidth: 'fit-content',
       }}
     >
       <Icon />
-      <Box sx={{ padding: "0rem 0.25rem" }}>{props.label}</Box>
+      <Box sx={{ padding: '0rem 0.25rem' }}>{props.label}</Box>
     </Box>
   );
 };
