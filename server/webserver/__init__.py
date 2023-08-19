@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 import os
 import time
 from dotenv import load_dotenv
@@ -8,6 +9,7 @@ load_dotenv()
 
 def create_app(test_config=None):
     app = Flask(__name__)
+    CORS(app, origins=["http://localhost:3000"])
 
     if test_config:
         # configure test database to keep testing data separate
