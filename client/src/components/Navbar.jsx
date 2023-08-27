@@ -147,9 +147,19 @@ const NavBar = () => {
             </Box>
           ) : (
             <Box>
-              <Button>
+              {/* <Button>
                 <Typography variant="navText">Sign In</Typography>
-              </Button>
+              </Button> */}
+              <Link
+                component={RouterLink}
+                to={'/signin'}
+                underline="none"
+                color="text.main"
+              >
+                <Typography variant="navText" sx={{ mr: { xs: 2, sm: 2 } }}>
+                  Sign In
+                </Typography>
+              </Link>
               <Button
                 variant="rounded"
                 color="thai"
