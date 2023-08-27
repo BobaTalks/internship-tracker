@@ -17,16 +17,41 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
+import secureLocalStorage from 'react-secure-storage';
 
 const AuthComponent = () => {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [email, setEmail] = useState(() => {
+    return secureLocalStorage.getItem('email');
+  });
+  const [password, setPassword] = useState(() => {
+    return secureLocalStorage.getItem('password');
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(() => {
+    return secureLocalStorage.getItem('rememberMe');
+  });
 
+  const handleEmail = (event) => {
+    setEmail(event.target.value);
+  };
+  const handlePassword = (event) => {
+    setPassword(event.target.value);
+  };
+  const handleCheckbox = (event) => {
+    setRememberMe(event.target.checked);
+  };
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
+  };
+  const handleSignIn = () => {
+    if (rememberMe) {
+      secureLocalStorage.setItem('email', email);
+      secureLocalStorage.setItem('password', password);
+      secureLocalStorage.setItem('rememberMe', rememberMe);
+    }
   };
   return (
     <Card sx={{ mt: 5 }}>
@@ -36,6 +61,8 @@ const AuthComponent = () => {
           id="outlined-basic"
           label="Email Address"
           variant="outlined"
+          value={email}
+          onChange={handleEmail}
         />
         <Box margin={0}>
           <FormControl fullWidth variant="outlined">
@@ -48,6 +75,8 @@ const AuthComponent = () => {
             <OutlinedInput
               id="outlined-adornment-password"
               type={showPassword ? 'text' : 'password'}
+              onChange={handlePassword}
+              value={password}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -70,7 +99,13 @@ const AuthComponent = () => {
             alignItems="center"
           >
             <Stack direction="row" justifyContent="center" alignItems="center">
-              <Checkbox size="small" sx={{ paddingLeft: 0 }} />
+              <Checkbox
+                checked={rememberMe}
+                onChange={handleCheckbox}
+                inputProps={{ 'aria-label': 'controlled' }}
+                size="small"
+                sx={{ paddingLeft: 0 }}
+              />
               <Typography variant="body2">Remember Me</Typography>
             </Stack>
             <Link target="_blank" underline="none">
@@ -84,7 +119,7 @@ const AuthComponent = () => {
             </Link>
           </Stack>
         </Box>
-        <Button variant="rounded" color="primary">
+        <Button variant="rounded" color="primary" onClick={handleSignIn}>
           <Typography variant="errorMessage" p={1.5}>
             Sign In
           </Typography>
