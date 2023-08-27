@@ -21,23 +21,35 @@ import React, { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import secureLocalStorage from 'react-secure-storage';
 
+import ErrorMessage from './ErrorMessage';
+
 const AuthComponent = () => {
   const [email, setEmail] = useState(() => {
-    return secureLocalStorage.getItem('email');
+    return secureLocalStorage.getItem('email')
+      ? secureLocalStorage.getItem('email')
+      : '';
   });
   const [password, setPassword] = useState(() => {
-    return secureLocalStorage.getItem('password');
+    return secureLocalStorage.getItem('password')
+      ? secureLocalStorage.getItem('password')
+      : '';
   });
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(() => {
-    return secureLocalStorage.getItem('rememberMe');
+    return secureLocalStorage.getItem('rememberMe')
+      ? secureLocalStorage.getItem('rememberMe')
+      : false;
   });
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const MIN_PASSWORD_LENGTH = 6;
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
+    setShowErrorMessage(false);
   };
   const handlePassword = (event) => {
     setPassword(event.target.value);
+    setShowErrorMessage(false);
   };
   const handleCheckbox = (event) => {
     setRememberMe(event.target.checked);
@@ -47,7 +59,11 @@ const AuthComponent = () => {
     event.preventDefault();
   };
   const handleSignIn = () => {
-    if (rememberMe) {
+    const validEmail =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!validEmail.test(email) || password.length < MIN_PASSWORD_LENGTH) {
+      setShowErrorMessage(true);
+    } else if (rememberMe) {
       secureLocalStorage.setItem('email', email);
       secureLocalStorage.setItem('password', password);
       secureLocalStorage.setItem('rememberMe', rememberMe);
@@ -66,10 +82,7 @@ const AuthComponent = () => {
         />
         <Box margin={0}>
           <FormControl fullWidth variant="outlined">
-            <InputLabel
-              InputLabelProps={{ style: { fontSize: '1rem' } }}
-              htmlFor="outlined-adornment-password"
-            >
+            <InputLabel htmlFor="outlined-adornment-password">
               Password
             </InputLabel>
             <OutlinedInput
@@ -118,6 +131,9 @@ const AuthComponent = () => {
               </Typography>
             </Link>
           </Stack>
+          {showErrorMessage ? (
+            <ErrorMessage message="Incorrect email or password. All passwords must be at least 6 characters." />
+          ) : null}
         </Box>
         <Button variant="rounded" color="primary" onClick={handleSignIn}>
           <Typography variant="errorMessage" p={1.5}>
