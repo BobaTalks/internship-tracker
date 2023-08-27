@@ -4,8 +4,5 @@
   },
   "scripts": {
     "contributors:generate": "all-contributors generate"
-  },
-  "dependencies": {
-    "react-icons": "^4.10.1"
   }
 }
