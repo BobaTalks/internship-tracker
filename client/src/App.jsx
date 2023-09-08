@@ -17,6 +17,7 @@ const HomePage = React.lazy(() => import('./pages/HomePage'));
 const SearchResultsPage = React.lazy(() => import('./pages/SearchResultsPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 const ErrorPage = React.lazy(() => import('./pages/ErrorPage'));
+const TestPage = React.lazy(() => import('./pages/TestPage')); // temporary - to be deleted
 
 const App = () => {
   return (
@@ -27,6 +28,8 @@ const App = () => {
           <Route path="/" element={withSuspense(HomePage)} />
           <Route path="/search" element={withSuspense(SearchResultsPage)} />
           <Route path="/about" element={withSuspense(AboutPage)} />
+          <Route path="/test" element={withSuspense(TestPage)} />
+          {/* temporary - to be deleted */}
           <Route path="*" element={withSuspense(ErrorPage)} />
         </Routes>
       </ThemeProvider>
