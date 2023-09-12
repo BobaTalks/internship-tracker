@@ -18,7 +18,7 @@ const HomePage = React.lazy(() => import('./pages/HomePage'));
 const SearchResultsPage = React.lazy(() => import('./pages/SearchResultsPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 const ErrorPage = React.lazy(() => import('./pages/ErrorPage'));
-const SignInPage = React.lazy(() => import('./pages/SignInPage'));
+const TestPage = React.lazy(() => import('./pages/TestPage')); // temporary - to be deleted
 
 const App = () => {
   const [authUser, setAuthUser] = useState(null);
@@ -27,15 +27,14 @@ const App = () => {
     <BrowserRouter>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <AuthContext.Provider value={[authUser, setAuthUser]}>
-          <Routes>
-            <Route path="/" element={withSuspense(HomePage)} />
-            <Route path="/search" element={withSuspense(SearchResultsPage)} />
-            <Route path="/about" element={withSuspense(AboutPage)} />
-            <Route path="/signin" element={withSuspense(SignInPage)} />
-            <Route path="*" element={withSuspense(ErrorPage)} />
-          </Routes>
-        </AuthContext.Provider>
+        <Routes>
+          <Route path="/" element={withSuspense(HomePage)} />
+          <Route path="/search" element={withSuspense(SearchResultsPage)} />
+          <Route path="/about" element={withSuspense(AboutPage)} />
+          <Route path="/test" element={withSuspense(TestPage)} />
+          {/* temporary - to be deleted */}
+          <Route path="*" element={withSuspense(ErrorPage)} />
+        </Routes>
       </ThemeProvider>
     </BrowserRouter>
   );
