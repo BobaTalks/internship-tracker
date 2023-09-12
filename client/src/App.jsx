@@ -1,10 +1,11 @@
 import '@fontsource/poppins';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Loading from './components/Loading';
+import AuthContext from './contexts/AuthContext';
 import theme from './theme';
 
 const withSuspense = (Component) => (
@@ -20,6 +21,8 @@ const ErrorPage = React.lazy(() => import('./pages/ErrorPage'));
 const TestPage = React.lazy(() => import('./pages/TestPage')); // temporary - to be deleted
 
 const App = () => {
+  const [authUser, setAuthUser] = useState(null);
+
   return (
     <BrowserRouter>
       <CssBaseline />
