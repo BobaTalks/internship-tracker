@@ -84,7 +84,6 @@ const AuthComponent = () => {
         setAuthUser(result.user.email);
         // add code to store or check user in database
         secureLocalStorage.setItem('email', result.user.email);
-        setShowErrorMessage('');
         navigate('/search');
       })
       .catch(() => {
