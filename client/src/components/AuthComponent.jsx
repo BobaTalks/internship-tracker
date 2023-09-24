@@ -82,6 +82,7 @@ const AuthComponent = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         setAuthUser(result.user.email);
+        console.log(authUser); // remove this later
         // add code to store or check user in database
         secureLocalStorage.setItem('email', result.user.email);
         setShowErrorMessage('');
