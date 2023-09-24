@@ -17,13 +17,20 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import { signInWithPopup } from 'firebase/auth';
+import React, { useContext, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
+import { useNavigate } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage';
 
+import AuthContext from '../contexts/AuthContext';
+import { auth, provider } from '../utils/firebaseConfig';
 import ErrorMessage from './ErrorMessage';
 
 const AuthComponent = () => {
+  let navigate = useNavigate();
+
+  const [authUser, setAuthUser] = useContext(AuthContext);
   const [email, setEmail] = useState(() => {
     return secureLocalStorage.getItem('email')
       ? secureLocalStorage.getItem('email')
@@ -40,16 +47,16 @@ const AuthComponent = () => {
       ? secureLocalStorage.getItem('rememberMe')
       : false;
   });
-  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState('');
   const MIN_PASSWORD_LENGTH = 6;
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
-    setShowErrorMessage(false);
+    setShowErrorMessage('');
   };
   const handlePassword = (event) => {
     setPassword(event.target.value);
-    setShowErrorMessage(false);
+    setShowErrorMessage('');
   };
   const handleCheckbox = (event) => {
     setRememberMe(event.target.checked);
@@ -62,12 +69,29 @@ const AuthComponent = () => {
     const validEmail =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!validEmail.test(email) || password.length < MIN_PASSWORD_LENGTH) {
-      setShowErrorMessage(true);
+      setShowErrorMessage(
+        'Incorrect email or password. All passwords must be at least 6 characters.'
+      );
     } else if (rememberMe) {
       secureLocalStorage.setItem('email', email);
       secureLocalStorage.setItem('password', password);
       secureLocalStorage.setItem('rememberMe', rememberMe);
     }
+  };
+  const googleSignUp = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        setAuthUser(result.user.email);
+        // add code to store or check user in database
+        secureLocalStorage.setItem('email', result.user.email);
+        setShowErrorMessage('');
+        navigate('/search');
+      })
+      .catch(() => {
+        setShowErrorMessage(
+          'Something went wrong with Google sign up. Please try again.'
+        );
+      });
   };
   return (
     <Card sx={{ mt: 5 }}>
@@ -132,7 +156,7 @@ const AuthComponent = () => {
             </Link>
           </Stack>
           {showErrorMessage ? (
-            <ErrorMessage message="Incorrect email or password. All passwords must be at least 6 characters." />
+            <ErrorMessage message={showErrorMessage} />
           ) : null}
         </Box>
         <Button variant="rounded" color="primary" onClick={handleSignIn}>
@@ -156,6 +180,7 @@ const AuthComponent = () => {
               <FcGoogle size={25} />
             </Box>
           }
+          onClick={googleSignUp}
         >
           Sign up with Google
         </Button>
