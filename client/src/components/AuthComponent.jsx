@@ -30,7 +30,7 @@ import ErrorMessage from './ErrorMessage';
 const AuthComponent = () => {
   let navigate = useNavigate();
 
-  const [authUser, setAuthUser] = useContext(AuthContext);
+  const [, setAuthUser] = useContext(AuthContext);
   const [email, setEmail] = useState(() => {
     return secureLocalStorage.getItem('email')
       ? secureLocalStorage.getItem('email')
@@ -82,7 +82,6 @@ const AuthComponent = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         setAuthUser(result.user.email);
-        console.log(authUser); // remove this later
         // add code to store or check user in database
         secureLocalStorage.setItem('email', result.user.email);
         setShowErrorMessage('');
