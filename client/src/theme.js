@@ -25,6 +25,8 @@ const COLORS = {
   MENTORS_BG: '#FFFDFB',
   LINKEDIN_ICON: '#377DB6',
 };
+const BUTTON_SHADOW =
+  '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)';
 
 let theme = createTheme({
   palette: {
@@ -82,6 +84,7 @@ let theme = createTheme({
     errorMessage: { fontWeight: '600', fontSize: '1rem' },
     subtitle: { fontSize: '1.125rem' },
     body1: { fontSize: '1.125rem' },
+    body2: { fontSize: '0.8rem' },
     navText: {
       fontSize: '.8rem',
       fontWeight: 600,
@@ -140,6 +143,20 @@ let theme = createTheme({
           },
         },
         {
+          props: { variant: 'social' },
+          style: {
+            borderRadius: '20px',
+            background: 'none',
+            textTransform: 'none',
+            justifyContent: 'flex-start',
+            boxShadow: BUTTON_SHADOW,
+            padding: '.8rem',
+            fontSize: '0.9rem',
+            paddingLeft: '1.5rem',
+            trasition: '.3s',
+          },
+        },
+        {
           props: { variant: 'rounded', color: 'primary' },
           style: {
             textTransform: 'none',
@@ -147,10 +164,10 @@ let theme = createTheme({
             borderRadius: '20px',
             backgroundColor: COLORS.LYCHEE,
             color: COLORS.BLUEBERRY,
+            transition: '0.2s',
             '&:hover': {
               backgroundColor: COLORS.LYCHEE,
-              boxShadow:
-                '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
+              boxShadow: BUTTON_SHADOW,
             },
           },
         },
@@ -165,8 +182,7 @@ let theme = createTheme({
             color: COLORS.CARD_BG,
             '&:hover': {
               backgroundColor: COLORS.LOGO_BROWN,
-              boxShadow:
-                '0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
+              boxShadow: BUTTON_SHADOW,
             },
           },
         },
@@ -181,6 +197,27 @@ let theme = createTheme({
       },
       defaultProps: {
         elevation: 2,
+      },
+    },
+    MuiInputLabel: {
+      defaultProps: {
+        sx: {
+          fontSize: '1rem !important',
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      defaultProps: {
+        sx: {
+          fontSize: '1rem !important',
+        },
+      },
+    },
+    MuiTextField: {
+      defaultProps: {
+        sx: {
+          fontSize: '1rem !important',
+        },
       },
     },
   },

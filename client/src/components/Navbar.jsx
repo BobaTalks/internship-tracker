@@ -10,12 +10,13 @@ import {
   Popover,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 import AccountIcon from '../assets/account_icon.svg';
 import LogoPath from '../assets/internship_tracker_logo.svg';
 import TrackerIcon from '../assets/tracker_icon.svg';
+import AuthContext from '../contexts/AuthContext';
 
 const pages = [
   {
@@ -30,6 +31,7 @@ const pages = [
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
+  const [authUser] = useContext(AuthContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -134,15 +136,6 @@ const NavBar = () => {
               </Button>
             ))}
           </Box>
-          <Box>
-            <Button sx={{ p: 0 }}>
-              <img src={TrackerIcon} alt="tracker" />
-            </Button>
-            <Button sx={{ p: 0 }}>
-              <img src={AccountIcon} alt="account" />
-            </Button>
-          </Box>
-          {/* TODO: add AuthContext
           {authUser ? (
             <Box>
               <Button sx={{ p: 0 }}>
@@ -154,34 +147,41 @@ const NavBar = () => {
             </Box>
           ) : (
             <Box>
-              <Button>
-                <Typography variant="navText">Sign In</Typography>
-              </Button>
+              <Link
+                component={RouterLink}
+                to={'/signin'}
+                underline="none"
+                color="text.main"
+              >
+                <Typography variant="navText" sx={{ mr: { xs: 2, sm: 2 } }}>
+                  Sign In
+                </Typography>
+              </Link>
               <Button
                 variant="rounded"
                 color="thai"
                 sx={{
                   ml: { sx: 1, sm: 2 },
-                  padding: { sx: ".3rem .6rem", sm: ".6rem 1.3rem" },
+                  padding: { sx: '.3rem .6rem', sm: '.6rem 1.3rem' },
                 }}
               >
                 <Typography
                   variant="navText"
                   color="white"
-                  sx={{ display: { xs: "none", sm: "flex" } }}
+                  sx={{ display: { xs: 'none', sm: 'flex' } }}
                 >
                   Create an account
                 </Typography>
                 <Typography
                   variant="navText"
                   color="white"
-                  sx={{ display: { xs: "flex", sm: "none" } }}
+                  sx={{ display: { xs: 'flex', sm: 'none' } }}
                 >
                   Sign Up
                 </Typography>
               </Button>
             </Box>
-          )} */}
+          )}
         </Grid>
       </Grid>
     </AppBar>
