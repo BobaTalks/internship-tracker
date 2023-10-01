@@ -56,29 +56,26 @@ const InternshipCard = ({
             >
               {labels.map((label, i) => {
                 return (
-                  <InternshipTag
-                    label={label.name}
-                    icon={getLabelIcon(label.filter)}
-                    key={i}
-                  />
+                  <Grid item key={i}>
+                    <InternshipTag
+                      label={label.name}
+                      icon={getLabelIcon(label.filter)}
+                    />
+                  </Grid>
                 );
               })}
             </Grid>
           </Grid>
-          <Grid container item direction="row" mt={8}>
-            <Grid item>
-              <PostedOn date={datePosted} />
-            </Grid>
+          <Grid item mt={8}>
+            <PostedOn date={datePosted} />
           </Grid>
-          <Grid container item direction="row" mt={8}>
-            <Grid item>
-              <JobDescription
-                description={jobDesc}
-                requirements={jobReqs}
-                responsibilities={jobResp}
-                externalLink={jobLink}
-              />
-            </Grid>
+          <Grid item mt={6}>
+            <JobDescription
+              description={jobDesc}
+              requirements={jobReqs}
+              responsibilities={jobResp}
+              externalLink={jobLink}
+            />
           </Grid>
         </Grid>
       </CardContent>
