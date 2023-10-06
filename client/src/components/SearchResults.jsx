@@ -10,7 +10,7 @@ import InternshipCard from './InternshipCard';
  */
 const SearchResults = ({ internships }) => {
   return (
-    <Stack direction="column" spacing={5} paddingTop={5}>
+    <Stack direction="column" spacing={5} paddingTop={5} paddingBottom={15}>
       <Typography variant="errorMessage">
         {internships.length} results
       </Typography>
