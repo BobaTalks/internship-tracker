@@ -35,7 +35,7 @@ const JobDescription = (props) => {
           {props.responsibilities}
         </Typography>
       </Grid>
-      <Grid item sx={centered}>
+      <Grid item sx={centered} alignItems="center" my={2}>
         <IconButton onClick={toggle}>
           <KeyboardArrowUpOutlinedIcon />
         </IconButton>
