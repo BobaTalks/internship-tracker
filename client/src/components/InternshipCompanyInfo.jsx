@@ -1,7 +1,34 @@
-import { Avatar, Box, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 
+import amazonLogo from '../assets/company_logos/amazon_logo.svg';
+import appleLogo from '../assets/company_logos/apple_logo.svg';
+import genericLogo from '../assets/company_logos/generic.svg';
+import googleLogo from '../assets/company_logos/google_logo.svg';
+import metaLogo from '../assets/company_logos/meta_logo.svg';
+import microsoftLogo from '../assets/company_logos/microsoft_logo.svg';
+import netflixLogo from '../assets/company_logos/netflix_logo.svg';
+
 const InternshipCompanyInfo = (props) => {
+  const getCompanyIcon = (company) => {
+    switch (company) {
+      case 'Amazon':
+        return amazonLogo;
+      case 'Apple':
+        return appleLogo;
+      case 'Google':
+        return googleLogo;
+      case 'Meta':
+        return metaLogo;
+      case 'Microsoft':
+        return microsoftLogo;
+      case 'Netflix':
+        return netflixLogo;
+      default:
+        return genericLogo;
+    }
+  };
+
   return (
     <>
       <Box
@@ -11,14 +38,16 @@ const InternshipCompanyInfo = (props) => {
           maxWidth: 'fit-content',
         }}
       >
-        <Avatar
-          variant="rounded"
+        <Box
+          component="img"
+          src={getCompanyIcon(props.name)}
           sx={{
             width: '69px',
             height: '69px',
-            marginTop: '0.25rem',
+            marginTop: '0.25 rem',
+            borderRadius: '4px',
           }}
-        />
+        ></Box>
         <Box sx={{ paddingLeft: '1rem', marginTop: '-0.25rem' }}>
           <Typography
             variant="h5"
