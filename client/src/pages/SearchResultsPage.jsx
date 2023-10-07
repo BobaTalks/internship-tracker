@@ -135,6 +135,55 @@ const MOCK_FILTER_DATA = {
   },
 };
 
+const MOCK_INTERNSHIP_DATA = [
+  {
+    companyName: 'Netflix',
+    position: 'Product Design Intern - Experience Design',
+    location: 'Los Gatos, CA',
+    datePosted: new Date('January 1, 2023'),
+    labels: [
+      {
+        name: 'summer 24',
+        filter: 'semester',
+      },
+    ],
+    jobInfo: {
+      jobDesc:
+        'Lorem ipsum dolor sit amet consectetur. Nulla sit integer nec arcu tortor ac lectus morbi non. Quam aenean tincidunt blandit amet magna enim sed pharetra habitasse. At nec neque suspendisse feugiat eros. Ante a arcu donec sodales ut amet luctus mauris. Felis eu mauris fringilla mauris. Viverra ante iaculis gravida a amet cursus facilisis scelerisque. Leo sit nulla sit vel nibh amet justo aliquam. Risus ullamcorper vitae amet ornare adipiscing vulputate dapibus diam ultrices. Arcu malesuada dui integer non. Aliquet non tortor adipiscing laoreet leo ac pretium fusce nisi.',
+      jobReqs:
+        'Vitae consectetur egestas ullamcorper orci pulvinar mattis commodo et morbi.',
+      jobResp:
+        'Vitae consectetur egestas ullamcorper orci pulvinar mattis commodo et morbi.\n Varius mi massa mi sed cursus mattis. Viverra pharetra vel et neque non ut. ',
+      jobLink: 'https://jobs.netflix.com/',
+    },
+  },
+  {
+    companyName: 'Apple',
+    position: 'Software Engineer',
+    location: 'Cupertino, CA',
+    datePosted: new Date('April 23, 2023'),
+    labels: [
+      {
+        name: 'summer 24',
+        filter: 'semester',
+      },
+      {
+        name: 'hybrid',
+        filter: 'remote',
+      },
+    ],
+    jobInfo: {
+      jobDesc:
+        'Lorem ipsum dolor sit amet consectetur. Nulla sit integer nec arcu tortor ac lectus morbi non. Quam aenean tincidunt blandit amet magna enim sed pharetra habitasse. At nec neque suspendisse feugiat eros. Ante a arcu donec sodales ut amet luctus mauris. Felis eu mauris fringilla mauris. Viverra ante iaculis gravida a amet cursus facilisis scelerisque. Leo sit nulla sit vel nibh amet justo aliquam. Risus ullamcorper vitae amet ornare adipiscing vulputate dapibus diam ultrices. Arcu malesuada dui integer non. Aliquet non tortor adipiscing laoreet leo ac pretium fusce nisi.',
+      jobReqs:
+        'Vitae consectetur egestas ullamcorper orci pulvinar mattis commodo et morbi.',
+      jobResp:
+        'Vitae consectetur egestas ullamcorper orci pulvinar mattis commodo et morbi.\n Varius mi massa mi sed cursus mattis. Viverra pharetra vel et neque non ut. ',
+      jobLink: 'https://www.apple.com/careers/ca/',
+    },
+  },
+];
+
 const SearchResultsPage = () => {
   const [filterData, setFilterData] = useState(MOCK_FILTER_DATA);
 
@@ -147,7 +196,7 @@ const SearchResultsPage = () => {
           </Typography>
           <SearchBar />
           <FiltersBar />
-          <SearchResults />
+          <SearchResults internships={MOCK_INTERNSHIP_DATA} />
         </Stack>
       </BasePage>
     </FilterContext.Provider>
