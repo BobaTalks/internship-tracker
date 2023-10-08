@@ -1,5 +1,5 @@
-import { Stack, Typography } from '@mui/material';
-import React from 'react';
+import { Pagination, Stack, Typography } from '@mui/material';
+import React, { useState } from 'react';
 
 import InternshipCard from './InternshipCard';
 
@@ -9,8 +9,19 @@ import InternshipCard from './InternshipCard';
  * data or API available
  */
 const SearchResults = ({ internships }) => {
+  const [page, setPage] = useState(1);
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
   return (
-    <Stack direction="column" spacing={5} paddingTop={5} paddingBottom={15}>
+    <Stack
+      direction="column"
+      width="100%"
+      spacing={5}
+      paddingTop={5}
+      paddingBottom={15}
+    >
       <Typography variant="errorMessage">
         {internships.length} results
       </Typography>
@@ -30,6 +41,18 @@ const SearchResults = ({ internships }) => {
           />
         );
       })}
+      <Pagination
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          pt: '1rem',
+        }}
+        count={10}
+        page={page}
+        size="large"
+        color="primary"
+        onChange={handlePageChange}
+      />
     </Stack>
   );
 };
