@@ -11,18 +11,19 @@ import netflixLogo from '../assets/company_logos/netflix_logo.svg';
 
 const InternshipCompanyInfo = (props) => {
   const getCompanyIcon = (company) => {
-    switch (company) {
-      case 'Amazon':
+    let companyLowerCase = company.toLowerCase();
+    switch (companyLowerCase) {
+      case 'amazon':
         return amazonLogo;
-      case 'Apple':
+      case 'apple':
         return appleLogo;
-      case 'Google':
+      case 'google':
         return googleLogo;
-      case 'Meta':
+      case 'meta':
         return metaLogo;
-      case 'Microsoft':
+      case 'microsoft':
         return microsoftLogo;
-      case 'Netflix':
+      case 'netflix':
         return netflixLogo;
       default:
         return genericLogo;
@@ -30,57 +31,55 @@ const InternshipCompanyInfo = (props) => {
   };
 
   return (
-    <>
+    <Box
+      display="flex"
+      maxWidth={false}
+      sx={{
+        maxWidth: 'fit-content',
+      }}
+    >
       <Box
-        display="flex"
-        maxWidth={false}
+        component="img"
+        src={getCompanyIcon(props.name)}
         sx={{
-          maxWidth: 'fit-content',
+          width: '69px',
+          height: '69px',
+          marginTop: '0.25rem',
+          borderRadius: '4px',
         }}
-      >
-        <Box
-          component="img"
-          src={getCompanyIcon(props.name)}
+      ></Box>
+      <Box sx={{ paddingLeft: '1rem', marginTop: '-0.25rem' }}>
+        <Typography
+          variant="h5"
           sx={{
-            width: '69px',
-            height: '69px',
-            marginTop: '0.25 rem',
-            borderRadius: '4px',
+            color: 'secondary.dark',
+            fontWeight: '600',
+            lineHeight: '2.25rem',
           }}
-        ></Box>
-        <Box sx={{ paddingLeft: '1rem', marginTop: '-0.25rem' }}>
-          <Typography
-            variant="h5"
-            sx={{
-              color: 'secondary.dark',
-              fontWeight: '600',
-              lineHeight: '2.25rem',
-            }}
-          >
-            {props.name}
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: '1rem',
-              lineHeight: '1.5rem',
-              marginTop: '-0.25rem',
-            }}
-          >
-            {props.title}
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: '1rem',
-              lineHeight: '1.5rem',
-            }}
-          >
-            {props.location}
-          </Typography>
-        </Box>
+        >
+          {props.name}
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            fontSize: '1rem',
+            lineHeight: '1.5rem',
+            marginTop: '-0.25rem',
+          }}
+        >
+          {props.title}
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            fontSize: '1rem',
+            lineHeight: '1.5rem',
+          }}
+        >
+          {props.location}
+        </Typography>
       </Box>
-    </>
+    </Box>
   );
 };
 
