@@ -13,6 +13,7 @@ const SearchResults = ({ internships }) => {
 
   const handlePageChange = (event, value) => {
     setPage(value);
+    window.scrollTo(0, 0);
   };
   return (
     <Stack
@@ -25,7 +26,7 @@ const SearchResults = ({ internships }) => {
       <Typography variant="errorMessage">
         {internships.length} results
       </Typography>
-      {internships.map((info, i) => {
+      {internships.slice((page - 1) * 10, page * 10).map((info, i) => {
         return (
           <InternshipCard
             companyName={info.companyName}
@@ -37,22 +38,24 @@ const SearchResults = ({ internships }) => {
             jobReqs={info.jobInfo.jobReqs}
             jobResp={info.jobInfo.jobResp}
             jobLink={info.jobInfo.jobLink}
-            key={i}
+            key={(page - 1) * 10 + i}
           />
         );
       })}
-      <Pagination
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          pt: '1rem',
-        }}
-        count={10}
-        page={page}
-        size="large"
-        color="primary"
-        onChange={handlePageChange}
-      />
+      {internships.length <= 10 ? null : (
+        <Pagination
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            pt: '1rem',
+          }}
+          count={Math.ceil(internships.length / 10)}
+          page={page}
+          size="large"
+          color="primary"
+          onChange={handlePageChange}
+        />
+      )}
     </Stack>
   );
 };
