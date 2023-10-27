@@ -7,7 +7,7 @@ import BasePage from './BasePage';
 const SignInPage = () => {
   return (
     <BasePage>
-      <AuthComponent isSignIn={true} />
+      <AuthComponent isSignInPage={true} />
     </BasePage>
   );
 };
