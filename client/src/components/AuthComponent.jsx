@@ -22,32 +22,37 @@ import { signInWithPopup } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage';
 
 import AuthContext from '../contexts/AuthContext';
 import { auth, provider } from '../utils/firebaseConfig';
 import ErrorMessage from './ErrorMessage';
 
-const AuthComponent = ({ isSignIn }) => {
+const AuthComponent = ({ isSignInPage }) => {
   let navigate = useNavigate();
 
   const [, setAuthUser] = useContext(AuthContext);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState(() => {
-    return secureLocalStorage.getItem('email')
+    return secureLocalStorage.getItem('email') && isSignInPage
       ? secureLocalStorage.getItem('email')
       : '';
   });
   const [password, setPassword] = useState(() => {
-    return secureLocalStorage.getItem('password')
+    return secureLocalStorage.getItem('password') && isSignInPage
       ? secureLocalStorage.getItem('password')
       : '';
   });
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(() => {
-    return secureLocalStorage.getItem('rememberMe')
+    return secureLocalStorage.getItem('rememberMe') && isSignInPage
       ? secureLocalStorage.getItem('rememberMe')
       : false;
   });
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState('');
   const MIN_PASSWORD_LENGTH = 6;
 
@@ -59,10 +64,16 @@ const AuthComponent = ({ isSignIn }) => {
     setPassword(event.target.value);
     setShowErrorMessage('');
   };
+  const handleConfirmPassword = (event) => {
+    setConfirmPassword(event.target.value);
+    setShowErrorMessage('');
+  };
   const handleCheckbox = (event) => {
     setRememberMe(event.target.checked);
   };
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowConfirmPassword = () =>
+    setShowConfirmPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -103,10 +114,34 @@ const AuthComponent = ({ isSignIn }) => {
     >
       <Grid item xs={12} sm={9} md={7} lg={5}>
         <Typography variant="pageTitle">
-          {isSignIn ? 'Sign In' : 'Sign Up'}
+          {isSignInPage ? 'Sign In' : 'Sign Up'}
         </Typography>
-        <Card sx={{ mt: 5 }}>
-          <Stack direction="column" spacing={5}>
+        <Card sx={{ mt: 2 }}>
+          <Stack direction="column" spacing={4}>
+            {isSignInPage ? null : (
+              <Stack direction="row" spacing={4}>
+                <TextField
+                  fullWidth
+                  id="outlined-basic"
+                  label="First Name"
+                  variant="outlined"
+                  value={firstName}
+                  onChange={(event) => {
+                    setFirstName(event.target.value);
+                  }}
+                />
+                <TextField
+                  fullWidth
+                  id="outlined-basic"
+                  label="Last Name"
+                  variant="outlined"
+                  value={lastName}
+                  onChange={(event) => {
+                    setLastName(event.target.value);
+                  }}
+                />
+              </Stack>
+            )}
             <TextField
               fullWidth
               id="outlined-basic"
@@ -133,43 +168,74 @@ const AuthComponent = ({ isSignIn }) => {
                         onMouseDown={handleMouseDownPassword}
                         edge="end"
                       >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
                       </IconButton>
                     </InputAdornment>
                   }
                   label="Password"
                 />
               </FormControl>
-              <Stack
-                mt={2}
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-              >
+              {isSignInPage ? (
                 <Stack
+                  mt={2}
                   direction="row"
-                  justifyContent="center"
+                  justifyContent="space-between"
                   alignItems="center"
                 >
-                  <Checkbox
-                    checked={rememberMe}
-                    onChange={handleCheckbox}
-                    inputProps={{ 'aria-label': 'controlled' }}
-                    size="small"
-                    sx={{ paddingLeft: 0 }}
-                  />
-                  <Typography variant="body2">Remember Me</Typography>
-                </Stack>
-                <Link target="_blank" underline="none">
-                  <Typography
-                    variant="body2"
-                    fontWeight="600"
-                    color="secondary.dark"
+                  <Stack
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
                   >
-                    Forgot Password?
-                  </Typography>
-                </Link>
-              </Stack>
+                    <Checkbox
+                      checked={rememberMe}
+                      onChange={handleCheckbox}
+                      inputProps={{ 'aria-label': 'controlled' }}
+                      size="small"
+                      sx={{ paddingLeft: 0 }}
+                    />
+                    <Typography variant="body2">Remember Me</Typography>
+                  </Stack>
+                  <Link target="_blank" underline="none">
+                    <Typography
+                      variant="body2"
+                      fontWeight="600"
+                      color="secondary.dark"
+                    >
+                      Forgot Password?
+                    </Typography>
+                  </Link>
+                </Stack>
+              ) : (
+                <FormControl fullWidth variant="outlined" sx={{ mt: 4, mb: 2 }}>
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Confirm Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    onChange={handleConfirmPassword}
+                    value={confirmPassword}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowConfirmPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showConfirmPassword ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Confirm Password"
+                  />
+                </FormControl>
+              )}
               {showErrorMessage ? (
                 <ErrorMessage message={showErrorMessage} />
               ) : null}
@@ -211,11 +277,17 @@ const AuthComponent = ({ isSignIn }) => {
                 />
               }
             >
-              LinkedIn
+              Sign up with LinkedIn
             </Button>
             <Typography variant="body2" textAlign="center">
-              New to Bobatalks?
-              <Link> Sign up here!</Link>
+              {isSignInPage ? 'New to Bobatalks?' : 'Already have an account?'}
+              <Link
+                component={RouterLink}
+                to={isSignInPage ? '/signup' : '/signin'}
+                ml={1}
+              >
+                {isSignInPage ? 'Sign up here!' : 'Sign in here!'}
+              </Link>
             </Typography>
           </Stack>
         </Card>
