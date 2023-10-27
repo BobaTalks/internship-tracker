@@ -4,12 +4,12 @@ import React from 'react';
 import AuthComponent from '../components/AuthComponent';
 import BasePage from './BasePage';
 
-const SignInPage = () => {
+const SignUpPage = () => {
   return (
     <BasePage>
-      <AuthComponent isSignIn={true} />
+      <AuthComponent isSignIn={false} />
     </BasePage>
   );
 };
 
-export default SignInPage;
+export default SignUpPage;
