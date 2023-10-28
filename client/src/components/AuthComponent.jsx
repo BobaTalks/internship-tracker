@@ -21,8 +21,7 @@ import {
 import { signInWithPopup } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { useNavigate } from 'react-router-dom';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage';
 
 import AuthContext from '../contexts/AuthContext';
@@ -31,6 +30,8 @@ import ErrorMessage from './ErrorMessage';
 
 const AuthComponent = ({ isSignInPage }) => {
   let navigate = useNavigate();
+  const validEmail =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const [, setAuthUser] = useContext(AuthContext);
   const [firstName, setFirstName] = useState('');
@@ -78,17 +79,17 @@ const AuthComponent = ({ isSignInPage }) => {
     event.preventDefault();
   };
   const handleSignIn = () => {
-    const validEmail =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!validEmail.test(email) || password.length < MIN_PASSWORD_LENGTH) {
-      setShowErrorMessage(
-        'Incorrect email or password. All passwords must be at least 6 characters.'
-      );
+    if (!validEmail.test(email)) {
+      setShowErrorMessage('Incorrect email or password. Please try again.');
+      return;
     } else if (rememberMe) {
       secureLocalStorage.setItem('email', email);
       secureLocalStorage.setItem('password', password);
       secureLocalStorage.setItem('rememberMe', rememberMe);
     }
+    setAuthUser(email);
+    navigate('/search');
+    // TODO: check that user is in database
   };
   const googleSignUp = () => {
     signInWithPopup(auth, provider)
@@ -103,6 +104,28 @@ const AuthComponent = ({ isSignInPage }) => {
           'Something went wrong with Google sign up. Please try again.'
         );
       });
+  };
+  const handleSignUp = () => {
+    if (!firstName || !lastName) {
+      setShowErrorMessage(
+        'Fields cannot be empty. Please fill out missing fields.'
+      );
+    } else if (!validEmail.test(email)) {
+      setShowErrorMessage('Your email is invalid.');
+    } else if (password.length < MIN_PASSWORD_LENGTH) {
+      setShowErrorMessage('Your password must be at least 6 characters long');
+    } else if (password !== confirmPassword) {
+      setShowErrorMessage(
+        'Your password and confirmation password must match.'
+      );
+    } else {
+      secureLocalStorage.setItem('email', email);
+      secureLocalStorage.setItem('password', password);
+      secureLocalStorage.setItem('rememberMe', rememberMe);
+      setAuthUser(email);
+      navigate('/search');
+    }
+    // TODO: add user to database
   };
   return (
     <Grid
@@ -240,9 +263,13 @@ const AuthComponent = ({ isSignInPage }) => {
                 <ErrorMessage message={showErrorMessage} />
               ) : null}
             </Box>
-            <Button variant="rounded" color="primary" onClick={handleSignIn}>
+            <Button
+              variant="rounded"
+              color="primary"
+              onClick={isSignInPage ? handleSignIn : handleSignUp}
+            >
               <Typography variant="errorMessage" p={1.5}>
-                Sign In
+                {isSignInPage ? 'Sign In' : 'Sign Up'}
               </Typography>
             </Button>
             <Divider sx={{ fontSize: '0.9rem', color: 'text.main' }}>
