@@ -17,37 +17,37 @@ const JobDescription = (props) => {
   const FullDescription = () => (
     <Grid container direction="column" spacing={5}>
       <Grid item>
-        <Typography>{props.description}</Typography>
+        <Typography variant="body3">{props.description}</Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h5" marginBottom={3}>
+        <Typography variant="h6" marginBottom={3}>
           Requirements
         </Typography>
-        <Typography style={{ whiteSpace: 'pre-line' }}>
+        <Typography variant="body3" style={{ whiteSpace: 'pre-line' }}>
           {props.requirements}
         </Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h5" marginBottom={3}>
+        <Typography variant="h6" marginBottom={3}>
           Responsibilities
         </Typography>
-        <Typography style={{ whiteSpace: 'pre-line' }}>
+        <Typography variant="body3" style={{ whiteSpace: 'pre-line' }}>
           {props.responsibilities}
         </Typography>
       </Grid>
-      <Grid item sx={centered}>
+      <Grid item sx={centered} alignItems="center" my={2}>
         <IconButton onClick={toggle}>
           <KeyboardArrowUpOutlinedIcon />
         </IconButton>
       </Grid>
-      <Grid item sx={centered}>
+      <Grid item sx={centered} pb={8}>
         <Link
           component={RouterLink}
           to={props.externalLink}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Typography size="small" fontWeight={'bold'}>
+          <Typography variant="body1" ontWeight={'bold'} textAlign="center">
             Continue to external listing to read full description
           </Typography>
         </Link>
@@ -57,19 +57,24 @@ const JobDescription = (props) => {
   return (
     <Grid container direction="row" spacing={5}>
       <Grid item>
-        <Typography variant="h5" marginBottom={3}>
+        <Typography variant="h6" marginBottom={3}>
           Job description
         </Typography>
         {readMore ? (
           <FullDescription />
         ) : (
-          <Typography noWrap width={1100}>
+          <Typography
+            width={{ xs: '75vw', lg: '68vw', xl: '61vw' }}
+            noWrap
+            fontSize="0.9rem"
+            fontWeight="normal"
+          >
             {props.description}
           </Typography>
         )}
         {readMore ? null : (
           <Link component="button" onClick={toggle}>
-            <Typography fontWeight={'bold'} size="small" marginTop={3}>
+            <Typography variant="body1" fontWeight={'bold'} marginTop={3}>
               Read More
             </Typography>
           </Link>
