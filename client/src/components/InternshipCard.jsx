@@ -25,7 +25,7 @@ const InternshipCard = ({
     return <AccessTimeIcon />;
   };
   return (
-    <Card>
+    <Card sx={{ py: { xs: 1.5, md: 3 }, px: { xs: 2.5, md: 5 } }}>
       <CardContent>
         <Grid container direction="column">
           <Grid
@@ -35,7 +35,7 @@ const InternshipCard = ({
             spacing={3}
             justifyContent="space-between"
           >
-            <Grid item xs={7}>
+            <Grid item sm={7} xs={12}>
               <InternshipCompanyInfo
                 name={companyName}
                 title={position}
@@ -47,9 +47,10 @@ const InternshipCard = ({
               spacing={2}
               item
               direction="row"
-              xs={5}
+              sm={5}
+              xs={12}
               alignItems="top"
-              justifyContent="right"
+              justifyContent={{ xs: 'left', sm: 'right' }}
             >
               {labels.map((label, i) => {
                 return (
@@ -74,7 +75,7 @@ const InternshipCard = ({
             <PostedOn date={datePosted} />
             <SaveAndApply link={jobLink} isSaved={isSaved} />
           </Grid>
-          <Grid item mt={6}>
+          <Grid item mt={4}>
             <JobDescription
               description={jobDesc}
               requirements={jobReqs}

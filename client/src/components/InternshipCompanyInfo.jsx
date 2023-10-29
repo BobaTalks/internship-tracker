@@ -1,4 +1,4 @@
-import { Avatar, Box, Typography } from '@mui/material';
+import { Avatar, Box, Stack, Typography } from '@mui/material';
 import React from 'react';
 
 const InternshipCompanyInfo = (props) => {
@@ -19,7 +19,7 @@ const InternshipCompanyInfo = (props) => {
             marginTop: '0.25rem',
           }}
         />
-        <Box sx={{ paddingLeft: '1rem', marginTop: '-0.25rem' }}>
+        <Stack sx={{ paddingLeft: '1rem', marginTop: '-0.25rem' }}>
           <Typography
             variant="h5"
             sx={{
@@ -31,9 +31,8 @@ const InternshipCompanyInfo = (props) => {
             {props.name}
           </Typography>
           <Typography
-            variant="body1"
+            variant="body3"
             sx={{
-              fontSize: '1rem',
               lineHeight: '1.5rem',
               marginTop: '-0.25rem',
             }}
@@ -41,7 +40,7 @@ const InternshipCompanyInfo = (props) => {
             {props.title}
           </Typography>
           <Typography
-            variant="body1"
+            variant="body3"
             sx={{
               fontSize: '1rem',
               lineHeight: '1.5rem',
@@ -49,7 +48,7 @@ const InternshipCompanyInfo = (props) => {
           >
             {props.location}
           </Typography>
-        </Box>
+        </Stack>
       </Box>
     </>
   );
