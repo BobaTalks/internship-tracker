@@ -6,13 +6,10 @@ import InternshipCompanyInfo from './InternshipCompanyInfo';
 import InternshipTag from './InternshipTag';
 import JobDescription from './JobDescription';
 import PostedOn from './PostedOn';
-/**
- * https://github.com/BobaTalks/internship-tracker/issues/25
- * Component for the internship card. should take an Internship as props
- *
- */
+import SaveAndApply from './SaveAndApply';
 
 const InternshipCard = ({
+  isSaved,
   companyName,
   position,
   location,
@@ -67,8 +64,16 @@ const InternshipCard = ({
               })}
             </Grid>
           </Grid>
-          <Grid item mt={4}>
+          <Grid
+            item
+            mt={8}
+            direction="row"
+            container
+            justifyContent="space-between"
+            alignItems="center"
+          >
             <PostedOn date={datePosted} />
+            <SaveAndApply link={jobLink} isSaved={isSaved} />
           </Grid>
           <Grid item mt={4}>
             <JobDescription
