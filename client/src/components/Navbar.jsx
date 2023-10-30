@@ -160,6 +160,8 @@ const NavBar = () => {
               <Button
                 variant="rounded"
                 color="thai"
+                component={RouterLink}
+                to={'/signup'}
                 sx={{
                   ml: { sx: 1, sm: 2 },
                   padding: { sx: '.3rem .6rem', sm: '.6rem 1.3rem' },
