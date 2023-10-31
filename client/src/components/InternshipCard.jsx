@@ -66,11 +66,12 @@ const InternshipCard = ({
           </Grid>
           <Grid
             item
-            mt={8}
+            mt={{ xs: 4, sm: 8 }}
             direction="row"
             container
             justifyContent="space-between"
             alignItems="center"
+            gap={4}
           >
             <PostedOn date={datePosted} />
             <SaveAndApply link={jobLink} isSaved={isSaved} />
