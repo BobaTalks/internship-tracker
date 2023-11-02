@@ -137,6 +137,7 @@ const MOCK_FILTER_DATA = {
 
 const MOCK_INTERNSHIP_DATA = [
   {
+    id: 1,
     companyName: 'Netflix',
     position: 'Product Design Intern - Experience Design',
     location: 'Los Gatos, CA',
@@ -158,6 +159,7 @@ const MOCK_INTERNSHIP_DATA = [
     },
   },
   {
+    id: 2,
     companyName: 'Apple',
     position: 'Software Engineer',
     location: 'Cupertino, CA',

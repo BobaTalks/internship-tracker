@@ -3,20 +3,19 @@ import React from 'react';
 
 import InternshipCard from './InternshipCard';
 
-/**
- * https://github.com/BobaTalks/internship-tracker/issues/49
- * Import and render InternshipCard for all internships in Internship[]. Will need mock
- * data or API available
- */
+// TODO: look for the IDs of the user's saved internships in the database (currently is in the format of an array)
+const MOCK_USER_SAVED_INTERNSHIPS = [2];
+
 const SearchResults = ({ internships }) => {
   return (
-    <Stack direction="column" spacing={5} paddingTop={5}>
+    <Stack direction="column" spacing={5} paddingTop={5} paddingBottom={15}>
       <Typography variant="errorMessage">
         {internships.length} results
       </Typography>
       {internships.map((info, i) => {
         return (
           <InternshipCard
+            isSaved={MOCK_USER_SAVED_INTERNSHIPS.includes(info.id)}
             companyName={info.companyName}
             position={info.position}
             location={info.location}
