@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Avatar, Box, Typography } from '@mui/material';
 import React from 'react';
 
 import amazonLogo from '../assets/company_logos/amazon_logo.svg';
@@ -38,7 +38,7 @@ const InternshipCompanyInfo = (props) => {
         maxWidth: 'fit-content',
       }}
     >
-      <Box
+      {/* <Box
         component="img"
         src={getCompanyIcon(props.name)}
         sx={{
@@ -47,7 +47,12 @@ const InternshipCompanyInfo = (props) => {
           marginTop: '0.25rem',
           borderRadius: '4px',
         }}
-      ></Box>
+      ></Box> */}
+      <Avatar
+        src={getCompanyIcon(props.name)}
+        variant="rounded"
+        sx={{ width: '4.3rem', height: '4.3rem', marginTop: '0.25rem' }}
+      />
       <Box sx={{ paddingLeft: '1rem', marginTop: '-0.25rem' }}>
         <Typography
           variant="h5"
