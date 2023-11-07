@@ -2,11 +2,10 @@ import { Button } from '@mui/material';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 
+// This is a test page - will be replaced by sign in / sign out
+import SignOutButton from '../components/SignOutButton';
 import { auth, provider } from '../utils/firebaseConfig';
 import BasePage from './BasePage';
-
-// This is a test page - will be replaced by sign in / sign out
-
 const TestPage = () => {
   const [userIn, setUserIn] = useState(false);
 
@@ -57,14 +56,7 @@ const TestPage = () => {
           Sign Out
         </Button>
       ) : (
-        <Button
-          variant="rounded"
-          color="thai"
-          onClick={signInUser}
-          sx={{ mt: '10rem', height: '5rem', width: '8rem' }}
-        >
-          Sign In
-        </Button>
+        <SignOutButton />
       )}
     </BasePage>
   );
