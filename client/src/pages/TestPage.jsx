@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
 import React, { useState } from 'react';
 
 // This is a test page - will be replaced by sign in / sign out
@@ -34,29 +34,19 @@ const TestPage = () => {
       });
   };
 
-  const signOutUser = () => {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-        setUserIn(false);
-      })
-      .catch((error) => {
-        // An error happened.
-      });
-  };
   return (
     <BasePage>
       {userIn ? (
+        <SignOutButton />
+      ) : (
         <Button
           variant="rounded"
           color="thai"
-          onClick={signOutUser}
+          onClick={signInUser}
           sx={{ mt: '10rem', height: '5rem', width: '8rem' }}
         >
-          Sign Out
+          Sign In
         </Button>
-      ) : (
-        <SignOutButton />
       )}
     </BasePage>
   );
