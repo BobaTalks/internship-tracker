@@ -1,13 +1,15 @@
 import { Button } from '@mui/material';
 import { signInWithPopup } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 
 // This is a test page - will be replaced by sign in / sign out
 import SignOutButton from '../components/SignOutButton';
+import AuthContext from '../contexts/AuthContext';
 import { auth, provider } from '../utils/firebaseConfig';
 import BasePage from './BasePage';
+
 const TestPage = () => {
-  const [userIn, setUserIn] = useState(false);
+  const [userIn, setUserIn] = useContext(AuthContext);
 
   const signInUser = () => {
     signInWithPopup(auth, provider)
@@ -43,7 +45,7 @@ const TestPage = () => {
           variant="rounded"
           color="thai"
           onClick={signInUser}
-          sx={{ mt: '10rem', height: '5rem', width: '8rem' }}
+          sx={{ mt: '10rem', height: '3rem', width: '8rem' }}
         >
           Sign In
         </Button>

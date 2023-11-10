@@ -187,6 +187,38 @@ let theme = createTheme({
             },
           },
         },
+        {
+          props: { variant: 'redContained' },
+          style: {
+            textTransform: 'none',
+            fontSize: '.9rem',
+            borderRadius: '1rem',
+            backgroundColor: COLORS.ERROR_BUTTON,
+            fontWeight: 600,
+            padding: '.6rem 3rem',
+            color: COLORS.CARD_BG,
+            '&:hover': {
+              backgroundColor: COLORS.ERROR_BUTTON,
+              boxShadow: BUTTON_SHADOW,
+            },
+          },
+        },
+        {
+          props: { variant: 'redOutlined' },
+          style: {
+            textTransform: 'none',
+            fontSize: '.9rem',
+            borderRadius: '1rem',
+            border: `1px solid ${COLORS.ERROR_BUTTON}`,
+            backgroundColor: COLORS.CARD_BG,
+            color: COLORS.ERROR_BUTTON,
+            padding: '.6rem 3rem',
+            '&:hover': {
+              backgroundColor: COLORS.CARD_BG,
+              boxShadow: BUTTON_SHADOW,
+            },
+          },
+        },
       ],
     },
     MuiCard: {
