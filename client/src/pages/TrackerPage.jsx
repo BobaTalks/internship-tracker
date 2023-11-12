@@ -11,7 +11,7 @@ const TrackerPage = () => {
   const CHANGE_PLACEHOLDER_WIDTH = 630;
   return (
     <BasePage>
-      <Stack spacing={2} minWidth="100%">
+      <Stack minWidth="100%" gap={2}>
         <Typography variant="pageTitle" marginTop="6rem">
           Internship Tracker
         </Typography>
