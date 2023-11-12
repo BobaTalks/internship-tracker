@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 
 const InternshipTag = (props) => {
@@ -20,7 +20,9 @@ const InternshipTag = (props) => {
       }}
     >
       {icon}
-      <Box sx={{ padding: '0rem 0.25rem' }}>{props.label}</Box>
+      <Box sx={{ padding: '0rem 0.25rem' }}>
+        <Typography variant="body3">{props.label}</Typography>
+      </Box>
     </Box>
   );
 };

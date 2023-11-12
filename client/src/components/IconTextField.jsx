@@ -27,6 +27,7 @@ const IconTextField = ({ icon, placeholder, value, setValue }) => {
           '& .MuiInputBase-input': {
             fontSize: '1rem',
           },
+          paddingRight: '1rem',
         }}
       />
     </Grid>
