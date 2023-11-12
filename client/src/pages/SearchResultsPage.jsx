@@ -135,7 +135,7 @@ const MOCK_FILTER_DATA = {
   },
 };
 
-const MOCK_INTERNSHIP_DATA = [
+let MOCK_INTERNSHIP_DATA = [
   {
     id: 1,
     companyName: 'Netflix',
@@ -184,7 +184,103 @@ const MOCK_INTERNSHIP_DATA = [
       jobLink: 'https://www.apple.com/careers/ca/',
     },
   },
+  {
+    companyName: 'Amazon',
+    position: 'UI/UX Designer',
+    location: 'Toronto, Canada',
+    datePosted: new Date('January 21, 2023'),
+    labels: [],
+    jobInfo: {
+      jobDesc:
+        'Lorem ipsum dolor sit amet consectetur. Nulla sit integer nec arcu tortor ac lectus morbi non. Quam aenean tincidunt blandit amet magna enim sed pharetra habitasse. At nec neque suspendisse feugiat eros. Ante a arcu donec sodales ut amet luctus mauris. Felis eu mauris fringilla mauris. Viverra ante iaculis gravida a amet cursus facilisis scelerisque. Leo sit nulla sit vel nibh amet justo aliquam. Risus ullamcorper vitae amet ornare adipiscing vulputate dapibus diam ultrices. Arcu malesuada dui integer non. Aliquet non tortor adipiscing laoreet leo ac pretium fusce nisi.',
+      jobReqs:
+        'Vitae consectetur egestas ullamcorper orci pulvinar mattis commodo et morbi.',
+      jobResp:
+        'Vitae consectetur egestas ullamcorper orci pulvinar mattis commodo et morbi.\n Varius mi massa mi sed cursus mattis. Viverra pharetra vel et neque non ut. ',
+      jobLink: 'https://www.amazon.jobs/en/locations/toronto-canada',
+    },
+  },
+  {
+    companyName: 'Google',
+    position: 'Google STEP Program',
+    location: 'Waterloo, Canada',
+    datePosted: new Date('September 10, 2023'),
+    labels: [
+      {
+        name: 'summer 24',
+        filter: 'semester',
+      },
+      {
+        name: 'On-site',
+        filter: 'remote',
+      },
+      {
+        name: 'Current student',
+        filter: 'education',
+      },
+    ],
+    jobInfo: {
+      jobDesc:
+        'Lorem ipsum dolor sit amet consectetur. Nulla sit integer nec arcu tortor ac lectus morbi non. Quam aenean tincidunt blandit amet magna enim sed pharetra habitasse. At nec neque suspendisse feugiat eros. Ante a arcu donec sodales ut amet luctus mauris. Felis eu mauris fringilla mauris. Viverra ante iaculis gravida a amet cursus facilisis scelerisque. Leo sit nulla sit vel nibh amet justo aliquam. Risus ullamcorper vitae amet ornare adipiscing vulputate dapibus diam ultrices. Arcu malesuada dui integer non. Aliquet non tortor adipiscing laoreet leo ac pretium fusce nisi.',
+      jobReqs:
+        'Vitae consectetur egestas ullamcorper orci pulvinar mattis commodo et morbi.',
+      jobResp:
+        'Vitae consectetur egestas ullamcorper orci pulvinar mattis commodo et morbi.\n Varius mi massa mi sed cursus mattis. Viverra pharetra vel et neque non ut. ',
+      jobLink:
+        'https://www.google.com/about/careers/applications/jobs/results/88626154719584966-step-intern-secondyear-student-summer-2024?q=STEP&utm_source=Simplify&ref=Simplify',
+    },
+  },
+  {
+    companyName: 'Microsoft',
+    position: 'Back-end Developer',
+    location: 'Tokyo, Japan',
+    datePosted: new Date('August 30, 2023'),
+    labels: [
+      {
+        name: 'summer 24',
+        filter: 'semester',
+      },
+    ],
+    jobInfo: {
+      jobDesc:
+        'Lorem ipsum dolor sit amet consectetur. Nulla sit integer nec arcu tortor ac lectus morbi non. Quam aenean tincidunt blandit amet magna enim sed pharetra habitasse. At nec neque suspendisse feugiat eros. Ante a arcu donec sodales ut amet luctus mauris. Felis eu mauris fringilla mauris. Viverra ante iaculis gravida a amet cursus facilisis scelerisque. Leo sit nulla sit vel nibh amet justo aliquam. Risus ullamcorper vitae amet ornare adipiscing vulputate dapibus diam ultrices. Arcu malesuada dui integer non. Aliquet non tortor adipiscing laoreet leo ac pretium fusce nisi.',
+      jobReqs:
+        'Vitae consectetur egestas ullamcorper orci pulvinar mattis commodo et morbi.',
+      jobResp:
+        'Vitae consectetur egestas ullamcorper orci pulvinar mattis commodo et morbi.\n Varius mi massa mi sed cursus mattis. Viverra pharetra vel et neque non ut. ',
+      jobLink: 'https://careers.microsoft.com/v2/global/en/home.html',
+    },
+  },
+  {
+    companyName: 'Meta',
+    position: 'iOS Developer',
+    location: 'Tokyo, Japan',
+    datePosted: new Date('December 21, 2022'),
+    labels: [
+      {
+        name: 'summer 24',
+        filter: 'semester',
+      },
+      {
+        name: 'Remote',
+        filter: 'remote',
+      },
+    ],
+    jobInfo: {
+      jobDesc:
+        'Lorem ipsum dolor sit amet consectetur. Nulla sit integer nec arcu tortor ac lectus morbi non. Quam aenean tincidunt blandit amet magna enim sed pharetra habitasse. At nec neque suspendisse feugiat eros. Ante a arcu donec sodales ut amet luctus mauris. Felis eu mauris fringilla mauris. Viverra ante iaculis gravida a amet cursus facilisis scelerisque. Leo sit nulla sit vel nibh amet justo aliquam. Risus ullamcorper vitae amet ornare adipiscing vulputate dapibus diam ultrices. Arcu malesuada dui integer non. Aliquet non tortor adipiscing laoreet leo ac pretium fusce nisi.',
+      jobReqs:
+        'Vitae consectetur egestas ullamcorper orci pulvinar mattis commodo et morbi.',
+      jobResp:
+        'Vitae consectetur egestas ullamcorper orci pulvinar mattis commodo et morbi.\n Varius mi massa mi sed cursus mattis. Viverra pharetra vel et neque non ut. ',
+      jobLink: 'https://www.metacareers.com/jobs/',
+    },
+  },
 ];
+
+for (let i = 0; i < 4; i++) {
+  MOCK_INTERNSHIP_DATA = MOCK_INTERNSHIP_DATA.concat(MOCK_INTERNSHIP_DATA);
+}
 
 const SearchResultsPage = () => {
   const [filterData, setFilterData] = useState(MOCK_FILTER_DATA);
