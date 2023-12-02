@@ -1,22 +1,55 @@
 import { Avatar, Box, Stack, Typography } from '@mui/material';
 import React from 'react';
 
+import amazonLogo from '../assets/company_logos/amazon_logo.svg';
+import appleLogo from '../assets/company_logos/apple_logo.svg';
+import genericLogo from '../assets/company_logos/generic.svg';
+import googleLogo from '../assets/company_logos/google_logo.svg';
+import metaLogo from '../assets/company_logos/meta_logo.svg';
+import microsoftLogo from '../assets/company_logos/microsoft_logo.svg';
+import netflixLogo from '../assets/company_logos/netflix_logo.svg';
+
 const InternshipCompanyInfo = (props) => {
+  const getCompanyIcon = (company) => {
+    let companyLowerCase = company.toLowerCase();
+    switch (companyLowerCase) {
+      case 'amazon':
+        return amazonLogo;
+      case 'apple':
+        return appleLogo;
+      case 'google':
+        return googleLogo;
+      case 'meta':
+        return metaLogo;
+      case 'microsoft':
+        return microsoftLogo;
+      case 'netflix':
+        return netflixLogo;
+      default:
+        return genericLogo;
+    }
+  };
+
   return (
-    <>
-      <Box
-        display="flex"
-        maxWidth={false}
-        sx={{
-          maxWidth: 'fit-content',
-        }}
-      >
-        <Avatar
-          variant="rounded"
+    <Box
+      display="flex"
+      maxWidth={false}
+      sx={{
+        maxWidth: 'fit-content',
+      }}
+    >
+      <Avatar
+        src={getCompanyIcon(props.name)}
+        variant="rounded"
+        sx={{ width: '4rem', height: '4rem', marginTop: '0.25rem' }}
+      />
+      <Box sx={{ paddingLeft: '1rem', marginTop: '-0.25rem' }}>
+        <Typography
+          variant="h5"
           sx={{
-            width: '69px',
-            height: '69px',
-            marginTop: '0.25rem',
+            color: 'secondary.dark',
+            fontWeight: '600',
+            lineHeight: '2.25rem',
           }}
         />
         <Stack sx={{ paddingLeft: '1rem', marginTop: '-0.25rem' }}>
@@ -50,7 +83,7 @@ const InternshipCompanyInfo = (props) => {
           </Typography>
         </Stack>
       </Box>
-    </>
+    </Box>
   );
 };
 
