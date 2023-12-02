@@ -1,8 +1,9 @@
-import { Grid, Stack, Typography } from '@mui/material';
+import { Box, Divider, Grid, Stack, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
 import IconTextField from '../components/IconTextField';
 import SearchButton from '../components/SearchButton';
+import TrackerColumn from '../components/TrackerColumn';
 import BasePage from './BasePage';
 
 const TrackerPage = () => {
@@ -32,6 +33,15 @@ const TrackerPage = () => {
             <SearchButton handleClick={handleClick} />
           </Grid>
         </Grid>
+        <Box display="flex" direction="column" mt={6}>
+          <TrackerColumn category="Saved" />
+          <Divider orientation="vertical" />
+          <TrackerColumn category="Applied" />
+          <Divider orientation="vertical" />
+          <TrackerColumn category="Responded" />
+          <Divider orientation="vertical" />
+          <TrackerColumn category="Archived" />
+        </Box>
       </Stack>
     </BasePage>
   );
