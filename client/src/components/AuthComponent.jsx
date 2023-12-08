@@ -1,39 +1,25 @@
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {
   Box,
-  Button,
   Card,
   Checkbox,
   Divider,
-  FormControl,
   Grid,
-  IconButton,
-  InputAdornment,
-  InputLabel,
   Link,
-  OutlinedInput,
   Stack,
   TextField,
   Typography,
 } from '@mui/material';
-import { signInWithPopup } from 'firebase/auth';
-import React, { useContext, useState } from 'react';
-import { FcGoogle } from 'react-icons/fc';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage';
 
-import AuthContext from '../contexts/AuthContext';
-import { auth, provider } from '../utils/firebaseConfig';
 import ErrorMessage from './ErrorMessage';
+import HiddenTextComponent from './HiddenTextComponent';
+import SignInButton from './SignInButton';
+import SignUpButton from './SignUpButton';
+import SocialSignUp from './SocialSignUp';
 
 const AuthComponent = ({ isSignInPage }) => {
-  let navigate = useNavigate();
-  const validEmail =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-  const [, setAuthUser] = useContext(AuthContext);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState(() => {
@@ -46,87 +32,28 @@ const AuthComponent = ({ isSignInPage }) => {
       ? secureLocalStorage.getItem('password')
       : '';
   });
-  const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(() => {
     return secureLocalStorage.getItem('rememberMe') && isSignInPage
       ? secureLocalStorage.getItem('rememberMe')
       : false;
   });
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState('');
-  const MIN_PASSWORD_LENGTH = 6;
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
     setShowErrorMessage('');
   };
-  const handlePassword = (event) => {
-    setPassword(event.target.value);
-    setShowErrorMessage('');
+  const handleFirstName = (event) => {
+    setFirstName(event.target.value);
   };
-  const handleConfirmPassword = (event) => {
-    setConfirmPassword(event.target.value);
-    setShowErrorMessage('');
+  const handleLastName = (event) => {
+    setLastName(event.target.value);
   };
   const handleCheckbox = (event) => {
     setRememberMe(event.target.checked);
   };
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleClickShowConfirmPassword = () =>
-    setShowConfirmPassword((show) => !show);
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-  const handleSignIn = () => {
-    if (!validEmail.test(email)) {
-      setShowErrorMessage('Incorrect email or password. Please try again.');
-      return;
-    } else if (rememberMe) {
-      secureLocalStorage.setItem('email', email);
-      secureLocalStorage.setItem('password', password);
-      secureLocalStorage.setItem('rememberMe', rememberMe);
-    }
-    setAuthUser(email);
-    navigate('/search');
-    // TODO: check that user is in database
-  };
-  const googleSignUp = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        setAuthUser(result.user.email);
-        // TODO: add code to store or check user in database
-        secureLocalStorage.setItem('email', result.user.email);
-        navigate('/search');
-      })
-      .catch(() => {
-        setShowErrorMessage(
-          'Something went wrong with Google sign up. Please try again.'
-        );
-      });
-  };
-  const handleSignUp = () => {
-    if (!firstName || !lastName) {
-      setShowErrorMessage(
-        'Fields cannot be empty. Please fill out missing fields.'
-      );
-    } else if (!validEmail.test(email)) {
-      setShowErrorMessage('Your email is invalid.');
-    } else if (password.length < MIN_PASSWORD_LENGTH) {
-      setShowErrorMessage('Your password must be at least 6 characters long');
-    } else if (password !== confirmPassword) {
-      setShowErrorMessage(
-        'Your password and confirmation password must match.'
-      );
-    } else {
-      secureLocalStorage.setItem('email', email);
-      secureLocalStorage.setItem('password', password);
-      secureLocalStorage.setItem('rememberMe', rememberMe);
-      setAuthUser(email);
-      navigate('/search');
-    }
-    // TODO: add user to database
-  };
+
   return (
     <Grid
       container
@@ -141,63 +68,38 @@ const AuthComponent = ({ isSignInPage }) => {
         </Typography>
         <Card sx={{ mt: 2 }}>
           <Stack direction="column" spacing={4}>
-            {isSignInPage ? null : (
+            {!isSignInPage && (
               <Stack direction="row" spacing={4}>
                 <TextField
                   fullWidth
-                  id="outlined-basic"
                   label="First Name"
                   variant="outlined"
                   value={firstName}
-                  onChange={(event) => {
-                    setFirstName(event.target.value);
-                  }}
+                  onChange={handleFirstName}
                 />
                 <TextField
                   fullWidth
-                  id="outlined-basic"
                   label="Last Name"
                   variant="outlined"
                   value={lastName}
-                  onChange={(event) => {
-                    setLastName(event.target.value);
-                  }}
+                  onChange={handleLastName}
                 />
               </Stack>
             )}
             <TextField
               fullWidth
-              id="outlined-basic"
               label="Email Address"
               variant="outlined"
               value={email}
               onChange={handleEmail}
             />
             <Box margin={0}>
-              <FormControl fullWidth variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Password
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  type={showPassword ? 'text' : 'password'}
-                  onChange={handlePassword}
-                  value={password}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Password"
-                />
-              </FormControl>
+              <HiddenTextComponent
+                label="Password"
+                hiddenPassword={password}
+                setHiddenPassword={setPassword}
+                setShowErrorMessage={setShowErrorMessage}
+              />
               {isSignInPage ? (
                 <Stack
                   mt={2}
@@ -230,82 +132,41 @@ const AuthComponent = ({ isSignInPage }) => {
                   </Link>
                 </Stack>
               ) : (
-                <FormControl fullWidth variant="outlined" sx={{ mt: 4, mb: 2 }}>
-                  <InputLabel htmlFor="outlined-adornment-password">
-                    Confirm Password
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-password"
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    onChange={handleConfirmPassword}
-                    value={confirmPassword}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowConfirmPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {showConfirmPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
+                <Box mt={4}>
+                  <HiddenTextComponent
                     label="Confirm Password"
+                    hiddenPassword={confirmPassword}
+                    setHiddenPassword={setConfirmPassword}
+                    setShowErrorMessage={setShowErrorMessage}
                   />
-                </FormControl>
+                </Box>
               )}
               {showErrorMessage ? (
                 <ErrorMessage message={showErrorMessage} />
               ) : null}
             </Box>
-            <Button
-              variant="rounded"
-              color="primary"
-              onClick={isSignInPage ? handleSignIn : handleSignUp}
-            >
-              <Typography variant="errorMessage" p={1.5}>
-                {isSignInPage ? 'Sign In' : 'Sign Up'}
-              </Typography>
-            </Button>
+            {isSignInPage ? (
+              <SignInButton
+                email={email}
+                rememberMe={rememberMe}
+                password={password}
+                setShowErrorMessage={setShowErrorMessage}
+              />
+            ) : (
+              <SignUpButton
+                firstName={firstName}
+                lastName={lastName}
+                email={email}
+                password={password}
+                rememberMe={rememberMe}
+                confirmPassword={confirmPassword}
+                setShowErrorMessage={setShowErrorMessage}
+              />
+            )}
             <Divider sx={{ fontSize: '0.9rem', color: 'text.main' }}>
               or continue with
             </Divider>
-            <Button
-              variant="social"
-              startIcon={
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  marginRight="0.3rem"
-                  padding={0}
-                >
-                  <FcGoogle size={25} />
-                </Box>
-              }
-              onClick={googleSignUp}
-            >
-              Sign up with Google
-            </Button>
-            <Button
-              variant="social"
-              startIcon={
-                <LinkedInIcon
-                  sx={{
-                    transform: 'scale(1.2)',
-                    color: 'icons.linkedin',
-                    marginRight: '0.3rem',
-                  }}
-                />
-              }
-            >
-              Sign up with LinkedIn
-            </Button>
+            <SocialSignUp setShowErrorMessage={setShowErrorMessage} />
             <Typography variant="body2" textAlign="center">
               {isSignInPage ? 'New to Bobatalks?' : 'Already have an account?'}
               <Link
