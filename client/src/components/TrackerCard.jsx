@@ -25,7 +25,7 @@ const TrackerCard = ({ id, dateAdded, appliedDate }) => {
       <Box display="flex" flexDirection="column" paddingY={1.5}>
         {internshipInfo.datePosted && (
           <Typography variant="body3">
-            Posted On: {format(internshipInfo.datePosted, 'LLLL d, y')}
+            Posted: {format(internshipInfo.datePosted, 'LLLL d, y')}
           </Typography>
         )}
         <Typography variant="body3">
