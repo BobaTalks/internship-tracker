@@ -3,12 +3,11 @@ import React from 'react';
 
 const TrackerColumn = ({ category }) => {
   return (
-    <Box width="25%" mx={1}>
+    <Box display="flex" flexDirection="column" flex={1} mx={1} height="100%">
       <Typography variant="h6" mx={6} mb={2}>
         {category}
       </Typography>
       <Box
-        height="70vh"
         overflow="hidden"
         mx={4}
         sx={{
