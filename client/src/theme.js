@@ -86,6 +86,7 @@ let theme = createTheme({
     body1: { fontSize: '1rem', fontWeight: '600' },
     body2: { fontSize: '0.8rem' },
     body3: { fontSize: '0.9rem' },
+    body4: { fontSize: '1rem', lineHeight: '1.5rem' },
     navText: {
       fontSize: '.8rem',
       fontWeight: 600,

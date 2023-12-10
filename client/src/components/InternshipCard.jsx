@@ -40,6 +40,7 @@ const InternshipCard = ({
                 name={companyName}
                 title={position}
                 location={location}
+                isTracker={false}
               />
             </Grid>
             <Grid

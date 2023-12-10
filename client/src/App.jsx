@@ -7,7 +7,9 @@ import secureLocalStorage from 'react-secure-storage';
 
 import Loading from './components/Loading';
 import AuthContext from './contexts/AuthContext';
+import TrackerContext from './contexts/TrackerContext';
 import theme from './theme';
+import { MOCK_TRACKER_DATA } from './utils/mockData';
 
 const withSuspense = (Component) => (
   <Suspense fallback={<Loading />}>
@@ -30,21 +32,28 @@ const App = () => {
       : null;
   });
 
+  const [trackedInternships, setTrackedInternships] =
+    useState(MOCK_TRACKER_DATA);
+
   return (
     <BrowserRouter>
       <CssBaseline />
       <ThemeProvider theme={theme}>
         <AuthContext.Provider value={[authUser, setAuthUser]}>
-          <Routes>
-            <Route path="/" element={withSuspense(HomePage)} />
-            <Route path="/search" element={withSuspense(SearchResultsPage)} />
-            <Route path="/about" element={withSuspense(AboutPage)} />
-            <Route path="/test" element={withSuspense(TestPage)} />
-            {/* temporary - to be deleted */}
-            <Route path="/signin" element={withSuspense(SignInPage)} />
-            <Route path="/tracker" element={withSuspense(TrackerPage)} />
-            <Route path="*" element={withSuspense(ErrorPage)} />
-          </Routes>
+          <TrackerContext.Provider
+            value={[trackedInternships, setTrackedInternships]}
+          >
+            <Routes>
+              <Route path="/" element={withSuspense(HomePage)} />
+              <Route path="/search" element={withSuspense(SearchResultsPage)} />
+              <Route path="/about" element={withSuspense(AboutPage)} />
+              <Route path="/test" element={withSuspense(TestPage)} />
+              {/* temporary - to be deleted */}
+              <Route path="/signin" element={withSuspense(SignInPage)} />
+              <Route path="/tracker" element={withSuspense(TrackerPage)} />
+              <Route path="*" element={withSuspense(ErrorPage)} />
+            </Routes>
+          </TrackerContext.Provider>
         </AuthContext.Provider>
       </ThemeProvider>
     </BrowserRouter>
