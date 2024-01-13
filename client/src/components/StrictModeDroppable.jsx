@@ -55,7 +55,6 @@ const StrictModeDroppable = ({ cards, category }) => {
                   <Box
                     ref={provided.innerRef}
                     {...provided.draggableProps}
-                    isDragging={snapshot.isDragging}
                     {...provided.dragHandleProps}
                     sx={{
                       boxShadow: snapshot.isDragging
