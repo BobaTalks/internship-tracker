@@ -2,9 +2,10 @@ import { Box } from '@mui/material';
 import React from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 
+import TrackerCard from '../components/TrackerCard';
+
 const StrictModeDroppable = ({ cards, category }) => {
   const [enabled, setEnabled] = React.useState(false);
-
   React.useEffect(() => {
     const animation = requestAnimationFrame(() => setEnabled(true));
 
@@ -26,7 +27,8 @@ const StrictModeDroppable = ({ cards, category }) => {
           }}
           {...provided.droppableProps}
           overflow="hidden"
-          mx={4}
+          ml={5}
+          mr={2}
           sx={{
             '&:hover': {
               overflowY: 'auto',
@@ -47,28 +49,21 @@ const StrictModeDroppable = ({ cards, category }) => {
           {cards.map((item, index) => {
             return (
               <Draggable
-                key={item}
+                key={JSON.stringify(item)}
                 draggableId={JSON.stringify(item)}
                 index={index}
               >
-                {(provided, snapshot) => (
-                  <Box
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    sx={{
-                      boxShadow: snapshot.isDragging
-                        ? '0px 4px 4px 0px rgba(0, 0, 0, 0.08)'
-                        : null,
-                      bgcolor: 'white',
-                      mb: 2,
-                      borderRadius: 4,
-                      p: '.8rem 1.2rem',
-                    }}
-                  >
-                    {item}
-                  </Box>
-                )}
+                {(provided, snapshot) => {
+                  return (
+                    <TrackerCard
+                      provided={provided}
+                      key={item.id}
+                      id={item.internshipId}
+                      dateAdded={item.dateAdded}
+                      appliedDate={item.appliedDate}
+                    />
+                  );
+                }}
               </Draggable>
             );
           })}

@@ -9,16 +9,29 @@ import NavBar from '../components/Navbar';
  *
  * Modifying this component should update all other page components importing this.
  */
-const BasePage = (props) => {
+const BasePage = ({ isTrackerPage = false, isHomePage = false, children }) => {
+  let containerFlexSize = {
+    xl: 8,
+    lg: 9,
+    sm: 10,
+    xs: 11,
+  };
+
+  if (isTrackerPage) {
+    containerFlexSize = {
+      xs: 11,
+    };
+  }
+
   return (
     <Grid
       container
       sx={{ bgcolor: 'background.main', minHeight: '100vh' }}
       justifyContent="center"
     >
-      <Grid container item xl={8} lg={9} sm={10} xs={11}>
+      <Grid container item pt={isHomePage ? 0 : 25} {...containerFlexSize}>
         <NavBar />
-        {props.children}
+        {children}
       </Grid>
     </Grid>
   );

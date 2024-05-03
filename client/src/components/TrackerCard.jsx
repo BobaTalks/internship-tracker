@@ -5,7 +5,7 @@ import React from 'react';
 import { MOCK_INTERNSHIP_DATA } from '../utils/mockData';
 import InternshipCompanyInfo from './InternshipCompanyInfo';
 
-const TrackerCard = ({ id, dateAdded, appliedDate }) => {
+const TrackerCard = ({ id, dateAdded, appliedDate, provided }) => {
   const dayjs = require('dayjs');
   const relativeTime = require('dayjs/plugin/relativeTime');
   dayjs.extend(relativeTime);
@@ -15,7 +15,12 @@ const TrackerCard = ({ id, dateAdded, appliedDate }) => {
   });
 
   return (
-    <Card sx={{ p: '1rem', borderRadius: 3, width: '18rem' }}>
+    <Card
+      sx={{ p: '1rem', borderRadius: 3, width: '95%', mb: 5 }}
+      ref={provided.innerRef}
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
+    >
       <InternshipCompanyInfo
         name={internshipInfo.companyName}
         title={internshipInfo.position}
@@ -25,11 +30,12 @@ const TrackerCard = ({ id, dateAdded, appliedDate }) => {
       <Box display="flex" flexDirection="column" paddingY={1.5}>
         {internshipInfo.datePosted && (
           <Typography variant="body3">
-            Posted: {format(internshipInfo.datePosted, 'LLLL d, y')}
+            Posted: {format(new Date(internshipInfo.datePosted), 'LLLL d, y')}
           </Typography>
         )}
         <Typography variant="body3">
-          Applied: {appliedDate ? format(appliedDate, 'LLLL d, y') : 'No'}
+          Applied:
+          {appliedDate ? format(new Date(appliedDate), 'LLLL d, y') : 'No'}
         </Typography>
       </Box>
       <Typography variant="body2" textAlign="right">

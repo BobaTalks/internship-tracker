@@ -12,7 +12,7 @@ import BasePage from './BasePage';
  */
 const HomePage = (props) => {
   return (
-    <BasePage>
+    <BasePage isHomePage={true}>
       <BackgroundShapes />
       <Stack spacing={5} sx={{ zIndex: 0 }} minWidth="100%">
         <HomePageContent />
