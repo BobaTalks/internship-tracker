@@ -2,17 +2,14 @@ import { Box, Card, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import React from 'react';
 
-import { MOCK_INTERNSHIP_DATA } from '../utils/mockData';
+import { getInternshipFromTrackedId } from '../utils/helper';
 import InternshipCompanyInfo from './InternshipCompanyInfo';
-
 const TrackerCard = ({ id, dateAdded, appliedDate }) => {
   const dayjs = require('dayjs');
   const relativeTime = require('dayjs/plugin/relativeTime');
   dayjs.extend(relativeTime);
 
-  const internshipInfo = MOCK_INTERNSHIP_DATA.find((internship) => {
-    return internship.id === id;
-  });
+  const internshipInfo = getInternshipFromTrackedId(id);
 
   return (
     <Card sx={{ p: '1rem', borderRadius: 3, width: '18rem' }}>
