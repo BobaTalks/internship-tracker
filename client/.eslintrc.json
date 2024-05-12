@@ -24,13 +24,7 @@
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module",
-    "requireConfigFile": false,
-    "babelOptions": {
-      "plugins": [
-        "@babel/plugin-syntax-import-assertions"
-      ]
-    }
+    "sourceType": "module"
   },
   "plugins": [
     "react",
