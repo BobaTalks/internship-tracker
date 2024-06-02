@@ -40,6 +40,7 @@ const InternshipCard = ({
                 name={companyName}
                 title={position}
                 location={location}
+                isTracker={false}
               />
             </Grid>
             <Grid
@@ -66,16 +67,17 @@ const InternshipCard = ({
           </Grid>
           <Grid
             item
-            mt={8}
+            mt={4}
             direction="row"
             container
             justifyContent="space-between"
             alignItems="center"
+            gap={4}
           >
             <PostedOn date={datePosted} />
             <SaveAndApply link={jobLink} isSaved={isSaved} />
           </Grid>
-          <Grid item mt={4}>
+          <Grid item mt={{ xs: 4, sm: 2 }}>
             <JobDescription
               description={jobDesc}
               requirements={jobReqs}

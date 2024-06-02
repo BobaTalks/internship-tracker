@@ -5,6 +5,7 @@ import FiltersBar from '../components/FiltersBar';
 import SearchBar from '../components/SearchBar';
 import SearchResults from '../components/SearchResults';
 import FilterContext from '../contexts/FilterContext';
+import { MOCK_FILTER_DATA, MOCK_INTERNSHIP_DATA } from '../utils/mockData';
 import BasePage from './BasePage';
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/28
