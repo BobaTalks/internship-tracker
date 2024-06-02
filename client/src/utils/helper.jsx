@@ -4,7 +4,7 @@ import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import WorkOutlineRoundedIcon from '@mui/icons-material/WorkOutlineRounded';
 import React from 'react';
 
-import { MOCK_INTERNSHIP_DATA } from '../utils/mockData';
+import { MOCK_INTERNSHIP_DATA } from './mockData';
 
 // returns the correct icon depending on the corresponding filter the tag is showing
 export const getLabelIcon = (filter) => {

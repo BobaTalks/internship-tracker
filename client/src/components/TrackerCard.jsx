@@ -1,6 +1,6 @@
 import { Box, Card, Typography } from '@mui/material';
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { getInternshipFromTrackedId } from '../utils/helper';
 import InternshipCompanyInfo from './InternshipCompanyInfo';
@@ -10,7 +10,7 @@ const TrackerCard = ({ id, dateAdded, appliedDate, provided }) => {
   const relativeTime = require('dayjs/plugin/relativeTime');
   dayjs.extend(relativeTime);
 
-  const internshipInfo = getInternshipFromTrackedId(id);
+  const internshipInfo = useMemo(() => getInternshipFromTrackedId(id), [id]);
 
   return (
     <Card

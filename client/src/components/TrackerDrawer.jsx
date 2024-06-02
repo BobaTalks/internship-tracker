@@ -1,12 +1,15 @@
 import { Box, Divider, Drawer, Grid, Stack } from '@mui/material';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { getInternshipFromTrackedId, getLabelIcon } from '../utils/helper';
 import InternshipCompanyInfo from './InternshipCompanyInfo';
 import InternshipTag from './InternshipTag';
 
 const TrackerDrawer = ({ internship }) => {
-  const internshipInfo = getInternshipFromTrackedId(internship.id);
+  const internshipInfo = useMemo(
+    () => getInternshipFromTrackedId(internship.id),
+    [internship.id]
+  );
 
   return (
     <Drawer open={true} anchor="right">
