@@ -72,17 +72,22 @@ const AuthComponent = () => {
       setShowErrorMessage(
         'Incorrect email or password. All passwords must be at least 6 characters.'
       );
-    } else if (rememberMe) {
+      return;
+    }
+
+    if (rememberMe) {
       secureLocalStorage.setItem('email', email);
       secureLocalStorage.setItem('password', password);
       secureLocalStorage.setItem('rememberMe', rememberMe);
     }
+    setAuthUser(email);
+    // TODO: add code to store or check user in database and set authContext with updated user info
   };
   const googleSignUp = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         setAuthUser(result.user.email);
-        // TODO: add code to store or check user in database
+        // TODO: add code to store or check user in database and set authContext with updated user info
         secureLocalStorage.setItem('email', result.user.email);
         navigate('/search');
       })

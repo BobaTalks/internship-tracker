@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 
-const ErrorMessage = ({ message }) => {
+const ErrorMessage = ({ message, sx }) => {
   return (
     <Box
       alignItems="center"
@@ -9,6 +9,7 @@ const ErrorMessage = ({ message }) => {
       padding="1rem 1.5rem"
       borderRadius="5px"
       mt=".5rem"
+      sx={sx}
     >
       <Typography variant="body2" fontWeight="600" color="error.main">
         {message}

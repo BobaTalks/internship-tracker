@@ -24,6 +24,9 @@ const ErrorPage = React.lazy(() => import('./pages/ErrorPage'));
 const TestPage = React.lazy(() => import('./pages/TestPage')); // temporary - to be deleted
 const SignInPage = React.lazy(() => import('./pages/SignInPage'));
 const TrackerPage = React.lazy(() => import('./pages/TrackerPage'));
+const AccountSettingsPage = React.lazy(() =>
+  import('./pages/AccountSettingsPage')
+);
 
 const App = () => {
   const [authUser, setAuthUser] = useState(() => {
@@ -51,6 +54,10 @@ const App = () => {
               {/* temporary - to be deleted */}
               <Route path="/signin" element={withSuspense(SignInPage)} />
               <Route path="/tracker" element={withSuspense(TrackerPage)} />
+              <Route
+                path="/account"
+                element={withSuspense(AccountSettingsPage)}
+              />
               <Route path="*" element={withSuspense(ErrorPage)} />
             </Routes>
           </TrackerContext.Provider>
