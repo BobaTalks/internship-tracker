@@ -53,7 +53,6 @@ const AuthComponent = ({ isSignInPage }) => {
   const handleCheckbox = (event) => {
     setRememberMe(event.target.checked);
   };
-
   return (
     <Grid
       container
