@@ -36,9 +36,9 @@ jobs:
           npm install eslint@8.10.0 prettier@2.8.4
 
       - name: Run ESLint
-        run: npx eslint client/.
-          --config ./client/.eslintrc.json
-          --ext .js,.jsx,.ts,.tsx
+        run: |
+          cd client
+          npx eslint . --config .eslintrc.json
         continue-on-error: false
 
       # - name: Run Prettier
