@@ -2,6 +2,7 @@ import { Box, Stack } from '@mui/material';
 import React, { useContext } from 'react';
 
 import TrackerCard from '../components/TrackerCard';
+import TrackerDrawer from '../components/TrackerDrawer';
 import TrackerContext from '../contexts/TrackerContext';
 import BasePage from './BasePage';
 
@@ -23,6 +24,7 @@ const TestPage = () => {
           ))}
         </Stack>
       </Box>
+      <TrackerDrawer internship={trackedInternships[3]} />
     </BasePage>
   );
 };
