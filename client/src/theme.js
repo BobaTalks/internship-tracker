@@ -86,6 +86,7 @@ let theme = createTheme({
     body1: { fontSize: '1rem', fontWeight: '600' },
     body2: { fontSize: '0.8rem' },
     body3: { fontSize: '0.9rem' },
+    body4: { fontSize: '1rem', lineHeight: '1.5rem' },
     navText: {
       fontSize: '.8rem',
       fontWeight: 600,
@@ -183,6 +184,38 @@ let theme = createTheme({
             color: COLORS.CARD_BG,
             '&:hover': {
               backgroundColor: COLORS.LOGO_BROWN,
+              boxShadow: BUTTON_SHADOW,
+            },
+          },
+        },
+        {
+          props: { variant: 'redContained' },
+          style: {
+            textTransform: 'none',
+            fontSize: '.9rem',
+            borderRadius: '1rem',
+            backgroundColor: COLORS.ERROR_BUTTON,
+            fontWeight: 600,
+            padding: '.6rem 3rem',
+            color: COLORS.CARD_BG,
+            '&:hover': {
+              backgroundColor: COLORS.ERROR_BUTTON,
+              boxShadow: BUTTON_SHADOW,
+            },
+          },
+        },
+        {
+          props: { variant: 'redOutlined' },
+          style: {
+            textTransform: 'none',
+            fontSize: '.9rem',
+            borderRadius: '1rem',
+            border: `1px solid ${COLORS.ERROR_BUTTON}`,
+            backgroundColor: COLORS.CARD_BG,
+            color: COLORS.ERROR_BUTTON,
+            padding: '.6rem 3rem',
+            '&:hover': {
+              backgroundColor: COLORS.CARD_BG,
               boxShadow: BUTTON_SHADOW,
             },
           },

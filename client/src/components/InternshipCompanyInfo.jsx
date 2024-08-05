@@ -41,46 +41,44 @@ const InternshipCompanyInfo = (props) => {
       <Avatar
         src={getCompanyIcon(props.name)}
         variant="rounded"
-        sx={{ width: '4rem', height: '4rem', marginTop: '0.25rem' }}
+        sx={{
+          width: props.isTracker ? '2.4rem' : '4rem',
+          height: props.isTracker ? '2.4rem' : '4rem',
+          marginTop: props.isTracker ? null : '0.25rem',
+        }}
       />
-      <Box sx={{ paddingLeft: '1rem', marginTop: '-0.25rem' }}>
-        <Typography
-          variant="h5"
+      <Box
+        sx={{
+          paddingLeft: props.isTracker ? 0 : '1rem',
+          marginTop: '-0.25rem',
+        }}
+      >
+        <Stack
           sx={{
-            color: 'secondary.dark',
-            fontWeight: '600',
-            lineHeight: '2.25rem',
+            paddingLeft: '1rem',
+            marginTop: props.isTracker ? null : '-0.25rem',
           }}
-        />
-        <Stack sx={{ paddingLeft: '1rem', marginTop: '-0.25rem' }}>
+        >
           <Typography
-            variant="h5"
+            variant={props.isTracker ? 'subtitle' : 'h5'}
             sx={{
-              color: 'secondary.dark',
+              color: props.isTracker ? null : 'secondary.dark',
               fontWeight: '600',
-              lineHeight: '2.25rem',
+              lineHeight: props.isTracker ? '1.5rem' : '2.25rem',
             }}
           >
             {props.name}
           </Typography>
           <Typography
-            variant="body3"
-            sx={{
-              lineHeight: '1.5rem',
-              marginTop: '-0.25rem',
-            }}
+            noWrap={props.isTracker}
+            width={props.isTracker ? '12rem' : null}
+            variant={props.isTracker ? 'body3' : 'body4'}
           >
             {props.title}
           </Typography>
-          <Typography
-            variant="body3"
-            sx={{
-              fontSize: '1rem',
-              lineHeight: '1.5rem',
-            }}
-          >
-            {props.location}
-          </Typography>
+          {!props.isTracker && (
+            <Typography variant="body4">{props.location}</Typography>
+          )}
         </Stack>
       </Box>
     </Box>
