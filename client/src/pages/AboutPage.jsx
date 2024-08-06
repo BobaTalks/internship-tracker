@@ -3,16 +3,13 @@ import React from 'react';
 
 // all of the boba icons
 import AliceBoba from '../assets/boba_icons/icon-Alice_Boba.svg';
-import AnthonyBoba from '../assets/boba_icons/icon-Anthony_Boba.svg';
 import BrandonCBoba from '../assets/boba_icons/icon-BrandonC_Boba.svg';
 import BrandonVBoba from '../assets/boba_icons/icon-BrandonV_Boba.svg';
-import DarrenBoba from '../assets/boba_icons/icon-Darren_Boba.svg';
-import FaithBoba from '../assets/boba_icons/icon-Faith_Boba.svg';
+import GaroBoba from '../assets/boba_icons/icon-Garo_Boba.svg';
 import JennaBoba from '../assets/boba_icons/icon-Jenna_Boba.svg';
 import JessicaBoba from '../assets/boba_icons/icon-Jessica_Boba.svg';
 import KrystalBoba from '../assets/boba_icons/icon-Krystal_Boba.svg';
 import LaraBoba from '../assets/boba_icons/icon-Lara_Boba.svg';
-import LilyBoba from '../assets/boba_icons/icon-Lily_Boba.svg';
 import LynnBoba from '../assets/boba_icons/icon-Lynn_Boba.svg';
 import MarrianeBoba from '../assets/boba_icons/icon-Marriane_Boba.svg';
 import NancyBoba from '../assets/boba_icons/icon-Nancy_Boba.svg';
@@ -40,20 +37,20 @@ const teamMembers = {
         icon: VictoriaBoba,
       },
       {
+        name: 'Garo Tawidian',
+        pronouns: '(he/him)',
+        position: 'Product Manager',
+        linkedIn: 'https://www.linkedin.com/in/garo-tawidian/',
+        website: '',
+        icon: GaroBoba,
+      },
+      {
         name: 'Krystal Nguyen',
         pronouns: '(she/her)',
         position: 'Product Manager',
         linkedIn: 'http://www.linkedin.com/in/krystalpnguyen',
         website: '',
         icon: KrystalBoba,
-      },
-      {
-        name: 'Faith Lee',
-        pronouns: '(she/her)',
-        position: 'Product Manager Shadow',
-        linkedIn: '',
-        website: '',
-        icon: FaithBoba,
       },
     ],
   },
@@ -166,30 +163,6 @@ const teamMembers = {
         website: '',
         icon: RaziBoba,
       },
-      {
-        name: 'Darren Lee',
-        pronouns: '(he/him)',
-        position: 'Backend Software Engineer',
-        linkedIn: 'https://www.linkedin.com/in/darrenlee09/',
-        website: '',
-        icon: DarrenBoba,
-      },
-      {
-        name: 'Lily Meng',
-        pronouns: '(she/her)',
-        position: 'Backend Software Engineer',
-        linkedIn: 'https://www.linkedin.com/in/lilyxmeng/',
-        website: '',
-        icon: LilyBoba,
-      },
-      {
-        name: 'Anthony Camarillo',
-        pronouns: '(he/him)',
-        position: 'Backend Software Engineer',
-        linkedIn: 'https://www.linkedin.com/in/anthony-camarillo/',
-        website: '',
-        icon: AnthonyBoba,
-      },
     ],
   },
 };
@@ -255,10 +228,10 @@ const AboutPage = () => {
               on the BobaTalks website. We started this project in November 2022
               of creating a fun and student-friendly way to look for and track
               internships. We all hope this tool can help you be able to find
-              and track internships as you start going into application season
-              :) I also want to thank the original team, mentors, and all the
+              and track internships as you start going into application season!
+              I also want to thank the original team, mentors, and all the
               open-source volunteers who took the time to help this idea become
-              a reality &lt;3
+              a reality ❤️
             </Typography>
           </Grid>
           <Grid
