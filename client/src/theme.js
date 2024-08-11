@@ -246,6 +246,14 @@ let theme = createTheme({
           fontSize: '1rem !important',
         },
       },
+      styleOverrides: {
+        input: {
+          '&:-webkit-autofill': {
+            WebkitBoxShadow: '0 0 0 100px #fce8e3 inset',
+            WebkitTextFillColor: COLORS.BODY_TEXT,
+          },
+        },
+      },
     },
     MuiTextField: {
       defaultProps: {
