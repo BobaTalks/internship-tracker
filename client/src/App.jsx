@@ -24,6 +24,7 @@ const ErrorPage = React.lazy(() => import('./pages/ErrorPage'));
 const TestPage = React.lazy(() => import('./pages/TestPage')); // temporary - to be deleted
 const SignInPage = React.lazy(() => import('./pages/SignInPage'));
 const TrackerPage = React.lazy(() => import('./pages/TrackerPage'));
+const SignUpPage = React.lazy(() => import('./pages/SignUpPage'));
 
 const App = () => {
   const [authUser, setAuthUser] = useState(() => {
@@ -47,9 +48,10 @@ const App = () => {
               <Route path="/" element={withSuspense(HomePage)} />
               <Route path="/search" element={withSuspense(SearchResultsPage)} />
               <Route path="/about" element={withSuspense(AboutPage)} />
-              <Route path="/test" element={withSuspense(TestPage)} />
               {/* temporary - to be deleted */}
+              <Route path="/test" element={withSuspense(TestPage)} />
               <Route path="/signin" element={withSuspense(SignInPage)} />
+              <Route path="/signup" element={withSuspense(SignUpPage)} />
               <Route path="/tracker" element={withSuspense(TrackerPage)} />
               <Route path="*" element={withSuspense(ErrorPage)} />
             </Routes>
