@@ -28,29 +28,29 @@ export const getSearchInternships = async (searchOptions) => {
  * @param {string} internshipId
  * @return {*}
  */
-export const postSaveInternship = (internshipId) => {
-  const url = '';
-  const options = {};
+// export const postSaveInternship = (internshipId) => {
+//   const url = '';
+//   const options = {};
 
-  return [
-    // Fill out mock data here
-  ];
+//   return [
+//     // Fill out mock data here
+//   ];
 
-  // return axios.post(url, options);
-};
+//   // return axios.post(url, options);
+// };
 
-/**
- * Fetch user internships to be organized by swimlane categories. Internship data for this
- * page will have to be determined
- *
- * @return {Promise<UserInternship[]>}
- */
-export const getUserInternships = () => {
-  const url = '';
-  const options = {};
+// /**
+//  * Fetch user internships to be organized by swimlane categories. Internship data for this
+//  * page will have to be determined
+//  *
+//  * @return {Promise<UserInternship[]>}
+//  */
+// export const getUserInternships = () => {
+//   const url = '';
+//   const options = {};
 
-  return [
-    // Fill out mock data here
-  ];
-  // return axios.get(url, options);
-};
+//   return [
+//     // Fill out mock data here
+//   ];
+//   // return axios.get(url, options);
+// };
