@@ -16,7 +16,6 @@ import BasePage from './BasePage';
 const allNotChecked = (data) => {
   let isThereChecked = false;
   Object.entries(data).forEach(([key, value]) => {
-    console.log(value);
     if (value.checked) {
       isThereChecked = true;
     }
@@ -36,10 +35,7 @@ const SearchResultsPage = () => {
       return;
     }
 
-    console.log(filterData);
-
     let newInternshipData = [...MOCK_INTERNSHIP_DATA];
-    console.log('new internship data before: ');
     let internshipsRemoved = 0;
     MOCK_INTERNSHIP_DATA.forEach((internship, index) => {
       for (const [key, value] of Object.entries(filterData)) {
@@ -68,7 +64,6 @@ const SearchResultsPage = () => {
             break;
           }
         } else if (key === 'company') {
-          console.log('penis: ' + internship.companyName.toLowerCase());
           if (
             value.data[internship.companyName.toLowerCase()].checked === false
           ) {
