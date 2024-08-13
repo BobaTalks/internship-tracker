@@ -2,6 +2,7 @@
 import axios from 'axios';
 
 import { test_url } from './constants';
+import { MOCK_INTERNSHIP_DATA } from './mockData';
 const url = process.env.BASE_URL || test_url;
 
 /**
@@ -54,3 +55,9 @@ export const getSearchInternships = async (searchOptions) => {
 //   ];
 //   // return axios.get(url, options);
 // };
+
+// TODO: replace with database query once backend is completed
+export const getInternshipFromTrackedId = (id) =>
+  MOCK_INTERNSHIP_DATA.find((mockInternship) => {
+    return mockInternship.id === id;
+  });
