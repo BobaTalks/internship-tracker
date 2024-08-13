@@ -1,7 +1,7 @@
 import { Box, CircularProgress, Typography } from '@mui/material';
 import React from 'react';
 
-const Loading = () => {
+const Loading = ({ sx }) => {
   return (
     <Box
       display="flex"
@@ -9,6 +9,7 @@ const Loading = () => {
       justifyContent="center"
       alignItems="center"
       bgcolor="background.main"
+      sx={sx}
     >
       <Typography variant="h5" color="tertiary.contrastText" mr={2}>
         Loading...

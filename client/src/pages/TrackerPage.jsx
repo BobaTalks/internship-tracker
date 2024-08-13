@@ -6,6 +6,7 @@ import IconTextField from '../components/IconTextField';
 import SearchButton from '../components/SearchButton';
 import TrackerColumn from '../components/TrackerColumn';
 import TrackerContext from '../contexts/TrackerContext';
+import TrackerDrawer from '../components/TrackerDrawer';
 import BasePage from './BasePage';
 
 const TrackerPage = () => {
@@ -23,10 +24,31 @@ const TrackerPage = () => {
     );
     return items;
   });
+  const [clickedInternship, setClickedInternship] = useState(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const [search, setSearch] = useState('');
   const handleClick = () => {};
   const CHANGE_PLACEHOLDER_WIDTH = 630;
+
+  const trackerColumns = [
+    {
+      label: 'Saved',
+      trackedItemsKey: 'saved',
+    },
+    {
+      label: 'Applied',
+      trackedItemsKey: 'applied',
+    },
+    {
+      label: 'Responded',
+      trackedItemsKey: 'responded',
+    },
+    {
+      label: 'Archived',
+      trackedItemsKey: 'archived',
+    },
+  ];
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
@@ -71,8 +93,19 @@ const TrackerPage = () => {
       }));
     }
   };
+
+  const onCardClick = (internship) => {
+    setClickedInternship(internship);
+    setIsDrawerOpen(true);
+  };
+
   return (
     <BasePage isTrackerPage={true}>
+      <TrackerDrawer
+        internship={clickedInternship}
+        isDrawerOpen={isDrawerOpen}
+        setIsDrawerOpen={setIsDrawerOpen}
+      />
       <Typography variant="pageTitle">Internship Tracker</Typography>
       <Grid container spacing={2} paddingY={2}>
         <Grid item xs>
@@ -98,13 +131,19 @@ const TrackerPage = () => {
         sx={{ flexGrow: 1 }}
       >
         <DragDropContext onDragEnd={onDragEnd}>
-          <TrackerColumn category="Saved" cards={trackerItems.saved} />
-          <Divider orientation="vertical" />
-          <TrackerColumn category="Applied" cards={trackerItems.applied} />
-          <Divider orientation="vertical" />
-          <TrackerColumn category="Responded" cards={trackerItems.responded} />
-          <Divider orientation="vertical" />
-          <TrackerColumn category="Archived" cards={trackerItems.archived} />
+          {trackerColumns.map((col, idx) => (
+            <>
+              <TrackerColumn
+                key={col.trackedItemsKey}
+                category={col.label}
+                cards={trackerItems[col.trackedItemsKey]}
+                cardOnClick={onCardClick}
+              />
+              {idx !== trackerColumns.length - 1 && (
+                <Divider orientation="vertical" />
+              )}
+            </>
+          ))}
         </DragDropContext>
       </Box>
     </BasePage>

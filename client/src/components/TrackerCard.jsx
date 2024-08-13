@@ -5,7 +5,7 @@ import React, { useMemo } from 'react';
 import { getInternshipFromTrackedId } from '../utils/helper';
 import InternshipCompanyInfo from './InternshipCompanyInfo';
 
-const TrackerCard = ({ id, dateAdded, appliedDate, provided }) => {
+const TrackerCard = ({ id, dateAdded, appliedDate, provided, cardOnClick }) => {
   const dayjs = require('dayjs');
   const relativeTime = require('dayjs/plugin/relativeTime');
   dayjs.extend(relativeTime);
@@ -18,6 +18,7 @@ const TrackerCard = ({ id, dateAdded, appliedDate, provided }) => {
       ref={provided.innerRef}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
+      onClick={() => cardOnClick(internshipInfo)}
     >
       <InternshipCompanyInfo
         name={internshipInfo.companyName}
