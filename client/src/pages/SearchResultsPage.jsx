@@ -164,7 +164,7 @@ const SearchResultsPage = () => {
       }
     });
     setDisplayedInternships(newInternshipData);
-  }, [filterData]);
+  }, [filterData, initialRender]);
 
   return (
     <FilterContext.Provider value={[filterData, setFilterData]}>
