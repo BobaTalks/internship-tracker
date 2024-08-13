@@ -1,7 +1,7 @@
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Card, CardContent, Grid } from '@mui/material';
 import React from 'react';
 
+import { getLabelIcon } from '../utils/helper';
 import InternshipCompanyInfo from './InternshipCompanyInfo';
 import InternshipTag from './InternshipTag';
 import JobDescription from './JobDescription';
@@ -20,10 +20,6 @@ const InternshipCard = ({
   jobResp,
   jobLink,
 }) => {
-  const getLabelIcon = (filter) => {
-    // returns the correct icon depending on the corresponding filter the tag is showing
-    return <AccessTimeIcon />;
-  };
   return (
     <Card sx={{ py: { xs: 1.5, md: 3 }, px: { xs: 2.5, md: 5 } }}>
       <CardContent>
