@@ -5,8 +5,8 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import IconTextField from '../components/IconTextField';
 import SearchButton from '../components/SearchButton';
 import TrackerColumn from '../components/TrackerColumn';
-import TrackerContext from '../contexts/TrackerContext';
 import TrackerDrawer from '../components/TrackerDrawer';
+import TrackerContext from '../contexts/TrackerContext';
 import BasePage from './BasePage';
 
 const TrackerPage = () => {
