@@ -4,7 +4,7 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 import TrackerCard from '../components/TrackerCard';
 
-const StrictModeDroppable = ({ cards, category }) => {
+const StrictModeDroppable = ({ cards, category, cardOnClick }) => {
   const [enabled, setEnabled] = React.useState(false);
   React.useEffect(() => {
     const animation = requestAnimationFrame(() => setEnabled(true));
@@ -61,6 +61,7 @@ const StrictModeDroppable = ({ cards, category }) => {
                       id={item.internshipId}
                       dateAdded={item.dateAdded}
                       appliedDate={item.appliedDate}
+                      cardOnClick={cardOnClick}
                     />
                   );
                 }}
