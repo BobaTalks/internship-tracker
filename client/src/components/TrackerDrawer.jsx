@@ -1,7 +1,8 @@
 import { Box, Divider, Drawer, Grid, Stack } from '@mui/material';
 import React from 'react';
 
-import { getInternshipFromTrackedId, getLabelIcon } from '../utils/helper';
+import { getInternshipFromTrackedId } from '../utils/api';
+import { getLabelIcon } from '../utils/helper';
 import InternshipCompanyInfo from './InternshipCompanyInfo';
 import InternshipTag from './InternshipTag';
 import Loading from './Loading';
