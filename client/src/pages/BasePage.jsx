@@ -29,7 +29,7 @@ const BasePage = ({ isTrackerPage = false, isHomePage = false, children }) => {
       sx={{ bgcolor: 'background.main', minHeight: '100vh' }}
       justifyContent="center"
     >
-      <Grid container item pt={isHomePage ? 0 : 25} {...containerFlexSize}>
+      <Grid container item pt={isHomePage ? 0 : '6rem'} {...containerFlexSize}>
         <NavBar />
         {children}
       </Grid>
