@@ -57,9 +57,9 @@ const AuthComponent = ({ isSignInPage }) => {
     <Grid
       container
       justifyContent="center"
-      mt={10}
       alignItems="center"
       spacing={0}
+      pb="2rem"
     >
       <Grid item xs={12} sm={9} md={7} lg={5}>
         <Typography variant="pageTitle">
