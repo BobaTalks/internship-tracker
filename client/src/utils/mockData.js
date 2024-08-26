@@ -47,11 +47,6 @@ export const MOCK_FILTER_DATA = {
         count: 2,
         checked: false,
       },
-      microsoft: {
-        label: 'Microsoft',
-        count: 5,
-        checked: false,
-      },
     },
   },
   education: {
@@ -204,11 +199,11 @@ export const MOCK_INTERNSHIP_DATA = [
         filter: 'semester',
       },
       {
-        name: 'on-site',
+        name: 'On-site',
         filter: 'remote',
       },
       {
-        name: 'current student',
+        name: 'Current student',
         filter: 'education',
       },
     ],
@@ -257,7 +252,7 @@ export const MOCK_INTERNSHIP_DATA = [
         filter: 'semester',
       },
       {
-        name: 'remote',
+        name: 'Remote',
         filter: 'remote',
       },
     ],

@@ -2,7 +2,6 @@
 import axios from 'axios';
 
 import { test_url } from './constants';
-import { MOCK_INTERNSHIP_DATA } from './mockData';
 const url = process.env.BASE_URL || test_url;
 
 /**
@@ -23,8 +22,35 @@ export const getSearchInternships = async (searchOptions) => {
   return response;
 };
 
-// TODO: replace with database query once backend is completed
-export const getInternshipFromTrackedId = (id) =>
-  MOCK_INTERNSHIP_DATA.find((mockInternship) => {
-    return mockInternship.id === id;
-  });
+/**
+ * Post to backend to save internship to account of logged in user
+ *
+ * @param {string} internshipId
+ * @return {*}
+ */
+export const postSaveInternship = (internshipId) => {
+  const url = '';
+  const options = {};
+
+  return [
+    // Fill out mock data here
+  ];
+
+  // return axios.post(url, options);
+};
+
+/**
+ * Fetch user internships to be organized by swimlane categories. Internship data for this
+ * page will have to be determined
+ *
+ * @return {Promise<UserInternship[]>}
+ */
+export const getUserInternships = () => {
+  const url = '';
+  const options = {};
+
+  return [
+    // Fill out mock data here
+  ];
+  // return axios.get(url, options);
+};

@@ -2,7 +2,7 @@ import { Box, Card, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import React, { useMemo } from 'react';
 
-import { getInternshipFromTrackedId } from '../utils/api';
+import { getInternshipFromTrackedId } from '../utils/helper';
 import InternshipCompanyInfo from './InternshipCompanyInfo';
 
 const TrackerCard = ({ id, dateAdded, appliedDate, provided, cardOnClick }) => {
