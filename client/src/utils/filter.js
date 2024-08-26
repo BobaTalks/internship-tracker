@@ -43,21 +43,16 @@ export function filterInternships(filterData) {
                 default:
                   break;
               }
-
               break;
             }
-
             default:
               break;
           }
-
           if (passFilter) break;
         }
       }
-
       if (!passFilter) return false;
     }
-
     return true;
   };
 }
