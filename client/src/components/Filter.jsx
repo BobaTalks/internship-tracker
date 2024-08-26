@@ -83,11 +83,11 @@ const Filter = ({ filterLabel }) => {
       setChecked(allFilterData[filterLabel].data);
       setButtonStatus(1);
     } else {
-      let newChecked = checked;
-      Object.entries(newChecked).forEach(([key, value]) => {
-        value.checked = false;
-      });
-      setChecked(newChecked);
+      setChecked(
+        Object.keys(checked).map(
+          (key) => (checked[key] = { ...checked[key], checked: false })
+        )
+      );
       setButtonStatus(0);
     }
   };
