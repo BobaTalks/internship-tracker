@@ -28,3 +28,34 @@ export const getInternshipFromTrackedId = (id) =>
   MOCK_INTERNSHIP_DATA.find((mockInternship) => {
     return mockInternship.id === id;
   });
+
+/**
+ * Fetch user account information to be displayed on account settings page
+ */
+export const getUserAccountInfo = async () => {
+  return MOCK_SIGNED_IN_USER;
+};
+
+/**
+ * Update user's first and last name in the database
+ * @param firstName user's updated first name
+ * @param fistName user's updated last name
+ */
+export const updateUserName = async (firstName, lastName) => {};
+
+/**
+ * Update user's email in the database
+ * @param email user's updated email
+ */
+export const updateUserEmail = async (email) => {};
+
+/**
+ * Update user's password in the database
+ * @param password user's updated password
+ */
+export const updateUserPassword = async (password) => {};
+
+/**
+ * Closes the current user's account
+ */
+export const closeUserAccount = async () => {};
