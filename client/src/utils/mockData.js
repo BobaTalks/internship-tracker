@@ -137,6 +137,12 @@ export const MOCK_INTERNSHIP_DATA = [
       {
         name: 'summer 24',
         filter: 'semester',
+        filterOption: 'summer2024',
+      },
+      {
+        name: 'hybrid',
+        filter: 'remote',
+        filterOption: 'hybrid',
       },
     ],
     jobInfo: {
@@ -154,15 +160,17 @@ export const MOCK_INTERNSHIP_DATA = [
     companyName: 'Apple',
     position: 'Software Engineer',
     location: 'Cupertino, CA',
-    datePosted: new Date('April 23, 2023'),
+    datePosted: new Date('August 15, 2024'),
     labels: [
       {
         name: 'summer 24',
         filter: 'semester',
+        filterOption: 'summer2024',
       },
       {
         name: 'hybrid',
         filter: 'remote',
+        filterOption: 'hybrid',
       },
     ],
     jobInfo: {
@@ -180,7 +188,7 @@ export const MOCK_INTERNSHIP_DATA = [
     companyName: 'Amazon',
     position: 'UI/UX Designer',
     location: 'Toronto, Canada',
-    datePosted: new Date('January 21, 2023'),
+    datePosted: new Date('August 26, 2024'),
     labels: [],
     jobInfo: {
       jobDesc:
@@ -197,19 +205,22 @@ export const MOCK_INTERNSHIP_DATA = [
     companyName: 'Google',
     position: 'Google STEP Program',
     location: 'Waterloo, Canada',
-    datePosted: new Date('September 10, 2023'),
+    datePosted: new Date('August 21, 2024'),
     labels: [
       {
         name: 'summer 24',
         filter: 'semester',
+        filterOption: 'summer2024',
       },
       {
         name: 'on-site',
         filter: 'remote',
+        filterOption: 'onsite',
       },
       {
         name: 'current student',
         filter: 'education',
+        filterOption: 'currentStudent',
       },
     ],
     jobInfo: {
@@ -233,6 +244,7 @@ export const MOCK_INTERNSHIP_DATA = [
       {
         name: 'summer 24',
         filter: 'semester',
+        filterOption: 'summer2024',
       },
     ],
     jobInfo: {
@@ -255,10 +267,12 @@ export const MOCK_INTERNSHIP_DATA = [
       {
         name: 'summer 24',
         filter: 'semester',
+        filterOption: 'summer2024',
       },
       {
         name: 'remote',
         filter: 'remote',
+        filterOption: 'remote',
       },
     ],
     jobInfo: {

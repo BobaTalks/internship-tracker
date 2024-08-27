@@ -84,7 +84,7 @@ const Filter = ({ filterLabel }) => {
       setButtonStatus(1);
     } else {
       let newChecked = checked;
-      Object.entries(newChecked).forEach(([key, value]) => {
+      Object.values(newChecked).forEach((value) => {
         value.checked = false;
       });
       setChecked(newChecked);
