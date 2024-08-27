@@ -1,29 +1,33 @@
 import {
   Button,
   Card,
-  FormControl,
   Grid,
-  InputLabel,
-  OutlinedInput,
+  Stack,
   TextField,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import BackgroundShapes from '../components/BackgroundShapes';
+import CloseAccountButton from '../components/CloseAccountButton';
 import ErrorMessage from '../components/ErrorMessage';
-import { MOCK_SIGNED_IN_USER } from '../utils/mockData';
+import SignOutButton from '../components/SignOutButton';
+import {
+  getUserAccountInfo,
+  updateUserEmail,
+  updateUserName,
+  updateUserPassword,
+} from '../utils/api';
+import { isEmailValid, isPasswordValid } from '../utils/helper';
 import BasePage from './BasePage';
 
 const AccountSettingsPage = () => {
-  const [firstName, setFirstName] = useState(MOCK_SIGNED_IN_USER.firstName);
-  const [lastName, setLastName] = useState(MOCK_SIGNED_IN_USER.lastName);
-  const [password, setPassword] = useState(MOCK_SIGNED_IN_USER.password);
-  const [confirmPassword, setConfirmPassword] = useState(
-    MOCK_SIGNED_IN_USER.password
-  );
-  const [email, setEmail] = useState(MOCK_SIGNED_IN_USER.email);
-  const [confirmEmail, setConfirmEmail] = useState(MOCK_SIGNED_IN_USER.email);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [confirmEmail, setConfirmEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
 
   const [editableFields, setEditableFields] = useState({
@@ -56,14 +60,21 @@ const AccountSettingsPage = () => {
           },
         ],
         buttonText: 'Save changes',
-        onSave: null,
+        getErrorMessage: async () => {
+          try {
+            await updateUserName(firstName, lastName);
+          } catch {
+            return 'There was a problem updating your name. Please try again later';
+          }
+          return null;
+        },
       },
     },
     {
       editableFieldKey: 'password',
       previewModeFields: {
         label: 'Password',
-        value: '*'.repeat(password.length),
+        value: '*'.repeat(password ? password.length : 0),
         buttonText: 'Change password',
       },
       editModeFields: {
@@ -74,7 +85,6 @@ const AccountSettingsPage = () => {
             isHidden: true,
             onChange: (event) => {
               setPassword(event.target.value);
-              setConfirmPassword('');
             },
           },
           {
@@ -85,12 +95,19 @@ const AccountSettingsPage = () => {
           },
         ],
         buttonText: 'Save password',
-        onSave: () => {
-          confirmPassword != password // also check password 6 chars long
-            ? setErrorMessage(
-                'Your password and confirmation password must match.'
-              )
-            : setErrorMessage(null);
+        getErrorMessage: async () => {
+          if (confirmPassword !== password) {
+            return 'Your password and confirmation password must match.';
+          } else if (!isPasswordValid(password)) {
+            return 'Your password must be at least 6 characters long.';
+          }
+
+          try {
+            await updateUserEmail(email);
+          } catch {
+            return 'There was a problem updating your email. Please try again later';
+          }
+          return null;
         },
       },
     },
@@ -109,7 +126,6 @@ const AccountSettingsPage = () => {
             isHidden: false,
             onChange: (event) => {
               setEmail(event.target.value);
-              setConfirmEmail('');
             },
           },
           {
@@ -120,17 +136,44 @@ const AccountSettingsPage = () => {
           },
         ],
         buttonText: 'Update email',
-        onSave: () => {
-          confirmEmail != email // also check email valid
-            ? setErrorMessage('Your email and confirmation email must match.')
-            : setErrorMessage(null);
-          return true;
+        getErrorMessage: async () => {
+          if (confirmEmail !== email) {
+            return 'Your email and confirmation email must match.';
+          } else if (!isEmailValid(email)) {
+            return 'Your email is invalid.';
+          }
+
+          try {
+            await updateUserPassword(password);
+          } catch {
+            return 'There was a problem updating your password. Please try again later';
+          }
+
+          return null;
         },
       },
     },
   ];
 
-  console.log(editableFields);
+  const fetchUserInfo = async () => {
+    try {
+      const userInfo = await getUserAccountInfo();
+      setFirstName(userInfo.firstName);
+      setLastName(userInfo.lastName);
+      setEmail(userInfo.email);
+      setConfirmEmail(userInfo.email);
+      setPassword(userInfo.password);
+      setConfirmPassword(userInfo.password);
+    } catch {
+      setErrorMessage(
+        'There was a problem loading your user information. Please try agian'
+      );
+    }
+  };
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
 
   return (
     <BasePage>
@@ -195,8 +238,9 @@ const AccountSettingsPage = () => {
                             borderColor: 'secondary.main',
                             color: 'secondary.main',
                           }}
-                          onClick={() => {
-                            edit.onSave(); // fix later
+                          onClick={async () => {
+                            const errorMessage = await edit.getErrorMessage();
+                            setErrorMessage(errorMessage);
                             if (!errorMessage) {
                               setEditableFields((prevFields) => ({
                                 ...prevFields,
@@ -257,6 +301,15 @@ const AccountSettingsPage = () => {
             {errorMessage && (
               <ErrorMessage message={errorMessage} sx={{ mt: '1.5rem' }} />
             )}
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              pt="2rem"
+            >
+              <SignOutButton />
+              <CloseAccountButton />
+            </Stack>
           </Card>
         </Grid>
       </Grid>
