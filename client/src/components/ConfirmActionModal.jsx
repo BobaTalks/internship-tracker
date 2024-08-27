@@ -33,7 +33,8 @@ const ConfirmActionModal = ({
           borderRadius: '2rem',
           boxShadow: 10,
           p: '1.6rem 2.2rem',
-          width: { xs: '95%', sm: '80%', md: '50%' },
+          maxWidth: { sm: '80%', md: '50%' },
+          width: { xs: '95%', sm: 'auto' },
         }}
       >
         <Stack direction="column" spacing={4}>

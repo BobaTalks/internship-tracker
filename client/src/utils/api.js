@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 import { test_url } from './constants';
-import { MOCK_INTERNSHIP_DATA } from './mockData';
+import { MOCK_INTERNSHIP_DATA, MOCK_SIGNED_IN_USER } from './mockData';
 const url = process.env.BASE_URL || test_url;
 
 /**
