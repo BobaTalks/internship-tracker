@@ -294,6 +294,43 @@ export const MOCK_TRACKER_DATA = [
     dateAdded: new Date('December 9, 2023, 5:54 PM'),
     label: 'saved',
     appliedDate: new Date('July 10, 2023'),
+    notes: [
+      {
+        date: new Date('September 8, 2023, 3:34 PM'),
+        message:
+          'Recruiter replied (samsample@netflix.com) and set phone screen for next week',
+      },
+      {
+        date: new Date('September 8, 2023, 3:34 PM'),
+        message:
+          'Recruiter replied (samsample@netflix.com) and set phone screen for next week',
+      },
+      {
+        date: new Date('September 8, 2023, 3:34 PM'),
+        message:
+          'Recruiter replied (samsample@netflix.com) and set phone screen for next week',
+      },
+      {
+        date: new Date('September 8, 2023, 3:34 PM'),
+        message:
+          'Recruiter replied (samsample@netflix.com) and set phone screen for next week',
+      },
+      {
+        date: new Date('September 8, 2023, 3:34 PM'),
+        message:
+          'Recruiter replied (samsample@netflix.com) and set phone screen for next week',
+      },
+      {
+        date: new Date('September 8, 2023, 3:34 PM'),
+        message:
+          'Recruiter replied (samsample@netflix.com) and set phone screen for next week',
+      },
+      {
+        date: new Date('January 5, 2025, 11:30 PM'),
+        message:
+          'E-mail reply from Sam for pass/no pass screen in 3-4 business days',
+      },
+    ],
   },
   {
     id: 2,
@@ -301,6 +338,7 @@ export const MOCK_TRACKER_DATA = [
     dateAdded: new Date('January 3, 2021'),
     label: 'saved',
     appliedDate: new Date('August 2, 2023'),
+    notes: [],
   },
   {
     id: 3,
@@ -308,6 +346,18 @@ export const MOCK_TRACKER_DATA = [
     dateAdded: new Date('July 3, 2023'),
     label: 'applied',
     appliedDate: null,
+    notes: [
+      {
+        date: new Date('September 8, 2023, 3:34 PM'),
+        message:
+          'Recruiter replied (samsample@netflix.com) and set phone screen for next week',
+      },
+      {
+        date: new Date('September 9, 2023, 12:23 PM'),
+        message:
+          'E-mail reply from Sam for pass/no pass screen in 3-4 business days',
+      },
+    ],
   },
   {
     id: 4,
@@ -315,6 +365,18 @@ export const MOCK_TRACKER_DATA = [
     dateAdded: new Date('December 7, 2023'),
     label: 'responded',
     appliedDate: null,
+    notes: [
+      {
+        date: new Date('September 8, 2023, 3:34 PM'),
+        message:
+          'Recruiter replied (samsample@netflix.com) and set phone screen for next week',
+      },
+      {
+        date: new Date('September 9, 2023, 12:23 PM'),
+        message:
+          'E-mail reply from Sam for pass/no pass screen in 3-4 business days',
+      },
+    ],
   },
   {
     id: 5,
@@ -322,5 +384,17 @@ export const MOCK_TRACKER_DATA = [
     dateAdded: new Date('December 9, 2023'),
     label: 'archived',
     appliedDate: null,
+    notes: [
+      {
+        date: new Date('September 8, 2023, 3:34 PM'),
+        message:
+          'Recruiter replied (samsample@netflix.com) and set phone screen for next week',
+      },
+      {
+        date: new Date('September 9, 2023, 12:23 PM'),
+        message:
+          'E-mail reply from Sam for pass/no pass screen in 3-4 business days',
+      },
+    ],
   },
 ];

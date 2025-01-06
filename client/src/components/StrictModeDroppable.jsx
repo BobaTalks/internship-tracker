@@ -58,7 +58,8 @@ const StrictModeDroppable = ({ cards, category, cardOnClick }) => {
                     <TrackerCard
                       provided={provided}
                       key={item.id}
-                      id={item.internshipId}
+                      trackerId={item.id}
+                      internshipId={item.internshipId}
                       dateAdded={item.dateAdded}
                       appliedDate={item.appliedDate}
                       cardOnClick={cardOnClick}

@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 import { test_url } from './constants';
-import { MOCK_INTERNSHIP_DATA } from './mockData';
+import { MOCK_INTERNSHIP_DATA, MOCK_TRACKER_DATA } from './mockData';
 const url = process.env.BASE_URL || test_url;
 
 /**
@@ -24,7 +24,15 @@ export const getSearchInternships = async (searchOptions) => {
 };
 
 // TODO: replace with database query once backend is completed
-export const getInternshipFromTrackedId = (id) =>
+
+export const getInternshipById = (id) =>
   MOCK_INTERNSHIP_DATA.find((mockInternship) => {
     return mockInternship.id === id;
   });
+
+export const getTrackerInfoById = (id) =>
+  MOCK_TRACKER_DATA.find((trackedInternship) => trackedInternship.id === id);
+
+export const addNote = (trackerId, message) => {
+  // TODO: add note with "message" as text to tracked internship with id "trackerId" (add date to note in backend)
+};
