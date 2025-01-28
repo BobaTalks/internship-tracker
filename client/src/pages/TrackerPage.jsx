@@ -1,5 +1,5 @@
 import { Box, Divider, Grid, Typography } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import IconTextField from '../components/IconTextField';
@@ -81,6 +81,7 @@ const TrackerPage = () => {
       destCol.splice(destination.index, 0, removed);
       destCol[destination.index]['label'] = dInd;
 
+      // TODO: replace with update to database
       setTrackedInternships((prevState) => ({
         ...prevState,
         label: dInd,
@@ -102,7 +103,7 @@ const TrackerPage = () => {
   return (
     <BasePage isTrackerPage={true}>
       <TrackerDrawer
-        internship={clickedInternship}
+        trackedInternship={clickedInternship}
         isDrawerOpen={isDrawerOpen}
         setIsDrawerOpen={setIsDrawerOpen}
       />
@@ -132,9 +133,8 @@ const TrackerPage = () => {
       >
         <DragDropContext onDragEnd={onDragEnd}>
           {trackerColumns.map((col, idx) => (
-            <>
+            <Fragment key={col.trackedItemsKey}>
               <TrackerColumn
-                key={col.trackedItemsKey}
                 category={col.label}
                 cards={trackerItems[col.trackedItemsKey]}
                 cardOnClick={onCardClick}
@@ -142,7 +142,7 @@ const TrackerPage = () => {
               {idx !== trackerColumns.length - 1 && (
                 <Divider orientation="vertical" />
               )}
-            </>
+            </Fragment>
           ))}
         </DragDropContext>
       </Box>

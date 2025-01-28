@@ -2,15 +2,26 @@ import { Box, Card, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import React, { useMemo } from 'react';
 
-import { getInternshipFromTrackedId } from '../utils/api';
+import { getInternshipById, getTrackerInfoById } from '../utils/api';
 import InternshipCompanyInfo from './InternshipCompanyInfo';
 
-const TrackerCard = ({ id, dateAdded, appliedDate, provided, cardOnClick }) => {
+const TrackerCard = ({
+  trackerId,
+  internshipId,
+  dateAdded,
+  appliedDate,
+  provided,
+  cardOnClick,
+}) => {
   const dayjs = require('dayjs');
   const relativeTime = require('dayjs/plugin/relativeTime');
   dayjs.extend(relativeTime);
 
-  const internshipInfo = useMemo(() => getInternshipFromTrackedId(id), [id]);
+  const trackerInfo = useMemo(() => getTrackerInfoById(trackerId), [trackerId]);
+  const internshipInfo = useMemo(
+    () => getInternshipById(internshipId),
+    [internshipId]
+  );
 
   return (
     <Card
@@ -18,7 +29,7 @@ const TrackerCard = ({ id, dateAdded, appliedDate, provided, cardOnClick }) => {
       ref={provided.innerRef}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
-      onClick={() => cardOnClick(internshipInfo)}
+      onClick={() => cardOnClick(trackerInfo)}
     >
       <InternshipCompanyInfo
         name={internshipInfo.companyName}
