@@ -34,7 +34,7 @@ const SearchResultsPage = () => {
             Find Internships
           </Typography>
           <SearchBar />
-          <FiltersBar />
+          <FiltersBar displayedInternships={displayedInternships} />
           <SearchResults internships={displayedInternships} />
         </Stack>
       </BasePage>
