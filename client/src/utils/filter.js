@@ -56,3 +56,20 @@ export function filterInternships(filterData) {
     return true;
   };
 }
+
+/*
+ * Function that takes in the current filter data and the key of one filter to be checked to true
+ */
+export const mutateFilterData = (allFilterData, filterLabel, key) => ({
+  ...allFilterData,
+  [filterLabel]: {
+    ...allFilterData[filterLabel],
+    data: {
+      ...allFilterData[filterLabel].data,
+      [key]: {
+        ...allFilterData[filterLabel].data[key],
+        checked: true,
+      },
+    },
+  },
+});

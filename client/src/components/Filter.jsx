@@ -13,7 +13,7 @@ import {
 import React, { useContext, useState } from 'react';
 
 import FilterContext from '../contexts/FilterContext';
-import { filterInternships } from '../utils/filter';
+import { filterInternships, mutateFilterData } from '../utils/filter';
 
 /**
  * Individual filter component to be used within the FiltersBar.
@@ -25,19 +25,6 @@ import { filterInternships } from '../utils/filter';
  *
  * Cancel should clear any unapplied filters and close the dropdown
  */
-const mutateFilterData = (allFilterData, filterLabel, key) => ({
-  ...allFilterData,
-  [filterLabel]: {
-    ...allFilterData[filterLabel],
-    data: {
-      ...allFilterData[filterLabel].data,
-      [key]: {
-        ...allFilterData[filterLabel].data[key],
-        checked: true,
-      },
-    },
-  },
-});
 
 const Filter = ({ filterLabel, displayedInternships }) => {
   const [allFilterData, setAllFilterData] = useContext(FilterContext);
