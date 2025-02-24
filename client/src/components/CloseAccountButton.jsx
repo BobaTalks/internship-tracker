@@ -50,7 +50,7 @@ const CloseAccountButton = () => {
         isOpen={openModal}
         modalOnClose={handleCloseModal}
         title="Close Account"
-        textContent="Warning! You are about to delete your account. Your information will be erased and any saved applications or progress will be permanently deleted. If you wish to use this tracker again, you will need to create a new account. \n \n If you wish to proceed, please continue below."
+        textContent="Warning! You are about to delete your account. Your information will be erased and any saved applications or progress will be permanently deleted. If you wish to use this tracker again, you will need to create a new account. \n \nIf you wish to proceed, please continue below."
         primaryButtonOnClick={handleCloseAccount}
         secondaryButtonOnClick={handleCloseModal}
         primaryButtonText="Nevermind, leave my account open"

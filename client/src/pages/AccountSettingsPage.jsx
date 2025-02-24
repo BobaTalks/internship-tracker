@@ -11,6 +11,7 @@ import React, { useEffect, useState } from 'react';
 import BackgroundShapes from '../components/BackgroundShapes';
 import CloseAccountButton from '../components/CloseAccountButton';
 import ErrorMessage from '../components/ErrorMessage';
+import HiddenTextComponent from '../components/HiddenTextComponent';
 import SignOutButton from '../components/SignOutButton';
 import {
   getUserAccountInfo,
@@ -20,6 +21,8 @@ import {
 } from '../utils/api';
 import { isEmailValid, isPasswordValid } from '../utils/helper';
 import BasePage from './BasePage';
+
+const HIDDEN_PASSWORD_LENGTH = 10;
 
 const AccountSettingsPage = () => {
   const [firstName, setFirstName] = useState('');
@@ -49,24 +52,25 @@ const AccountSettingsPage = () => {
           {
             label: 'First name',
             value: firstName,
+            setValue: setFirstName,
             isHidden: false,
-            onChange: (event) => setFirstName(event.target.value),
           },
           {
             label: 'Last name',
             value: lastName,
+            setValue: setLastName,
             isHidden: false,
-            onChange: (event) => setLastName(event.target.value),
           },
         ],
         buttonText: 'Save changes',
-        getErrorMessage: async () => {
+        updateUserInfoField: async () => {
           try {
             await updateUserName(firstName, lastName);
           } catch {
-            return 'There was a problem updating your name. Please try again later';
+            throw Error(
+              'There was a problem updating your name. Please try again later'
+            );
           }
-          return null;
         },
       },
     },
@@ -74,7 +78,7 @@ const AccountSettingsPage = () => {
       editableFieldKey: 'password',
       previewModeFields: {
         label: 'Password',
-        value: '*'.repeat(password ? password.length : 0),
+        value: '*'.repeat(HIDDEN_PASSWORD_LENGTH),
         buttonText: 'Change password',
       },
       editModeFields: {
@@ -82,32 +86,31 @@ const AccountSettingsPage = () => {
           {
             label: 'Password',
             value: password,
+            setValue: setPassword,
             isHidden: true,
-            onChange: (event) => {
-              setPassword(event.target.value);
-            },
           },
           {
             label: 'Confirm password',
             value: confirmPassword,
+            setValue: setConfirmPassword,
             isHidden: true,
-            onChange: (event) => setConfirmPassword(event.target.value),
           },
         ],
         buttonText: 'Save password',
-        getErrorMessage: async () => {
+        updateUserInfoField: async () => {
           if (confirmPassword !== password) {
-            return 'Your password and confirmation password must match.';
+            throw Error('Your password and confirmation password must match.');
           } else if (!isPasswordValid(password)) {
-            return 'Your password must be at least 6 characters long.';
+            throw Error('Your password must be at least 6 characters long.');
           }
 
           try {
-            await updateUserEmail(email);
+            await updateUserPassword(email);
           } catch {
-            return 'There was a problem updating your email. Please try again later';
+            throw Error(
+              'There was a problem updating your email. Please try again later'
+            );
           }
-          return null;
         },
       },
     },
@@ -123,33 +126,31 @@ const AccountSettingsPage = () => {
           {
             label: 'Email',
             value: email,
+            setValue: setEmail,
             isHidden: false,
-            onChange: (event) => {
-              setEmail(event.target.value);
-            },
           },
           {
             label: 'Confirm email',
             value: confirmEmail,
+            setValue: setConfirmEmail,
             isHidden: false,
-            onChange: (event) => setConfirmEmail(event.target.value),
           },
         ],
         buttonText: 'Update email',
-        getErrorMessage: async () => {
+        updateUserInfoField: async () => {
           if (confirmEmail !== email) {
-            return 'Your email and confirmation email must match.';
+            throw Error('Your email and confirmation email must match.');
           } else if (!isEmailValid(email)) {
-            return 'Your email is invalid.';
+            throw Error('Your email is invalid.');
           }
 
           try {
-            await updateUserPassword(password);
+            await updateUserEmail(password);
           } catch {
-            return 'There was a problem updating your password. Please try again later';
+            throw Error(
+              'There was a problem updating your password. Please try again later'
+            );
           }
-
-          return null;
         },
       },
     },
@@ -206,18 +207,20 @@ const AccountSettingsPage = () => {
                           key={field.label}
                         >
                           {field.isHidden ? (
-                            <TextField // replace with HiddenTextComponent
-                              value={field.value}
+                            <HiddenTextComponent
                               label={field.label}
-                              fullWidth
-                              onChange={field.onChange}
+                              hiddenPassword={field.value}
+                              setHiddenPassword={field.setValue}
+                              setShowErrorMessage={null}
                             />
                           ) : (
                             <TextField
                               value={field.value}
                               label={field.label}
                               fullWidth
-                              onChange={field.onChange}
+                              onChange={(event) =>
+                                field.setValue(event.target.value)
+                              }
                             />
                           )}
                         </Grid>
@@ -239,13 +242,15 @@ const AccountSettingsPage = () => {
                             color: 'secondary.main',
                           }}
                           onClick={async () => {
-                            const errorMessage = await edit.getErrorMessage();
-                            setErrorMessage(errorMessage);
-                            if (!errorMessage) {
+                            try {
+                              await edit.updateUserInfoField();
                               setEditableFields((prevFields) => ({
                                 ...prevFields,
                                 [row.editableFieldKey]: false,
                               }));
+                              setErrorMessage('');
+                            } catch (error) {
+                              setErrorMessage(error.message);
                             }
                           }}
                         >
