@@ -9,13 +9,16 @@ import Filter from './Filter';
  * This should iteratively loop through Filter[] and render each filter
  * Shared filter state should be managed here
  */
-const FiltersBar = () => {
+const FiltersBar = ({ displayedInternships }) => {
   const [allFilterData] = useContext(FilterContext);
   return (
     <Grid container>
       {Object.keys(allFilterData).map((key) => (
         <Grid item key={key} marginRight={2} marginTop={1}>
-          <Filter filterLabel={key} />
+          <Filter
+            filterLabel={key}
+            displayedInternships={displayedInternships}
+          />
         </Grid>
       ))}
     </Grid>

@@ -32,7 +32,7 @@ const SearchResultsPage = () => {
         <Stack spacing={2} minWidth="100%">
           <Typography variant="pageTitle">Find Internships</Typography>
           <SearchBar />
-          <FiltersBar />
+          <FiltersBar displayedInternships={displayedInternships} />
           <SearchResults internships={displayedInternships} />
         </Stack>
       </BasePage>
