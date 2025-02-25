@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage';
 
 import AuthContext from '../contexts/AuthContext';
+import { isEmailValid, isPasswordValid } from '../utils/helper';
 
 const SignUpButton = ({
   firstName,
@@ -15,9 +16,6 @@ const SignUpButton = ({
   setShowErrorMessage,
 }) => {
   let navigate = useNavigate();
-  const validEmail =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const MIN_PASSWORD_LENGTH = 6;
   const [, setAuthUser] = useContext(AuthContext);
 
   const handleSignUp = () => {
@@ -25,10 +23,10 @@ const SignUpButton = ({
       setShowErrorMessage(
         'Fields cannot be empty. Please fill out missing fields.'
       );
-    } else if (!validEmail.test(email)) {
+    } else if (!isEmailValid) {
       setShowErrorMessage('Your email is invalid.');
-    } else if (password.length < MIN_PASSWORD_LENGTH) {
-      setShowErrorMessage('Your password must be at least 6 characters long');
+    } else if (!isPasswordValid) {
+      setShowErrorMessage('Your password must be at least 6 characters long.');
     } else if (password !== confirmPassword) {
       setShowErrorMessage(
         'Your password and confirmation password must match.'

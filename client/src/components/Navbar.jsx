@@ -141,7 +141,7 @@ const NavBar = () => {
               <Button component={RouterLink} to={'/tracker'} sx={{ p: 0 }}>
                 <img src={TrackerIcon} alt="tracker" />
               </Button>
-              <Button sx={{ p: 0 }}>
+              <Button component={RouterLink} to={'/account'} sx={{ p: 0 }}>
                 <img src={AccountIcon} alt="account" />
               </Button>
             </Box>

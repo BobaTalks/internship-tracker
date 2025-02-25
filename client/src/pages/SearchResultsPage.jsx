@@ -30,9 +30,7 @@ const SearchResultsPage = () => {
     <FilterContext.Provider value={[filterData, setFilterData]}>
       <BasePage>
         <Stack spacing={2} minWidth="100%">
-          <Typography variant="pageTitle" marginTop="6rem">
-            Find Internships
-          </Typography>
+          <Typography variant="pageTitle">Find Internships</Typography>
           <SearchBar />
           <FiltersBar />
           <SearchResults internships={displayedInternships} />

@@ -4,15 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage';
 
 import AuthContext from '../contexts/AuthContext';
+import { isEmailValid } from '../utils/helper';
 
 const SignInButton = ({ email, rememberMe, password, setShowErrorMessage }) => {
   let navigate = useNavigate();
-  const validEmail =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const [, setAuthUser] = useContext(AuthContext);
 
   const handleSignIn = () => {
-    if (!validEmail.test(email)) {
+    if (!isEmailValid) {
       setShowErrorMessage('Incorrect email or password. Please try again.');
       return;
     } else if (rememberMe) {

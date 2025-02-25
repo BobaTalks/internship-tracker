@@ -398,3 +398,10 @@ export const MOCK_TRACKER_DATA = [
     ],
   },
 ];
+
+export const MOCK_SIGNED_IN_USER = {
+  email: 'boba@email.com',
+  firstName: 'Harrison',
+  lastName: 'Ford',
+  password: 'password',
+};

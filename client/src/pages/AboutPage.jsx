@@ -209,7 +209,6 @@ const AboutPage = () => {
       <Stack spacing={5} minWidth="100%" justifyContent="center">
         <Typography
           variant="pageTitle"
-          marginTop="6rem"
           sx={{
             width: '100%',
             borderBottom: 'solid 1px',
