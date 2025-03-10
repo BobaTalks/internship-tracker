@@ -1,6 +1,8 @@
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import {
   Box,
+  Button,
   Divider,
   Drawer,
   Grid,
@@ -19,6 +21,7 @@ import { getLabelIcon } from '../utils/helper';
 import InternshipCompanyInfo from './InternshipCompanyInfo';
 import InternshipTag from './InternshipTag';
 import Loading from './Loading';
+import StatusDropdown from './StatusDropdown';
 
 const TrackerDrawer = ({
   trackedInternship,
@@ -37,6 +40,10 @@ const TrackerDrawer = ({
     setMessageInput('');
   };
 
+  const handleJobPostingLinkClick = () => {
+    window.open(internshipInfo.jobInfo.jobLink);
+  };
+
   return (
     <Drawer
       open={isDrawerOpen}
@@ -47,7 +54,19 @@ const TrackerDrawer = ({
         {internshipInfo ? (
           <Stack height="100vh" justifyContent="space-between">
             <Box>
-              <Box height="3rem" />
+              <Stack mx={4} my={3} gap="1rem" direction="row">
+                <Button
+                  variant="rounded"
+                  color="primary"
+                  sx={{ fontWeight: 'bold', p: '0.3rem 1.5rem' }}
+                  endIcon={<OpenInNewIcon />}
+                  onClick={handleJobPostingLinkClick}
+                  disabled={!internshipInfo.jobInfo.jobLink}
+                >
+                  Link to original posting
+                </Button>
+                <StatusDropdown trackedInternshipId={trackedInternship.id} />
+              </Stack>
               <Divider />
               <Box m={6} height="100%">
                 <InternshipCompanyInfo
