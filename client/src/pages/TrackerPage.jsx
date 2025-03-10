@@ -1,5 +1,5 @@
 import { Box, Divider, Grid, Typography } from '@mui/material';
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import IconTextField from '../components/IconTextField';
@@ -12,17 +12,11 @@ import BasePage from './BasePage';
 const TrackerPage = () => {
   const [trackedInternships, setTrackedInternships] =
     useContext(TrackerContext);
-  const [trackerItems, setTrackerItems] = useState(() => {
-    let items = {
-      saved: [],
-      applied: [],
-      responded: [],
-      archived: [],
-    };
-    trackedInternships.every((internship) =>
-      items[internship.label].push(internship)
-    );
-    return items;
+  const [trackerItems, setTrackerItems] = useState({
+    saved: [],
+    applied: [],
+    responded: [],
+    archived: [],
   });
   const [clickedInternship, setClickedInternship] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -99,6 +93,19 @@ const TrackerPage = () => {
     setClickedInternship(internship);
     setIsDrawerOpen(true);
   };
+
+  useEffect(() => {
+    let items = {
+      saved: [],
+      applied: [],
+      responded: [],
+      archived: [],
+    };
+    trackedInternships.every((internship) =>
+      items[internship.label].push(internship)
+    );
+    setTrackerItems(items);
+  }, [trackedInternships]);
 
   return (
     <BasePage isTrackerPage={true}>
