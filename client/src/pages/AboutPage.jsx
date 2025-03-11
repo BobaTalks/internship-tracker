@@ -6,6 +6,7 @@ import AliceBoba from '../assets/boba_icons/icon-Alice_Boba.svg';
 import BrandonCBoba from '../assets/boba_icons/icon-BrandonC_Boba.svg';
 import BrandonVBoba from '../assets/boba_icons/icon-BrandonV_Boba.svg';
 import GaroBoba from '../assets/boba_icons/icon-Garo_Boba.svg';
+import HarvirBoba from '../assets/boba_icons/icon-Harvir_Boba.svg';
 import JennaBoba from '../assets/boba_icons/icon-Jenna_Boba.svg';
 import JessicaBoba from '../assets/boba_icons/icon-Jessica_Boba.svg';
 import KrystalBoba from '../assets/boba_icons/icon-Krystal_Boba.svg';
@@ -162,6 +163,14 @@ const teamMembers = {
         linkedIn: 'https://www.linkedin.com/in/razisyed-/',
         website: '',
         icon: RaziBoba,
+      },
+      {
+        name: 'Harvir Rajasanci',
+        pronouns: '(he/him)',
+        position: 'Backend Software Engineer',
+        linkedIn: 'https://www.linkedin.com/in/harvirrajasanci/',
+        website: '',
+        icon: HarvirBoba,
       },
     ],
   },
