@@ -1,3 +1,4 @@
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import {
@@ -13,9 +14,10 @@ import {
   Typography,
 } from '@mui/material';
 import { format, isToday } from 'date-fns';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { HiOutlineChat } from 'react-icons/hi';
 
+import TrackerContext from '../contexts/TrackerContext';
 import { addNote, getInternshipById } from '../utils/api';
 import { getLabelIcon } from '../utils/helper';
 import InternshipCompanyInfo from './InternshipCompanyInfo';
@@ -28,6 +30,8 @@ const TrackerDrawer = ({
   isDrawerOpen,
   setIsDrawerOpen,
 }) => {
+  const [, setTrackedInternships] = useContext(TrackerContext);
+
   const internshipInfo = trackedInternship
     ? getInternshipById(trackedInternship.internshipId)
     : null;
@@ -44,6 +48,15 @@ const TrackerDrawer = ({
     window.open(internshipInfo.jobInfo.jobLink);
   };
 
+  const deleteTrackedInternship = () => {
+    setIsDrawerOpen(false);
+
+    // TODO: Replace with API call to remove the tracked internship
+    setTrackedInternships((prevState) =>
+      prevState.filter((internship) => internship.id !== trackedInternship.id)
+    );
+  };
+
   return (
     <Drawer
       open={isDrawerOpen}
@@ -54,18 +67,30 @@ const TrackerDrawer = ({
         {internshipInfo ? (
           <Stack height="100vh" justifyContent="space-between">
             <Box>
-              <Stack mx={4} my={3} gap="1rem" direction="row">
-                <Button
-                  variant="rounded"
-                  color="primary"
-                  sx={{ fontWeight: 'bold', p: '0.3rem 1.5rem' }}
-                  endIcon={<OpenInNewIcon />}
-                  onClick={handleJobPostingLinkClick}
-                  disabled={!internshipInfo.jobInfo.jobLink}
-                >
-                  Link to original posting
-                </Button>
-                <StatusDropdown trackedInternshipId={trackedInternship.id} />
+              <Stack
+                mx={4}
+                my={3}
+                direction="row"
+                justifyContent="space-between"
+              >
+                <Box>
+                  <Button
+                    variant="rounded"
+                    color="primary"
+                    sx={{ fontWeight: 'bold', p: '0.3rem 1.5rem', mr: '1rem' }}
+                    endIcon={<OpenInNewIcon />}
+                    onClick={handleJobPostingLinkClick}
+                    disabled={!internshipInfo.jobInfo.jobLink}
+                  >
+                    Link to original posting
+                  </Button>
+                  <StatusDropdown trackedInternshipId={trackedInternship.id} />
+                </Box>
+                <Stack direction="row" alignItems="center">
+                  <IconButton onClick={deleteTrackedInternship}>
+                    <DeleteOutlineIcon />
+                  </IconButton>
+                </Stack>
               </Stack>
               <Divider />
               <Box m={6} height="100%">
