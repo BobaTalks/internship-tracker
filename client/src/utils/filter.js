@@ -56,3 +56,28 @@ export function filterInternships(filterData) {
     return true;
   };
 }
+
+/*
+ * Function that takes in the current filter data and the key of one filter to be checked to true
+ */
+export const mutateFilterData = (allFilterData, filterLabel, key) => {
+  // Create a new object with all options set to false
+  const updatedData = Object.keys(allFilterData[filterLabel].data).reduce(
+    (acc, optionKey) => ({
+      ...acc,
+      [optionKey]: {
+        ...allFilterData[filterLabel].data[optionKey],
+        checked: optionKey === key, // true only for the target key, false for all others
+      },
+    }),
+    {}
+  );
+
+  return {
+    ...allFilterData,
+    [filterLabel]: {
+      ...allFilterData[filterLabel],
+      data: updatedData,
+    },
+  };
+};
