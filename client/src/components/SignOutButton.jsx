@@ -51,8 +51,8 @@ const SignOutButton = () => {
         secondaryButtonOnClick={handleCloseModal}
         primaryButtonText="Cancel"
         secondaryButtonText="Sign Out"
-        isButtonStacked={false}
         errorMessage={errorMessage}
+        width="26rem"
       />
     </>
   );

@@ -55,7 +55,7 @@ const CloseAccountButton = () => {
         secondaryButtonOnClick={handleCloseModal}
         primaryButtonText="Nevermind, leave my account open"
         secondaryButtonText="Close my account permanently"
-        isButtonStacked={true}
+        isButtonStacked
         errorMessage={errorMessage}
       />
     </>

@@ -13,8 +13,9 @@ const ConfirmActionModal = ({
   secondaryButtonOnClick,
   primaryButtonText,
   secondaryButtonText,
-  isButtonStacked,
-  errorMessage,
+  isButtonStacked = false,
+  errorMessage = null,
+  width = null,
 }) => {
   return (
     <Modal
@@ -33,7 +34,7 @@ const ConfirmActionModal = ({
           borderRadius: '2rem',
           boxShadow: 10,
           p: '1.6rem 2.2rem',
-          width: { xs: '95%', sm: '80%', md: '50%' },
+          width: width ?? { xs: '95%', sm: '80%', md: '50%' },
         }}
       >
         <Stack direction="column" spacing={4}>
@@ -46,11 +47,23 @@ const ConfirmActionModal = ({
             {addWhiteSpaceToString(textContent)}
           </Typography>
           {errorMessage && <ErrorMessage message={errorMessage} />}
-          <Stack direction={isButtonStacked ? 'column' : 'row'} spacing={4}>
-            <Button variant="redOutlined" onClick={secondaryButtonOnClick}>
+          <Stack
+            direction={isButtonStacked ? 'column' : 'row'}
+            spacing={4}
+            justifyContent="space-between"
+          >
+            <Button
+              variant="redOutlined"
+              fullWidth
+              onClick={secondaryButtonOnClick}
+            >
               {primaryButtonText}
             </Button>
-            <Button variant="redContained" onClick={primaryButtonOnClick}>
+            <Button
+              variant="redContained"
+              fullWidth
+              onClick={primaryButtonOnClick}
+            >
               {secondaryButtonText}
             </Button>
           </Stack>
