@@ -1,48 +1,31 @@
 import { Box, Divider, Grid, Typography } from '@mui/material';
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import IconTextField from '../components/IconTextField';
+import Loading from '../components/Loading';
 import SearchButton from '../components/SearchButton';
 import TrackerColumn from '../components/TrackerColumn';
 import TrackerDrawer from '../components/TrackerDrawer';
-import TrackerContext from '../contexts/TrackerContext';
+import {
+  deleteTrackedInternshipById,
+  getTrackerColumnData,
+  updateTrackedInternshipLabel,
+  updateTrackerColumnOrder,
+} from '../utils/api';
+import { capitalize } from '../utils/helper';
 import BasePage from './BasePage';
 
+const CHANGE_PLACEHOLDER_WIDTH = 630;
+
 const TrackerPage = () => {
-  const [trackedInternships, setTrackedInternships] =
-    useContext(TrackerContext);
-  const [trackerItems, setTrackerItems] = useState({
-    saved: [],
-    applied: [],
-    responded: [],
-    archived: [],
-  });
-  const [clickedInternship, setClickedInternship] = useState(null);
+  const [trackerItems, setTrackerItems] = useState(null);
+  const [clickedInternshipId, setClickedInternshipId] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
+  const [trackerColumns, setTrackerColumns] = useState(null);
   const [search, setSearch] = useState('');
-  const handleClick = () => {};
-  const CHANGE_PLACEHOLDER_WIDTH = 630;
 
-  const trackerColumns = [
-    {
-      label: 'Saved',
-      trackedItemsKey: 'saved',
-    },
-    {
-      label: 'Applied',
-      trackedItemsKey: 'applied',
-    },
-    {
-      label: 'Responded',
-      trackedItemsKey: 'responded',
-    },
-    {
-      label: 'Archived',
-      trackedItemsKey: 'archived',
-    },
-  ];
+  const handleClick = () => {};
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
@@ -55,64 +38,141 @@ const TrackerPage = () => {
       return;
     }
 
-    const sInd = source.droppableId;
-    const dInd = destination.droppableId;
-
-    if (sInd === dInd) {
-      const newOrder = Array.from(trackerItems[sInd]);
-      newOrder.splice(source.index, 1);
-      newOrder.splice(destination.index, 0, JSON.parse(draggableId));
-
-      setTrackerItems((prevState) => ({
-        ...prevState,
-        [sInd]: newOrder,
-      }));
-    } else {
-      const sourceCol = Array.from(trackerItems[sInd]);
-      const destCol = Array.from(trackerItems[dInd]);
-
-      const [removed] = sourceCol.splice(source.index, 1);
-      destCol.splice(destination.index, 0, removed);
-      destCol[destination.index]['label'] = dInd;
-
-      // TODO: replace with update to database
-      setTrackedInternships((prevState) => ({
-        ...prevState,
-        label: dInd,
-      }));
-
-      setTrackerItems((prevState) => ({
-        ...prevState,
-        [sInd]: sourceCol,
-        [dInd]: destCol,
-      }));
-    }
+    onTrackedInternshipStatusUpdate(
+      JSON.parse(draggableId),
+      source.droppableId,
+      destination.droppableId,
+      source.index,
+      destination.index
+    );
   };
 
-  const onCardClick = (internship) => {
-    setClickedInternship(internship);
+  const onTrackedInternshipStatusUpdate = (
+    trackedInternshipId,
+    oldLabel,
+    newLabel,
+    fromIndex = null,
+    toIndex = null
+  ) => {
+    if (oldLabel === newLabel && fromIndex === toIndex) return;
+
+    const oldLabelCol = Array.from(trackerItems[oldLabel]);
+
+    if (fromIndex === null) {
+      fromIndex = oldLabelCol.findIndex((id) => id === trackedInternshipId);
+
+      if (fromIndex === -1) {
+        console.error(
+          `Tracked internship with id ${trackedInternshipId} could not be found in column with label ${oldLabel}`
+        );
+        return;
+      }
+    }
+    oldLabelCol.splice(fromIndex, 1);
+
+    if (oldLabel === newLabel) {
+      oldLabelCol.splice(toIndex, 0, trackedInternshipId);
+
+      setTrackerItems((prevState) => ({
+        ...prevState,
+        [oldLabel]: oldLabelCol,
+      }));
+    } else {
+      const newLabelCol = Array.from(trackerItems[newLabel]);
+
+      if (toIndex == null) {
+        newLabelCol.push(trackedInternshipId);
+      } else {
+        newLabelCol.splice(toIndex, 0, trackedInternshipId);
+      }
+
+      setTrackerItems((prevState) => ({
+        ...prevState,
+        [oldLabel]: oldLabelCol,
+        [newLabel]: newLabelCol,
+      }));
+
+      updateInternshipStatus(trackedInternshipId, newLabel);
+      updateTrackerIdsOrderInColumn(newLabel, newLabelCol);
+    }
+    updateTrackerIdsOrderInColumn(oldLabel, oldLabelCol);
+  };
+
+  const onTrackedInternshipDelete = (trackedInternshipId, label) => {
+    const updatedOrderedTrackerIds = trackerItems[label].filter(
+      (id) => id !== trackedInternshipId
+    );
+    setTrackerItems((prevState) => ({
+      ...prevState,
+      [label]: updatedOrderedTrackerIds,
+    }));
+    updateTrackerIdsOrderInColumn(label, updatedOrderedTrackerIds);
+
+    deleteTrackedInternship(trackedInternshipId);
+  };
+
+  const onCardClick = (trackedInternshipId) => {
+    setClickedInternshipId(trackedInternshipId);
     setIsDrawerOpen(true);
   };
 
+  const updateTrackerIdsOrderInColumn = async (columnLabel, newOrder) => {
+    try {
+      await updateTrackerColumnOrder(columnLabel, newOrder);
+    } catch (error) {
+      console.error(
+        `Could not update order of tracker ids in column ${columnLabel}: ${error}`
+      );
+    }
+  };
+
+  const updateInternshipStatus = async (trackedInternshipId, newLabel) => {
+    try {
+      await updateTrackedInternshipLabel(trackedInternshipId, newLabel);
+    } catch (error) {
+      console.error('Could not update tracked internship status: ', error);
+    }
+  };
+
+  const deleteTrackedInternship = async (trackedInternshipId) => {
+    try {
+      await deleteTrackedInternshipById(trackedInternshipId);
+    } catch (error) {
+      console.error('Could not delete tracked internship: ', error);
+    }
+  };
+
   useEffect(() => {
-    let items = {
-      saved: [],
-      applied: [],
-      responded: [],
-      archived: [],
+    const fetchTrackerColumns = async () => {
+      try {
+        const data = await getTrackerColumnData();
+
+        let items = {};
+        let columnData = [];
+
+        data.forEach((col) => {
+          items[col.label] = col.orderedTrackerIds;
+          columnData.push(col.label);
+        });
+        setTrackerItems(items);
+        setTrackerColumns(columnData);
+      } catch (error) {
+        console.error('Could not fetch tracker column data: ', error);
+      }
     };
-    trackedInternships.every((internship) =>
-      items[internship.label].push(internship)
-    );
-    setTrackerItems(items);
-  }, [trackedInternships]);
+
+    fetchTrackerColumns();
+  }, []);
 
   return (
     <BasePage isTrackerPage={true}>
       <TrackerDrawer
-        trackedInternship={clickedInternship}
+        trackedInternshipId={clickedInternshipId}
         isDrawerOpen={isDrawerOpen}
         setIsDrawerOpen={setIsDrawerOpen}
+        onInternshipStatusUpdate={onTrackedInternshipStatusUpdate}
+        onTrackedInternshipDelete={onTrackedInternshipDelete}
+        columnLabels={trackerColumns}
       />
       <Typography variant="pageTitle">Internship Tracker</Typography>
       <Grid container spacing={2} paddingY={2}>
@@ -138,20 +198,24 @@ const TrackerPage = () => {
         mt={6}
         sx={{ flexGrow: 1 }}
       >
-        <DragDropContext onDragEnd={onDragEnd}>
-          {trackerColumns.map((col, idx) => (
-            <Fragment key={col.trackedItemsKey}>
-              <TrackerColumn
-                category={col.label}
-                cards={trackerItems[col.trackedItemsKey]}
-                cardOnClick={onCardClick}
-              />
-              {idx !== trackerColumns.length - 1 && (
-                <Divider orientation="vertical" />
-              )}
-            </Fragment>
-          ))}
-        </DragDropContext>
+        {trackerColumns && trackerItems ? (
+          <DragDropContext onDragEnd={onDragEnd}>
+            {trackerColumns.map((label, idx) => (
+              <Fragment key={label}>
+                <TrackerColumn
+                  category={capitalize(label)}
+                  trackerIds={trackerItems[label]}
+                  cardOnClick={onCardClick}
+                />
+                {idx !== trackerColumns.length - 1 && (
+                  <Divider orientation="vertical" />
+                )}
+              </Fragment>
+            ))}
+          </DragDropContext>
+        ) : (
+          <Loading sx={{ width: '100%', height: 'calc(100vh - 20rem)' }} />
+        )}
       </Box>
     </BasePage>
   );

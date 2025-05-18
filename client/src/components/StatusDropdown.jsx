@@ -1,18 +1,12 @@
 import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material';
 import { Button, MenuItem, MenuList, Popover, Typography } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import TrackerContext from '../contexts/TrackerContext';
 import { capitalize } from '../utils/helper';
 
-const STATUS_OPTIONS = ['Saved', 'Applied', 'Responded', 'Archived'];
-
-const StatusDropdown = ({ trackedInternshipId }) => {
-  const [trackedInternships, setTrackedInternships] =
-    useContext(TrackerContext);
+const StatusDropdown = ({ options, status, setStatus }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [status, setStatus] = useState('');
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -22,25 +16,6 @@ const StatusDropdown = ({ trackedInternshipId }) => {
   const handleClose = () => {
     setAnchorEl(null);
     setIsOpen(false);
-  };
-
-  useEffect(() => {
-    // TODO: Replace with API call to get status of a tracked internship
-    const internship = trackedInternships.find(
-      (item) => item.id === trackedInternshipId
-    );
-    setStatus(internship ? capitalize(internship.label) : '');
-  }, [trackedInternships, trackedInternshipId]);
-
-  // TODO: Replace with API call to update the status of a tracked internship
-  const updateStatus = (newStatus) => {
-    setTrackedInternships((prevState) =>
-      prevState.map((internship) =>
-        internship.id === trackedInternshipId
-          ? { ...internship, label: newStatus.toLowerCase() }
-          : internship
-      )
-    );
   };
 
   return (
@@ -65,7 +40,7 @@ const StatusDropdown = ({ trackedInternshipId }) => {
         }}
       >
         <Typography noWrap fontSize=".9rem" color="grey.main">
-          {status}
+          {capitalize(status)}
         </Typography>
       </Button>
       <Popover
@@ -88,10 +63,10 @@ const StatusDropdown = ({ trackedInternshipId }) => {
         }}
       >
         <MenuList>
-          {STATUS_OPTIONS.map((option) => (
+          {options.map((option) => (
             <MenuItem
               key={option}
-              onClick={() => updateStatus(option)}
+              onClick={() => setStatus(option)}
               selected={option === status}
               sx={{
                 '&.Mui-selected': {
@@ -102,7 +77,7 @@ const StatusDropdown = ({ trackedInternshipId }) => {
                 },
               }}
             >
-              {option}
+              {capitalize(option)}
             </MenuItem>
           ))}
         </MenuList>

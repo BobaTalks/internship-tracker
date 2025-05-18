@@ -5,8 +5,8 @@ import FiltersBar from '../components/FiltersBar';
 import SearchBar from '../components/SearchBar';
 import SearchResults from '../components/SearchResults';
 import FilterContext from '../contexts/FilterContext';
+import { getFilterData, getInternships } from '../utils/api';
 import { filterInternships } from '../utils/filter';
-import { MOCK_FILTER_DATA, MOCK_INTERNSHIP_DATA } from '../utils/mockData';
 import BasePage from './BasePage';
 /**
  * https://github.com/BobaTalks/internship-tracker/issues/28
@@ -15,15 +15,36 @@ import BasePage from './BasePage';
  */
 
 const SearchResultsPage = () => {
-  const [filterData, setFilterData] = useState(MOCK_FILTER_DATA);
-  const [displayedInternships, setDisplayedInternships] =
-    useState(MOCK_INTERNSHIP_DATA);
+  const [filterData, setFilterData] = useState({});
+  const [displayedInternships, setDisplayedInternships] = useState([]);
+
+  useEffect(() => {
+    const fetchFilterData = async () => {
+      try {
+        const filterData = await getFilterData();
+        setFilterData(filterData);
+      } catch (error) {
+        console.error('Could not fetch filter data: ', error);
+      }
+    };
+
+    fetchFilterData();
+  }, []);
 
   // Handles filtering whenever applied filters are changed
   useEffect(() => {
-    setDisplayedInternships(
-      MOCK_INTERNSHIP_DATA.filter(filterInternships(filterData))
-    );
+    const fetchDisplayedInternships = async () => {
+      try {
+        const internships = await getInternships();
+        setDisplayedInternships(
+          internships.filter(filterInternships(filterData))
+        );
+      } catch (error) {
+        console.error('Could not fetch internships: ', error);
+      }
+    };
+
+    fetchDisplayedInternships();
   }, [filterData]);
 
   return (

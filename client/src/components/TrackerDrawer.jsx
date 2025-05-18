@@ -14,11 +14,10 @@ import {
   Typography,
 } from '@mui/material';
 import { format, isToday } from 'date-fns';
-import React, { useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HiOutlineChat } from 'react-icons/hi';
 
-import TrackerContext from '../contexts/TrackerContext';
-import { addNote, getInternshipById } from '../utils/api';
+import { addNote, getInternshipById, getTrackerInfoById } from '../utils/api';
 import { getLabelIcon } from '../utils/helper';
 import ConfirmActionModal from './ConfirmActionModal';
 import InternshipCompanyInfo from './InternshipCompanyInfo';
@@ -27,24 +26,40 @@ import Loading from './Loading';
 import StatusDropdown from './StatusDropdown';
 
 const TrackerDrawer = ({
-  trackedInternship,
+  trackedInternshipId,
   isDrawerOpen,
   setIsDrawerOpen,
+  onInternshipStatusUpdate,
+  onTrackedInternshipDelete,
+  columnLabels,
 }) => {
-  const [, setTrackedInternships] = useContext(TrackerContext);
-
-  const internshipInfo = trackedInternship
-    ? getInternshipById(trackedInternship.internshipId)
-    : null;
-
+  const [internshipInfo, setInternshipInfo] = useState(null);
+  const [notes, setNotes] = useState([]);
+  const [status, setStatus] = useState(null);
   const [messageInput, setMessageInput] = useState('');
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
     useState(false);
 
-  // TODO: Messages are not updated since addNote has not yet been implemented
-  const submitMessage = () => {
-    addNote(trackedInternship.id, messageInput);
-    setMessageInput('');
+  const handleNotesInputKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      submitMessage();
+    }
+  };
+
+  const submitMessage = async () => {
+    const trimmedMessage = messageInput.trim();
+    if (!trimmedMessage) {
+      setMessageInput('');
+      return;
+    }
+    try {
+      const newNote = await addNote(trackedInternshipId, trimmedMessage);
+      setNotes((prevNotes) => [...prevNotes, newNote]);
+      setMessageInput('');
+    } catch (error) {
+      console.error('Error adding note: ', error);
+    }
   };
 
   const handleJobPostingLinkClick = () => {
@@ -55,11 +70,35 @@ const TrackerDrawer = ({
     setIsDrawerOpen(false);
     setIsConfirmDeleteModalOpen(false);
 
-    // TODO: Replace with API call to remove the tracked internship
-    setTrackedInternships((prevState) =>
-      prevState.filter((internship) => internship.id !== trackedInternship.id)
-    );
+    onTrackedInternshipDelete(trackedInternshipId, status);
   };
+
+  const onStatusUpdate = (newStatus) => {
+    onInternshipStatusUpdate(trackedInternshipId, status, newStatus);
+    setStatus(newStatus);
+  };
+
+  useEffect(() => {
+    const fetchInternship = async () => {
+      if (trackedInternshipId) {
+        try {
+          const trackedInternship = await getTrackerInfoById(
+            trackedInternshipId
+          );
+          const internshipData = await getInternshipById(
+            trackedInternship.internshipId
+          );
+          setInternshipInfo(internshipData);
+          setNotes(trackedInternship.notes);
+          setStatus(trackedInternship.label);
+        } catch (error) {
+          console.error('Error getting internship: ', error);
+        }
+      }
+    };
+
+    fetchInternship();
+  }, [trackedInternshipId, isDrawerOpen]);
 
   return (
     <>
@@ -94,7 +133,9 @@ const TrackerDrawer = ({
                       Link to original posting
                     </Button>
                     <StatusDropdown
-                      trackedInternshipId={trackedInternship.id}
+                      status={status}
+                      setStatus={onStatusUpdate}
+                      options={columnLabels}
                     />
                   </Box>
                   <Stack direction="row" alignItems="center">
@@ -162,15 +203,11 @@ const TrackerDrawer = ({
                     },
                   }}
                 >
-                  {trackedInternship.notes.length > 0 ? (
-                    trackedInternship.notes.map((note, idx) => (
+                  {notes && notes.length > 0 ? (
+                    notes.map((note, idx) => (
                       <Box
                         key={idx}
-                        pb={
-                          idx === trackedInternship.notes.length - 1
-                            ? '1.5rem'
-                            : 0
-                        }
+                        pb={idx === notes.length - 1 ? '1.5rem' : 0}
                       >
                         <Typography
                           color="text.dark"
@@ -204,6 +241,7 @@ const TrackerDrawer = ({
                   <TextField
                     value={messageInput}
                     onChange={(e) => setMessageInput(e.target.value)}
+                    onKeyDown={handleNotesInputKeyDown}
                     fullWidth
                     placeholder="Type comment here"
                     size="small"

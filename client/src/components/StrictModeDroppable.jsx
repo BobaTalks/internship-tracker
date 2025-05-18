@@ -1,12 +1,12 @@
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 import TrackerCard from '../components/TrackerCard';
 
-const StrictModeDroppable = ({ cards, category, cardOnClick }) => {
+const StrictModeDroppable = ({ trackerIds, category, cardOnClick }) => {
   const [enabled, setEnabled] = React.useState(false);
-  React.useEffect(() => {
+  useEffect(() => {
     const animation = requestAnimationFrame(() => setEnabled(true));
 
     return () => {
@@ -18,6 +18,7 @@ const StrictModeDroppable = ({ cards, category, cardOnClick }) => {
   if (!enabled) {
     return null;
   }
+
   return (
     <Droppable droppableId={category.toLowerCase()}>
       {(provided) => (
@@ -46,22 +47,19 @@ const StrictModeDroppable = ({ cards, category, cardOnClick }) => {
             },
           }}
         >
-          {cards.map((item, index) => {
+          {trackerIds.map((trackerId, index) => {
             return (
               <Draggable
-                key={JSON.stringify(item)}
-                draggableId={JSON.stringify(item)}
+                key={JSON.stringify(trackerId)}
+                draggableId={JSON.stringify(trackerId)}
                 index={index}
               >
-                {(provided, snapshot) => {
+                {(provided) => {
                   return (
                     <TrackerCard
+                      key={trackerId}
                       provided={provided}
-                      key={item.id}
-                      trackerId={item.id}
-                      internshipId={item.internshipId}
-                      dateAdded={item.dateAdded}
-                      appliedDate={item.appliedDate}
+                      trackerId={trackerId}
                       cardOnClick={cardOnClick}
                     />
                   );
