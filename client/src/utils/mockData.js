@@ -1,4 +1,4 @@
-export const MOCK_FILTER_DATA = {
+export let mockFilterData = {
   remote: {
     filterName: 'Remote',
     data: {
@@ -126,7 +126,7 @@ export const MOCK_FILTER_DATA = {
   },
 };
 
-export const MOCK_INTERNSHIP_DATA = [
+export let mockInternshipData = [
   {
     id: 1,
     companyName: 'Netflix',
@@ -287,12 +287,17 @@ export const MOCK_INTERNSHIP_DATA = [
   },
 ];
 
-export const MOCK_TRACKER_DATA = [
+const SAVED_STATUS = 'saved';
+const APPLIED_STATUS = 'applied';
+const RESPONDED_STATUS = 'responded';
+const ARCHIVED_STATUS = 'archived';
+
+export let mockTrackerData = [
   {
     id: 1,
     internshipId: 1,
     dateAdded: new Date('December 9, 2023, 5:54 PM'),
-    label: 'saved',
+    label: SAVED_STATUS,
     appliedDate: new Date('July 10, 2023'),
     notes: [
       {
@@ -336,7 +341,7 @@ export const MOCK_TRACKER_DATA = [
     id: 2,
     internshipId: 3,
     dateAdded: new Date('January 3, 2021'),
-    label: 'saved',
+    label: SAVED_STATUS,
     appliedDate: new Date('August 2, 2023'),
     notes: [],
   },
@@ -344,7 +349,7 @@ export const MOCK_TRACKER_DATA = [
     id: 3,
     internshipId: 2,
     dateAdded: new Date('July 3, 2023'),
-    label: 'applied',
+    label: APPLIED_STATUS,
     appliedDate: null,
     notes: [
       {
@@ -363,7 +368,7 @@ export const MOCK_TRACKER_DATA = [
     id: 4,
     internshipId: 4,
     dateAdded: new Date('December 7, 2023'),
-    label: 'responded',
+    label: RESPONDED_STATUS,
     appliedDate: null,
     notes: [
       {
@@ -382,7 +387,7 @@ export const MOCK_TRACKER_DATA = [
     id: 5,
     internshipId: 5,
     dateAdded: new Date('December 9, 2023'),
-    label: 'archived',
+    label: ARCHIVED_STATUS,
     appliedDate: null,
     notes: [
       {
@@ -399,7 +404,26 @@ export const MOCK_TRACKER_DATA = [
   },
 ];
 
-export const MOCK_SIGNED_IN_USER = {
+export let mockTrackerColumnData = [
+  {
+    label: SAVED_STATUS,
+    orderedTrackerIds: [1, 2],
+  },
+  {
+    label: APPLIED_STATUS,
+    orderedTrackerIds: [3],
+  },
+  {
+    label: RESPONDED_STATUS,
+    orderedTrackerIds: [4],
+  },
+  {
+    label: ARCHIVED_STATUS,
+    orderedTrackerIds: [5],
+  },
+];
+
+export let mockSignedInUser = {
   email: 'boba@email.com',
   firstName: 'Harrison',
   lastName: 'Ford',

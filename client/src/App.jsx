@@ -7,9 +7,7 @@ import secureLocalStorage from 'react-secure-storage';
 
 import Loading from './components/Loading';
 import AuthContext from './contexts/AuthContext';
-import TrackerContext from './contexts/TrackerContext';
 import theme from './theme';
-import { MOCK_TRACKER_DATA } from './utils/mockData';
 
 const withSuspense = (Component) => (
   <Suspense fallback={<Loading />}>
@@ -36,33 +34,26 @@ const App = () => {
       : null;
   });
 
-  const [trackedInternships, setTrackedInternships] =
-    useState(MOCK_TRACKER_DATA);
-
   return (
     <BrowserRouter>
       <CssBaseline />
       <ThemeProvider theme={theme}>
         <AuthContext.Provider value={[authUser, setAuthUser]}>
-          <TrackerContext.Provider
-            value={[trackedInternships, setTrackedInternships]}
-          >
-            <Routes>
-              <Route path="/" element={withSuspense(HomePage)} />
-              <Route path="/search" element={withSuspense(SearchResultsPage)} />
-              <Route path="/about" element={withSuspense(AboutPage)} />
-              {/* temporary - to be deleted */}
-              <Route path="/test" element={withSuspense(TestPage)} />
-              <Route path="/signin" element={withSuspense(SignInPage)} />
-              <Route path="/signup" element={withSuspense(SignUpPage)} />
-              <Route path="/tracker" element={withSuspense(TrackerPage)} />
-              <Route
-                path="/account"
-                element={withSuspense(AccountSettingsPage)}
-              />
-              <Route path="*" element={withSuspense(ErrorPage)} />
-            </Routes>
-          </TrackerContext.Provider>
+          <Routes>
+            <Route path="/" element={withSuspense(HomePage)} />
+            <Route path="/search" element={withSuspense(SearchResultsPage)} />
+            <Route path="/about" element={withSuspense(AboutPage)} />
+            {/* temporary - to be deleted */}
+            <Route path="/test" element={withSuspense(TestPage)} />
+            <Route path="/signin" element={withSuspense(SignInPage)} />
+            <Route path="/signup" element={withSuspense(SignUpPage)} />
+            <Route path="/tracker" element={withSuspense(TrackerPage)} />
+            <Route
+              path="/account"
+              element={withSuspense(AccountSettingsPage)}
+            />
+            <Route path="*" element={withSuspense(ErrorPage)} />
+          </Routes>
         </AuthContext.Provider>
       </ThemeProvider>
     </BrowserRouter>
