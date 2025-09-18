@@ -25,6 +25,7 @@ import InternshipTag from './InternshipTag';
 import JobDescription from './JobDescription';
 import Loading from './Loading';
 import StatusDropdown from './StatusDropdown';
+import TrackedActivity from './TrackedActivity';
 
 const TrackerDrawer = ({
   trackedInternshipId,
@@ -172,6 +173,14 @@ const TrackerDrawer = ({
                     requirements={internshipInfo.jobInfo.jobReqs}
                     responsibilities={internshipInfo.jobInfo.jobResp}
                   />
+                  <Typography
+                    variant="h6"
+                    paddingTop="1.5rem"
+                    paddingBottom="1rem"
+                  >
+                    Activity & Tasks
+                  </Typography>
+                  <TrackedActivity trackedInternshipId={trackedInternshipId} />
                 </Box>
               </Box>
               <Box bgcolor="background.main" padding="1rem 0.8rem 1rem 1.2rem">

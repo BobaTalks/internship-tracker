@@ -161,6 +161,104 @@ export const addNote = async (trackedInternshipId, message) => {
 };
 
 /**
+ * Get all activities from a tracked internship
+ * @param trackedInternshipId tracked internship id
+ * @returns an array of activities
+ */
+export const getActivitiesByTrackedInternshipId = async (
+  trackedInternshipId
+) => {
+  const trackedInternship = mockTrackerData.find(
+    (trackedInternship) => trackedInternship.id === trackedInternshipId
+  );
+
+  if (!trackedInternship)
+    throw new Error(
+      `No tracked internship associated with id: ${trackedInternshipId}.`
+    );
+
+  // Sort activity in chronological order
+  const sortedActivity = [...trackedInternship.activity].sort((a, b) => {
+    const timeA = a.date ? new Date(a.date).getTime() : Infinity;
+    const timeB = b.date ? new Date(b.date).getTime() : Infinity;
+    return timeA - timeB;
+  });
+
+  return sortedActivity;
+};
+
+/**
+ * Add an activity to a tracked internship
+ * @param trackedInternshipId tracked internship id
+ * @param title activity title
+ * @param date activity date (can be null)
+ * @returns newly created activity
+ */
+export const addActivity = async (trackedInternshipId, title, date = null) => {
+  const trackedInternship = mockTrackerData.find(
+    (ti) => ti.id === trackedInternshipId
+  );
+
+  if (!trackedInternship)
+    throw new Error(
+      `No tracked internship found with id: ${trackedInternshipId}`
+    );
+
+  const newActivityId =
+    trackedInternship.activity.length > 0
+      ? Math.max(...trackedInternship.activity.map((a) => a.id)) + 1
+      : 0;
+
+  const newActivity = { id: newActivityId, title, date };
+  trackedInternship.activity.push(newActivity);
+  return newActivity;
+};
+
+/**
+ * Edit an activity by activity ID
+ * @param activityId activity id
+ * @param title new title
+ * @param date new date
+ * @returns updated activity
+ */
+export const editActivity = async (activityId, title, date) => {
+  let activityFound = null;
+
+  mockTrackerData.forEach((trackedInternship) => {
+    const activity = trackedInternship.activity.find(
+      (a) => a.id === activityId
+    );
+    if (activity) {
+      activity.title = title;
+      activity.date = date;
+      activityFound = activity;
+    }
+  });
+
+  if (!activityFound)
+    throw new Error(`No activity found with id: ${activityId}`);
+  return activityFound;
+};
+
+/**
+ * Delete an activity by activity ID
+ * @param activityId activity id
+ */
+export const deleteActivity = async (activityId) => {
+  let deleted = false;
+
+  for (const tracked of mockTrackerData) {
+    const index = tracked.activity.findIndex((act) => act.id === activityId);
+    if (index !== -1) {
+      tracked.activity.splice(index, 1);
+      return;
+    }
+  }
+
+  if (!deleted) throw new Error(`No activity found with id: ${activityId}`);
+};
+
+/**
  * Fetch user account information to be displayed on account settings page
  * @returns user
  */

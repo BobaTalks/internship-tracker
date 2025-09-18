@@ -333,6 +333,34 @@ export let mockTrackerData = [
           'E-mail reply from Sam for pass/no pass screen in 3-4 business days',
       },
     ],
+    activity: [
+      {
+        id: 0,
+        title: 'BobaTasks posted internship',
+        date: new Date(2023, 1, 13),
+      },
+      {
+        id: 1,
+        title: 'Application due',
+        date: new Date(2023, 1, 31),
+      },
+      {
+        id: 2,
+        title: 'Applied to job',
+        date: new Date(2023, 2, 2),
+      },
+      {
+        id: 3,
+        title:
+          'Phone screen - will need to contact the organization to check method of call and then follow up for any additional info',
+        date: new Date(2025, 11, 13),
+      },
+      {
+        id: 4,
+        title: 'Interview',
+        date: null,
+      },
+    ],
   },
   {
     id: 2,
@@ -341,6 +369,13 @@ export let mockTrackerData = [
     label: SAVED_STATUS,
     appliedDate: new Date('August 2, 2023'),
     notes: [],
+    activity: [
+      {
+        id: 5,
+        title: 'Job posted on university job site',
+        date: new Date(2025, 5, 31),
+      },
+    ],
   },
   {
     id: 3,
@@ -358,6 +393,28 @@ export let mockTrackerData = [
         date: new Date('September 9, 2023, 12:23 PM'),
         message:
           'E-mail reply from Sam for pass/no pass screen in 3-4 business days',
+      },
+    ],
+    activity: [
+      {
+        id: 6,
+        title: 'Screening',
+        date: new Date(2025, 7, 2),
+      },
+      {
+        id: 7,
+        title: 'Technical interview 1',
+        date: new Date(2025, 12, 12),
+      },
+      {
+        id: 8,
+        title: 'Technical interview 2',
+        date: new Date(2025, 12, 24),
+      },
+      {
+        id: 9,
+        title: 'Technical interview 3',
+        date: new Date(2025, 12, 27),
       },
     ],
   },
@@ -379,6 +436,7 @@ export let mockTrackerData = [
           'E-mail reply from Sam for pass/no pass screen in 3-4 business days',
       },
     ],
+    activity: [],
   },
   {
     id: 5,
@@ -398,6 +456,7 @@ export let mockTrackerData = [
           'E-mail reply from Sam for pass/no pass screen in 3-4 business days',
       },
     ],
+    activity: [],
   },
 ];
 
