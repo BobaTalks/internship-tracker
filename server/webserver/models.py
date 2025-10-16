@@ -24,8 +24,16 @@ class Job(db.Model):
     title = db.Column(db.String, nullable=False)
     url = db.Column(db.String, nullable=False)
     location = db.Column(db.ForeignKey("locations.id"), nullable=False)
-    status = db.Column(db.String, nullable=False)
-    createdAt = db.Column(datetime, default=datetime.utcnow, nullable=False)
+    status = db.Column(
+        db.String,
+        nullable=False,
+        server_default=db.text("'open'"),
+    )
+    createdAt = db.Column(
+        db.DateTime,
+        nullable=False,
+        server_default=db.func.now(),
+    )
 
 
 class Location(db.Model):
